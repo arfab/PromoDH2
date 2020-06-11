@@ -4,79 +4,127 @@
     ViewData["Title"] = "CargarCodigo";
 }
 
-<h4>Registro</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="CargarCodigo">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-           
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Apellido" class="control-label"></label>
-                <input asp-for="Apellido" class="form-control" />
-                <span asp-validation-for="Apellido" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Provincia" class="control-label"></label>
-                <input asp-for="Provincia" class="form-control" />
-                <span asp-validation-for="Provincia" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Direccion" class="control-label"></label>
-                <input asp-for="Direccion" class="form-control" />
-                <span asp-validation-for="Direccion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Localidad" class="control-label"></label>
-                <input asp-for="Localidad" class="form-control" />
-                <span asp-validation-for="Localidad" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Telefono" class="control-label"></label>
-                <input asp-for="Telefono" class="form-control" />
-                <span asp-validation-for="Telefono" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Dni" class="control-label"></label>
-                <input asp-for="Dni" class="form-control" />
-                <span asp-validation-for="Dni" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Codigo" class="control-label"></label>
-                <input asp-for="Codigo" class="form-control" />
-                <span asp-validation-for="Codigo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="fecha_nacimiento" class="control-label"></label>
-                <input asp-for="fecha_nacimiento" class="form-control" />
-                <span asp-validation-for="fecha_nacimiento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="recibir_info" class="control-label"></label>
-                <input asp-for="recibir_info" class="form-control" />
-                <span asp-validation-for="recibir_info" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+<!doctype html>
+<html class="scroll">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenidos a la promo Topline Seven</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="scripts/html5shiv.min.js"></script>
+    <script type="text/javascript" src="scripts/respond.min.js"></script>
+    <![endif] -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="~/js/jQuery.plugins.js"></script>
+    <script type="text/javascript" src="~/js/jQuery.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+</head>
+<body id="int">
+    <form asp-action="CargarCodigo">
+        <header>
+            <h1><a href="Default.aspx">Promo "Topline Seven"</a></h1>
+            <a href="#" class="menu-open">Menú</a>
+        </header>
+        <div id="menu-blocker"></div>
+        <nav id="menu">
+            <a href="#" class="menu-close">Cerrar menú</a>
+            <img src="~/images/logo-promo.png" alt="Promo Topline Seven" class="logo" />
+            <ul>
+                <li><a href="Default.aspx">Home</a></li>
+                <li class="sel">Carg&aacute;<br />tu c&oacute;digo</li>
+                <li><a href="Bases.aspx">Bases<br />y condiciones</a></li>
+                <li><a href="Premios.aspx">Listado<br />de premios</a></li>
+                <li><a href="FAQs.aspx">Preguntas<br />frecuentes</a></li>
+                <li><a href="Contacto.aspx">Contacto</a></li>
+            </ul>
+        </nav>
+        <img src="~/images/intro-slide1.png" alt="Podés ganar $1.000.000 y premios espectaculares" class="coin" />
+        <main>
+            <h2>Carg&aacute; el C&oacute;digo</h2>
+            <div class="container">
+            <div class="textos">
+                <fieldset>
+                    <ul>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+                        <li>
+                            <label asp-for="Nombre" class="control-label"></label>
+                            <input asp-for="Nombre" class="form-control" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </li>
+                        <li>
+                            <label asp-for="Apellido" class="control-label"></label>
+                            <input asp-for="Apellido" class="form-control" />
+                            <span asp-validation-for="Apellido" class="text-danger"></span>
+                        </li>
+                        <li>
+                            <label asp-for="Provincia" class="control-label"></label>
+                            <input asp-for="Provincia" class="form-control" />
+                            <span asp-validation-for="Provincia" class="text-danger"></span>
+                        </li>
+                        <li>
+                            <label asp-for="Direccion" class="control-label"></label>
+                            <input asp-for="Direccion" class="form-control" />
+                            <span asp-validation-for="Direccion" class="text-danger"></span>
+                        </li>
+                        <li>
+                            <label asp-for="Localidad" class="control-label"></label>
+                            <input asp-for="Localidad" class="form-control" />
+                            <span asp-validation-for="Localidad" class="text-danger"></span>
+                        </li>
+                        <li>
+                            <label asp-for="Telefono" class="control-label"></label>
+                            <input asp-for="Telefono" class="form-control" />
+                            <span asp-validation-for="Telefono" class="text-danger"></span>
+                        </li>
+                        <li>
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </li>
+                        <li>
+                            <label asp-for="Dni" class="control-label"></label>
+                            <input asp-for="Dni" class="form-control" />
+                            <span asp-validation-for="Dni" class="text-danger"></span>
+                        </li>
+                        <li>
+                            <label asp-for="Codigo" class="control-label"></label>
+                            <input asp-for="Codigo" class="form-control" />
+                            <span asp-validation-for="Codigo" class="text-danger"></span>
+                        </li>
+                        <li>
+                            <label asp-for="fecha_nacimiento" class="control-label"></label>
+                            <input asp-for="fecha_nacimiento" class="form-control" />
+                            <span asp-validation-for="fecha_nacimiento" class="text-danger"></span>
+                        </li>
+                        <li>
+                            <label asp-for="recibir_info" class="control-label"></label>
+                            <input asp-for="recibir_info" class="form-control" />
+                            <span asp-validation-for="recibir_info" class="text-danger"></span>
+                        </li>
+                        <li>
+                            <input type="submit" value="Enviar" class="btn btn-primary" />
+                        </li>
+
+
+
+                        @section Scripts {
+                            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                        }
+
+                    </ul>
+                </fieldset>
+                </div>
+                </div>
+</main>
+    <footer>
+        <p>
+            SIN OBLIGACI&Oacute;N DE COMPRA. V&Aacute;LIDA DEL 18/05/20 AL 13/09/20. CONSULTE LA INFORMACI&Oacute;N EN LAS BASES Y CONDICIONES EN ESTA WEB. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPA POR PREMIOS OFRECIDOS.<br />
+            CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.
+        </p>
+    </footer>
+    </form>
+</body>
+</html>
