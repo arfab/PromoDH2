@@ -27,7 +27,12 @@ namespace PromoDH.Controllers
             {
                 if (Registro.InsertarCodigo(registro) > 0)
                 {
-                    return Redirect("~/");
+                    if (registro.premio_id_ret > 0)
+                        return RedirectToAction("PreguntaAzar", "Pregunta");
+                    else
+                        return RedirectToAction("Index", "Perdedor");
+
+                    //return Redirect("~/");
                 }
             }
             return View(registro);
