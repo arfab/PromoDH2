@@ -79,15 +79,15 @@ namespace PromoDH.Models
                     parameters.Add("@provincia", registro.Provincia);
                     parameters.Add("@recibir_info", registro.recibir_info);
                     parameters.Add("@activo", 1);
-                    parameters.Add("@premio_id_ret", registro.recibir_info, direction:ParameterDirection.Output);
-                    parameters.Add("@user_id_ret", registro.recibir_info, direction: ParameterDirection.Output);
-                    parameters.Add("@premio_rango_id_ret", registro.recibir_info, direction: ParameterDirection.Output);
+                    parameters.Add("@premio_id_ret", dbType: DbType.Int32, direction:ParameterDirection.Output);
+                    parameters.Add("@user_id_ret", dbType: DbType.Int32,  direction: ParameterDirection.Output);
+                    parameters.Add("@premio_rango_id_ret", dbType: DbType.Int32,  direction: ParameterDirection.Output);
 
                     rowAffected = con.Execute("spInsertarCodigo", parameters, commandType: CommandType.StoredProcedure);
 
                     registro.premio_id_ret = parameters.Get<int>("premio_id_ret");
-                    registro.user_id_ret = parameters.Get<int>("premio_id_ret");
-                    registro.premio_rango_id_ret = parameters.Get<int>("premio_id_ret");
+                    registro.user_id_ret = parameters.Get<int>("user_id_ret");
+                    registro.premio_rango_id_ret = parameters.Get<int>("premio_rango_id_ret");
 
 
                 }

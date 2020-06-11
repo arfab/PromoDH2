@@ -15,6 +15,11 @@ namespace PromoDH.Controllers
             return View();
         }
 
+        public IActionResult NoGano()
+        {
+            return View();
+        }
+
         [HttpGet]
         public IActionResult CargarCodigo()
         {
@@ -36,7 +41,7 @@ namespace PromoDH.Controllers
                     if (registro.premio_id_ret > 0)
                         return RedirectToAction("PreguntaAzar", "Pregunta");
                     else
-                        return RedirectToAction("Index", "Perdedor");
+                        return RedirectToAction("NoGano", "Carga");
 
                     //return Redirect("~/");
                 }

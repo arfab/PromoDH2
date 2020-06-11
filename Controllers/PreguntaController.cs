@@ -15,6 +15,22 @@ namespace PromoDH.Controllers
             return View();
         }
 
+        public IActionResult Gano()
+        {
+            return View();
+        }
+
+        public IActionResult Perdio()
+        {
+            return View();
+        }
+
+        public IActionResult Tarde()
+        {
+            return View();
+        }
+
+
         [HttpGet]
         public IActionResult PreguntaAzar()
         {
@@ -31,17 +47,37 @@ namespace PromoDH.Controllers
         [HttpPost]
         public IActionResult PreguntaAzar([Bind] PreguntaPromo preg)
         {
+            int iPremio;
+            string sError ;
 
             if (ModelState.IsValid)
             {
-                //if (db.InsertarPais(pais) > 0)
-                //{
-                //    return RedirectToAction("Index");
-                //}
-                //else
-                //{
-                //    ViewBag.Message = pais.errorDesc;
-                //}
+                
+                if (PreguntaPromo.InsertarRespuesta(preg, Int16.Parse(HttpContext.Session.GetString("REGISTRO_ID")), Int16.Parse(HttpContext.Session.GetString("PREMIO_RANGO_ID"))) > 0)
+                {
+                    if (preg.rsel==preg.rc)
+                    {
+                        PreguntaPromo.InsertarPremio(Int16.Parse(HttpContext.Session.GetString("REGISTRO_ID")), Int16.Parse(HttpContext.Session.GetString("PREMIO_RANGO_ID")), out iPremio, out sError);
+
+                        if (iPremio>0)
+                        {
+                            return RedirectToAction("Gano", "Pregunta");
+                        }
+                        else
+                        {
+                            return RedirectToAction("Tarde", "Pregunta");
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("Perdio", "Pregunta");
+                    }
+                   
+                }
+                else
+                {
+                    ViewBag.Message = preg.errorDesc;
+                }
             }
             return View(preg);
         }
