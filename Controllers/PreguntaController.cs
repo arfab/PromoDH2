@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PromoDH.Models;
 
@@ -17,6 +18,9 @@ namespace PromoDH.Controllers
         [HttpGet]
         public IActionResult PreguntaAzar()
         {
+            if (HttpContext.Session.GetString("REGISTRO_ID") == null )
+                return RedirectToAction("Index","Home");
+
             PreguntaPromo preg = PreguntaPromo.ObtenerPreguntaAzar();
             if (preg == null)
                 return NotFound();
