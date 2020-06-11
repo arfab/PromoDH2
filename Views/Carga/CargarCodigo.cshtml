@@ -47,7 +47,7 @@
                 <fieldset>
                     <ul>
 
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div asp-validation-summary="None" class="text-danger"></div>
 
                         <li>
                             <label asp-for="Nombre" class="control-label"></label>
@@ -95,13 +95,13 @@
                             <span asp-validation-for="Codigo" class="text-danger"></span>
                         </li>
                         <li>
-                            <label asp-for="fecha_nacimiento" class="control-label"></label>
-                            <input asp-for="fecha_nacimiento" class="form-control" />
+                            <label class="control-label">Fecha de Nacimiento</label>
+                            <input asp-for="fecha_nacimiento" class="form-control" data-date-format="yyyy-mm-dd" />
                             <span asp-validation-for="fecha_nacimiento" class="text-danger"></span>
                         </li>
                         <li>
-                            <label asp-for="recibir_info" class="control-label"></label>
-                            <input asp-for="recibir_info" class="form-control" />
+                            <label class="control-label">Deseo recibir informaci&oacute;n sobre la empresa/producto m&aacute;s adelante</label>
+                            <input  class="form-control" asp-for="recibir_info"  />
                             <span asp-validation-for="recibir_info" class="text-danger"></span>
                         </li>
                         <li>

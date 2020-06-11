@@ -36,6 +36,7 @@ namespace PromoDH.Models
         [Required(ErrorMessage = "Ingrese el Teléfono")]
         public string Telefono { get; set; }
 
+        [EmailAddress]
         [Required(ErrorMessage = "Ingrese el Email")]
         public string Email { get; set; }
 
@@ -46,10 +47,11 @@ namespace PromoDH.Models
         public string Codigo { get; set; }
 
         [Required(ErrorMessage = "Ingrese la fecha de nacimiento")]
+        [DataType(DataType.Date)]
         public DateTime fecha_nacimiento { get; set; }
 
         [Required(ErrorMessage = "Ingrese si desea recibir información")]
-        public int recibir_info { get; set; }
+        public bool recibir_info { get; set; }
 
         public int premio_id_ret;
         public int user_id_ret;
