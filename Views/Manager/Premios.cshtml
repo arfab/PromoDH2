@@ -1,0 +1,58 @@
+﻿@model IEnumerable<PromoDH.Models.Sembrado>
+@{
+    ViewData["Title"] = "Premios";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Manager - Promo Mundo Mogul</title>
+    <script type="text/javascript" src="html5.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&display=swap" rel="stylesheet">
+    <link href="css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="css/styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header>
+            <a href="Default.aspx">Promo Buttter Toffes - Casino</a>
+            <p class="usuario">
+                <strong>Usuario:</strong>
+                <asp:label id="lblUsuario" runat="server"></asp:label>
+            </p>
+        </header>
+        @*<uc1:menulateral id="MenuLateral1" runat="server" />*@
+    <section>
+        <h2>Premios</h2>
+        @*<asp:button id="cmdExport" runat="server" text="Exportar Excel" />*@
+        <hr />
+        <div class="thead">
+            <div><span>Descripcion</span></div>
+            <div><span>ID</span></div>
+            <div><span>Fecha Hora</span></div>
+            <div><span>Registro</span></div>
+        </div>
+        <div class="nano">
+            <div class="nano-content">
+                <table>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(model => item.descripcion)</td>
+                                <td>@Html.DisplayFor(model => item.id)</td>
+                                <td>@Html.DisplayFor(model => item.fecha_hora)</td>
+                                <td>@Html.DisplayFor(model => item.registro_id)</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>            @*<asp:gridview id="GridView1" runat="server" pagesize="5" visible="False"> </asp:gridview>*@
+    </section>
+        <footer>2020 &copy; Topline.</footer>
+
+    </form>
+</body>
+</html>

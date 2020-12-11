@@ -1,0 +1,79 @@
+﻿@model IEnumerable<PromoDH.Models.Premio>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenidos a la promo Topline Seven</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="scripts/html5shiv.min.js"></script>
+    <script type="text/javascript" src="scripts/respond.min.js"></script>
+    <![endif] -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="~/js/jQuery.plugins.js"></script>
+    <script type="text/javascript" src="~/js/jQuery.js"></script>
+</head>
+<body id="int" class="pre">
+    <header>
+        <h1><a href="Default.aspx">Promo "Topline Seven"</a></h1>
+        <a href="#" class="menu-open">Menú</a>
+    </header>
+    <div id="menu-blocker"></div>
+    <nav id="menu">
+        <a href="#" class="menu-close">Cerrar menú</a>
+        <img src="images/logo-promo.png" alt="Promo Topline Seven" class="logo" />
+        <ul>
+            <li><a href="Default.aspx">Home</a></li>
+            <li><a href="Cargar.aspx">Cargá<br />tu código</a></li>
+            <li><a href="Bases.aspx">Bases<br />y condiciones</a></li>
+            <li class="sel">Listado<br />de premios</li>
+            <li><a href="FAQs.aspx">Preguntas<br />frecuentes</a></li>
+            <li><a href="Contacto.aspx">Contacto</a></li>
+        </ul>
+    </nav>
+    <img src="images/intro-slide1.png" alt="Podés ganar $1.000.000 y premios espectaculares" class="coin" />
+    <main>
+        <h2>Premios</h2>
+        <div class="container">
+            <div class="textos">
+                <p class="sub">Si figurás en este listado,<br />conservá el pack, ¡te vamos a contactar!</p>
+                <div class="thead" style="@(Model.Count()==0  ? "visibility:hidden" : "")">
+                    <div><span>DNI</span></div>
+                    <div><span>Premio</span></div>
+                </div>
+                <div class="nano">
+                    <div class="nano-content @(Model.Count()==0  ? " noganadoresContainer center" : "")">
+                        <table>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(model => item.Dni)</td>
+                                        <td>@Html.DisplayFor(model => item.PremioDesc)</td>
+                                    </tr>
+                                }
+                                @if (@Model.Count() == 0)
+                                {
+                                    <h4>No hay ganadores<br />hasta el momento</h4>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>
+            SIN OBLIGACI&Oacute;N DE COMPRA. V&Aacute;LIDA DEL 18/05/20 AL 13/09/20. CONSULTE LA INFORMACI&Oacute;N EN LAS BASES Y CONDICIONES EN ESTA WEB. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPA POR PREMIOS OFRECIDOS.<br />
+            CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.
+        </p>
+    </footer>
+</body>
+</html>
+
