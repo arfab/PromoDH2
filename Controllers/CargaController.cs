@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PromoDH.CapaDatos;
 using PromoDH.Models;
 
 namespace PromoDH.Controllers
@@ -31,7 +32,10 @@ namespace PromoDH.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (Registro.InsertarCodigo(registro) > 0)
+
+                // Por ahora hardcodeo la marca hasta que esté en el frontend
+                registro.marca_id = 1;
+                if (Datos.InsertarRegistro(registro) > 0)
                 {
                     // Guardar datos registro y premio en sesión
                     HttpContext.Session.SetString("PREMIO_ID", registro.premio_id_ret.ToString());

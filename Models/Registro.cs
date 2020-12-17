@@ -12,8 +12,6 @@ namespace PromoDH.Models
     public class Registro
     {
 
-        static string strConnectionString = "Data Source=190.210.162.183;Initial Catalog=PromoTopline2020;Persist Security Info=True;User ID=PromoTopline2020;Password=PromoTopline2020";
-
         public string errorDesc = "";
 
         public int Id { get; set; }
@@ -43,6 +41,11 @@ namespace PromoDH.Models
         [Required(ErrorMessage = "Ingrese el Dni")]
         public string Dni { get; set; }
 
+
+        [Required(ErrorMessage = "Ingrese la marca")]
+        public int marca_id { get; set; }
+
+
         [Required(ErrorMessage = "Ingrese el Código")]
         public string Codigo { get; set; }
 
@@ -57,51 +60,6 @@ namespace PromoDH.Models
         public int user_id_ret;
         public int premio_rango_id_ret;
 
-
-
-        public static int InsertarCodigo(Registro registro)
-        {
-            int rowAffected = 0;
-
-            try
-            {
-
-
-                using (IDbConnection con = new SqlConnection(strConnectionString))
-                {
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
-
-                    DynamicParameters parameters = new DynamicParameters();
-                    parameters.Add("@nombre", registro.Nombre);
-                    parameters.Add("@apellido", registro.Apellido);
-                    parameters.Add("@dni", registro.Dni);
-                    parameters.Add("@fecha_nacimiento", registro.fecha_nacimiento);
-                    parameters.Add("@codigo", registro.Codigo);
-                    parameters.Add("@provincia", registro.Provincia);
-                    parameters.Add("@recibir_info", registro.recibir_info);
-                    parameters.Add("@activo", 1);
-                    parameters.Add("@premio_id_ret", dbType: DbType.Int32, direction:ParameterDirection.Output);
-                    parameters.Add("@user_id_ret", dbType: DbType.Int32,  direction: ParameterDirection.Output);
-                    parameters.Add("@premio_rango_id_ret", dbType: DbType.Int32,  direction: ParameterDirection.Output);
-
-                    rowAffected = con.Execute("spInsertarCodigo", parameters, commandType: CommandType.StoredProcedure);
-
-                    registro.premio_id_ret = parameters.Get<int>("premio_id_ret");
-                    registro.user_id_ret = parameters.Get<int>("user_id_ret");
-                    registro.premio_rango_id_ret = parameters.Get<int>("premio_rango_id_ret");
-
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                registro.errorDesc = ex.Message;
-            }
-
-            return rowAffected;
-        }
 
 
     }

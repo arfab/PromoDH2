@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PromoDH.CapaDatos;
 using PromoDH.Models;
 
 namespace PromoDH.Controllers
@@ -37,7 +38,7 @@ namespace PromoDH.Controllers
             if (HttpContext.Session.GetString("REGISTRO_ID") == null )
                 return RedirectToAction("Index","Home");
 
-            PreguntaPromo preg = PreguntaPromo.ObtenerPreguntaAzar();
+            PreguntaPromo preg = Datos.ObtenerPreguntaAzar();
             if (preg == null)
                 return NotFound();
 
@@ -53,11 +54,11 @@ namespace PromoDH.Controllers
             if (ModelState.IsValid)
             {
                 
-                if (PreguntaPromo.InsertarRespuesta(preg, Int16.Parse(HttpContext.Session.GetString("REGISTRO_ID")), Int16.Parse(HttpContext.Session.GetString("PREMIO_RANGO_ID"))) > 0)
+                if (Datos.InsertarRespuesta(preg, Int16.Parse(HttpContext.Session.GetString("REGISTRO_ID")), Int16.Parse(HttpContext.Session.GetString("PREMIO_RANGO_ID"))) > 0)
                 {
                     if (preg.rsel==preg.rc)
                     {
-                        PreguntaPromo.InsertarPremio(Int16.Parse(HttpContext.Session.GetString("REGISTRO_ID")), Int16.Parse(HttpContext.Session.GetString("PREMIO_RANGO_ID")), out iPremio, out sError);
+                        Datos.InsertarPremio(Int16.Parse(HttpContext.Session.GetString("REGISTRO_ID")), Int16.Parse(HttpContext.Session.GetString("PREMIO_RANGO_ID")), out iPremio, out sError);
 
                         if (iPremio>0)
                         {
