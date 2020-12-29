@@ -1,4 +1,6 @@
 ﻿@model PromoDH.Models.Registro
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
 
 @{
     ViewData["Title"] = "CargarCodigo";
@@ -42,89 +44,107 @@
         <img src="~/images/intro-slide1.png" alt="Podés ganar $1.000.000 y premios espectaculares" class="coin" />
         <main>
             <h2>Carg&aacute; el C&oacute;digo</h2>
+            <input type="hidden" name="captcha" id="captchaInput" />
             <div class="container">
-            <div class="textos">
-                <fieldset>
-                    <ul>
+                <div class="textos">
+                    <fieldset>
+                        <ul>
 
-                        <div asp-validation-summary="None" class="text-danger"></div>
+                            <div asp-validation-summary="None" class="text-danger"></div>
 
-                        <li>
-                            <label asp-for="Nombre" class="control-label"></label>
-                            <input asp-for="Nombre" class="form-control" />
-                            <span asp-validation-for="Nombre" class="text-danger"></span>
-                        </li>
-                        <li>
-                            <label asp-for="Apellido" class="control-label"></label>
-                            <input asp-for="Apellido" class="form-control" />
-                            <span asp-validation-for="Apellido" class="text-danger"></span>
-                        </li>
-                        <li>
-                            <label asp-for="Provincia" class="control-label"></label>
-                            <input asp-for="Provincia" class="form-control" />
-                            <span asp-validation-for="Provincia" class="text-danger"></span>
-                        </li>
-                        <li>
-                            <label asp-for="Direccion" class="control-label"></label>
-                            <input asp-for="Direccion" class="form-control" />
-                            <span asp-validation-for="Direccion" class="text-danger"></span>
-                        </li>
-                        <li>
-                            <label asp-for="Localidad" class="control-label"></label>
-                            <input asp-for="Localidad" class="form-control" />
-                            <span asp-validation-for="Localidad" class="text-danger"></span>
-                        </li>
-                        <li>
-                            <label asp-for="Telefono" class="control-label"></label>
-                            <input asp-for="Telefono" class="form-control" />
-                            <span asp-validation-for="Telefono" class="text-danger"></span>
-                        </li>
-                        <li>
-                            <label asp-for="Email" class="control-label"></label>
-                            <input asp-for="Email" class="form-control" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </li>
-                        <li>
-                            <label asp-for="Dni" class="control-label"></label>
-                            <input asp-for="Dni" class="form-control" />
-                            <span asp-validation-for="Dni" class="text-danger"></span>
-                        </li>
-                        <li>
-                            <label asp-for="Codigo" class="control-label"></label>
-                            <input asp-for="Codigo" class="form-control" />
-                            <span asp-validation-for="Codigo" class="text-danger"></span>
-                        </li>
-                        <li>
-                            <label class="control-label">Fecha de Nacimiento</label>
-                            <input asp-for="fecha_nacimiento" class="form-control" data-date-format="yyyy-mm-dd" />
-                            <span asp-validation-for="fecha_nacimiento" class="text-danger"></span>
-                        </li>
-                        <li>
-                            <label class="control-label">Deseo recibir informaci&oacute;n sobre la empresa/producto m&aacute;s adelante</label>
-                            <input  class="form-control" asp-for="recibir_info"  />
-                            <span asp-validation-for="recibir_info" class="text-danger"></span>
-                        </li>
-                        <li>
-                            <input type="submit" value="Enviar" class="btn btn-primary" />
-                        </li>
+                            <li>
+                                <label asp-for="Nombre" class="control-label"></label>
+                                <input asp-for="Nombre" class="form-control" />
+                                <span asp-validation-for="Nombre" class="text-danger"></span>
+                            </li>
+                            <li>
+                                <label asp-for="Apellido" class="control-label"></label>
+                                <input asp-for="Apellido" class="form-control" />
+                                <span asp-validation-for="Apellido" class="text-danger"></span>
+                            </li>
+                            <li>
+                                <label asp-for="Provincia" class="control-label"></label>
+                                <input asp-for="Provincia" class="form-control" />
+                                <span asp-validation-for="Provincia" class="text-danger"></span>
+                            </li>
+                            <li>
+                                <label asp-for="Direccion" class="control-label"></label>
+                                <input asp-for="Direccion" class="form-control" />
+                                <span asp-validation-for="Direccion" class="text-danger"></span>
+                            </li>
+                            <li>
+                                <label asp-for="Localidad" class="control-label"></label>
+                                <input asp-for="Localidad" class="form-control" />
+                                <span asp-validation-for="Localidad" class="text-danger"></span>
+                            </li>
+                            <li>
+                                <label asp-for="Telefono" class="control-label"></label>
+                                <input asp-for="Telefono" class="form-control" />
+                                <span asp-validation-for="Telefono" class="text-danger"></span>
+                            </li>
+                            <li>
+                                <label asp-for="Email" class="control-label"></label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </li>
+                            <li>
+                                <label asp-for="Dni" class="control-label"></label>
+                                <input asp-for="Dni" class="form-control" />
+                                <span asp-validation-for="Dni" class="text-danger"></span>
+                            </li>
+                            <li>
+                                <label asp-for="Codigo" class="control-label"></label>
+                                <input asp-for="Codigo" class="form-control" />
+                                <span asp-validation-for="Codigo" class="text-danger"></span>
+                            </li>
+                            <li>
+                                <label class="control-label">Fecha de Nacimiento</label>
+                                <input asp-for="fecha_nacimiento" class="form-control" data-date-format="yyyy-mm-dd" />
+                                <span asp-validation-for="fecha_nacimiento" class="text-danger"></span>
+                            </li>
+                            <li>
+                                <label class="control-label">Deseo recibir informaci&oacute;n sobre la empresa/producto m&aacute;s adelante</label>
+                                <input class="form-control" asp-for="recibir_info" />
+                                <span asp-validation-for="recibir_info" class="text-danger"></span>
+                            </li>
+                            <li>
+                                <input type="submit" value="Enviar" class="btn btn-primary" />
+                            </li>
 
 
 
-                        @section Scripts {
-                            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-                        }
+                            @section Scripts {
 
-                    </ul>
-                </fieldset>
+                                <script src="https://www.google.com/recaptcha/api.js?render=@Configuration["googleReCaptcha:SiteKey"]"></script>
+                                <script>
+                                    grecaptcha.ready(function() {
+                                       window.grecaptcha.execute('@Configuration["googleReCaptcha:SiteKey"]', { action: 'home' }).then(function (token) {
+                                          $("#captchaInput").val(token);
+                                       });
+                                    });
+                                </script>
+
+
+                                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+                            }
+
+
+
+
+
+                        </ul>
+                    </fieldset>
                 </div>
-                </div>
-</main>
-    <footer>
-        <p>
-            SIN OBLIGACI&Oacute;N DE COMPRA. V&Aacute;LIDA DEL 18/05/20 AL 13/09/20. CONSULTE LA INFORMACI&Oacute;N EN LAS BASES Y CONDICIONES EN ESTA WEB. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPA POR PREMIOS OFRECIDOS.<br />
-            CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.
-        </p>
-    </footer>
+            </div>
+        </main>
+        <footer>
+            <p>
+                SIN OBLIGACI&Oacute;N DE COMPRA. V&Aacute;LIDA DEL 18/05/20 AL 13/09/20. CONSULTE LA INFORMACI&Oacute;N EN LAS BASES Y CONDICIONES EN ESTA WEB. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPA POR PREMIOS OFRECIDOS.<br />
+                CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.
+            </p>
+        </footer>
     </form>
 </body>
 </html>
