@@ -1,0 +1,82 @@
+﻿@model IEnumerable<PromoDH.Models.Registro>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<!doctype html>
+<html lang="es" class="scroll">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenidos a "A Todo Bagley 2"</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="scripts/html5shiv.min.js"></script>
+    <script type="text/javascript" src="scripts/respond.min.js"></script>
+    <![endif] -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="~/js/jQuery.plugins.js"></script>
+    <script type="text/javascript" src="~/js/jQuery.js"></script>
+</head>
+<body id="hom">
+    <form id="form1" runat="server" autocomplete="off">
+        <header>
+            <a href="javascript;" class="btn menu-open"><span class="fa fa-navicon"></span>Menú</a>
+            <a href="~/Contacto" class="btn contacto"><span class="fa fa-comment"></span>Contacto</a>
+        </header>
+        <div id="menu-blocker"></div>
+        <nav id="menu">
+            <a href="#" class="menu-close">Cerrar</a>
+            <img src="~/images/logo-promo.png" alt="Promo Topline Seven" class="logo">
+            <ul>
+                <li class="sel"><span>Home</span></li>
+                <li><a href="Cargar.aspx">Carg&aacute; tu c&oacute;digo</a></li>
+                <li><a href="Bases.aspx">Bases y condiciones</a></li>
+                <li><a href="Premios.aspx">Listado de premios</a></li>
+                <li><a href="FAQs.aspx">Preguntas frecuentes</a></li>
+                <li><a href="Contacto.aspx">Contacto</a></li>
+            </ul>
+        </nav>
+        <main>
+            <div class="intro">
+                <div class="wrapper">
+                    <div class="anim">
+                        <div class="owl-carousel">
+                            <div class="slide1">
+                                <img src="~/images/intro-slide1.png" alt="Podés ganar $1.000.000 y premios espectaculares" />
+                            </div>
+                            <div class="slide2">
+                                <img src="~/images/intro-slide2.png" alt="Miles de $ todos los días!" />
+                            </div>
+                        </div>
+                    </div>
+                    <a asp-controller="Carga" asp-action="CargarCodigo" class="btn-cargar">Cargar código</a>
+                    <p class="ws"><span>o envialo al <img src="~/images/ico-ws.png" /> <a href="">11 2184 8832</a></span></p>
+                </div>
+            </div>
+            <div class="productos">
+                <div class="wrapper">
+                    <h2>PRODUCTOS<br />PARTICIPANTES</h2>
+                    <div class="logos-container">
+                        <ul class="logos owl-carousel">
+                            <li><img src="~/images/producto-1.png" alt="Topline 7 Cherry" /></li>
+                            <li><img src="~/images/producto-2.png" alt="Topline 7 Frutilla" /></li>
+                            <li><img src="~/images/producto-3.png" alt="Topline 7 Mandarina" /></li>
+                            <li><img src="~/images/producto-4.png" alt="Topline 7 Menthol" /></li>
+                            <li><img src="~/images/producto-5.png" alt="Topline 7 Mint" /></li>
+                            <li><img src="~/images/producto-6.png" alt="Topline 7 Sandia" /></li>
+                            <li><img src="~/images/producto-7.png" alt="Topline 7 Strong" /></li>
+                        </ul>
+                    </div>
+                    <a data-fancybox data-type="iframe" data-src="envases.html" href="javascript:;" class="datos">Mirá donde están los datos</a>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>
+                SIN OBLIGACI&Oacute;N DE COMPRA. V&Aacute;LIDA DEL 18/05/20 AL 13/09/20. CONSULTE LA INFORMACI&Oacute;N EN LAS BASES Y CONDICIONES EN ESTA WEB. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPA POR PREMIOS OFRECIDOS.<br />
+                CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.
+            </p>
+        </footer>
+    </form>
+</body>
+</html>

@@ -23,6 +23,17 @@ namespace PromoDH.Controllers
             return View();
         }
 
+        public IActionResult Faq()
+        {
+            return View();
+        }
+
+        public IActionResult Bases()
+        {
+            return View();
+        }
+
+
         public IActionResult Privacy()
         {
             return View();
