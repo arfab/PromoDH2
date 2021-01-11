@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using PromoDH.CapaDatos;
 using PromoDH.Models;
 
@@ -13,6 +14,7 @@ namespace PromoDH.Controllers
     {
         public IActionResult Index()
         {
+        
             return View();
         }
 
@@ -24,6 +26,11 @@ namespace PromoDH.Controllers
         [HttpGet]
         public IActionResult CargarCodigo()
         {
+
+            ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
+            ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
+
+
             return View();
         }
 
@@ -50,8 +57,32 @@ namespace PromoDH.Controllers
                     //return Redirect("~/");
                 }
             }
+
+            ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
+            ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
+
             return View(registro);
         }
+
+
+        //[HttpGet]
+        //public JsonResult ObtenerProvincias()
+        //{
+        //    List<Provincia> lpro = Datos.ObtenerProvincias();
+        //    return Json(new SelectList(lpro, "id", "descripcion"));
+        //}
+
+
+        //[HttpGet]
+        //public JsonResult ObtenerMarcas()
+        //{
+        //    //List<Marca> lmar = Datos.ObtenerMarcas();
+
+        //    ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
+
+        //    return Json(new SelectList(lmar, "id", "nombre"));
+        //}
+
 
     }
 }

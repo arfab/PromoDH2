@@ -1,15 +1,60 @@
-﻿
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
+﻿@{ Layout = null; }
+<!doctype html>
+<html lang="es">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Gracias</title>
+<meta charset="UTF-8">
+<title>Bienvenidos a "A Todo Bagley"</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+<link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
+<!-- [if lt IE 9]>
+<script type="text/javascript" src="~/scripts/html5shiv.min.js"></script>
+<script type="text/javascript" src="~/scripts/respond.min.js"></script>
+<![endif] -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.plugins.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.js"></script>
 </head>
-<body>
+<body id="int">
+  <div class="site-container">
+    <header>
+      <a href="javascript;" class="btn menu-open"><span class="fa fa-navicon"></span>Menú</a>
+      <a href="~/Contacto" class="btn contacto"><span class="fa fa-comment"></span>Contacto</a>
+    </header>
+    <section class="toldo">
+      <h1><a href="~/">A Todo Bagley</a></h1>
+    </section>
+    <main class="conElems">
+      <div class="wrapper">
+        <div class="textos center-content gracias">
+          <h2>Gracias por enviar<br />su consulta</h2>
+          <p>Nos contactaremos a la brevedad</p>
+          <a href="~/Contacto" class="main-btn">Volver</a>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer>
+    <div class="wrapper">
+      <p>SIN OBLIGACIÓN DE COMPRA. VÁLIDA DEL 15/02/2021 AL 15/4/2021. CONSULTA LA INFORMACIÓN EN LAS BASES Y CONDICIONES EN ESTA WEB. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPÁ POR PREMIOS OFRECIDOS.<br />
+      CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.</p>
+    </div>
+  </footer>
+  <div id="menu-blocker"></div>
+  <div id="menu">
+    <nav>
+      <a href="javascript;" class="menu-close"><span class="fa fa-times"></span></a>
+      <img src="../images/logo-bagley.png" alt="Bagley" class="logo">
+      <ul>
+        <li><a href="~/"><span>Home</span></a></li>
+        <li><a href="~/Carga/CargarCodigo"><span>Cargá<br />tu código</span></a></li>
+        <li><a href="~/Bases"><span>Bases<br />y condiciones</span></a></li>
+        <li><a href="~/Premios"><span>Listado<br />de premios</span></a></li>
+        <li><a href="~/FAQs"><span>Preguntas<br />frecuentes</span></a></li>
+        <li class="sel"><span>Contacto</span></li>
+      </ul>
+    </nav>
+  </div>
 </body>
 </html>

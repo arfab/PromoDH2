@@ -1,82 +1,143 @@
 ﻿@model IEnumerable<PromoDH.Models.Registro>
-@{
-    ViewData["Title"] = "Home Page";
-}
+@{ ViewData["Title"] = "Contacto"; }
 <!doctype html>
-<html lang="es" class="scroll">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Bienvenidos a "A Todo Bagley 2"</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
-    <link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="scripts/html5shiv.min.js"></script>
-    <script type="text/javascript" src="scripts/respond.min.js"></script>
-    <![endif] -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="~/js/jQuery.plugins.js"></script>
-    <script type="text/javascript" src="~/js/jQuery.js"></script>
+<meta charset="UTF-8">
+<title>Bienvenidos a "A Todo Bagley"</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+<link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
+<!-- [if lt IE 9]>
+<script type="text/javascript" src="~/scripts/html5shiv.min.js"></script>
+<script type="text/javascript" src="~/scripts/respond.min.js"></script>
+<![endif] -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.plugins.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.js"></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
-<body id="hom">
-    <form id="form1" runat="server" autocomplete="off">
-        <header>
-            <a href="javascript;" class="btn menu-open"><span class="fa fa-navicon"></span>Menú</a>
-            <a href="~/Contacto" class="btn contacto"><span class="fa fa-comment"></span>Contacto</a>
-        </header>
-        <div id="menu-blocker"></div>
-        <nav id="menu">
-            <a href="#" class="menu-close">Cerrar</a>
-            <img src="~/images/logo-promo.png" alt="Promo Topline Seven" class="logo">
+<body id="int">
+  <div class="site-container">
+    <header>
+      <a href="javascript;" class="btn menu-open"><span class="fa fa-navicon"></span>Menú</a>
+      <a href="~/Contacto" class="btn contacto"><span class="fa fa-comment"></span>Contacto</a>
+    </header>
+    <section class="toldo">
+      <h1><a href="~/">A Todo Bagley</a></h1>
+    </section>
+    <main class="conElems">
+      <div class="wrapper">
+        <h2>Contacto</h2>
+        <p class="nota">Ante cualquier consulta no dudes en escribirnos<br />o comunicarte al 0800-333-3033</p>
+        <div class="textos">
+          <fieldset>
             <ul>
-                <li class="sel"><span>Home</span></li>
-                <li><a href="Cargar.aspx">Carg&aacute; tu c&oacute;digo</a></li>
-                <li><a href="Bases.aspx">Bases y condiciones</a></li>
-                <li><a href="Premios.aspx">Listado de premios</a></li>
-                <li><a href="FAQs.aspx">Preguntas frecuentes</a></li>
-                <li><a href="Contacto.aspx">Contacto</a></li>
+              <li>
+                <label for="txtNombre">Nombre <em>*</em></label>
+                <input name="txtNombre" type="text" id="txtNombre" autocomplete="nope" />
+              </li>
+              <li>
+                <label for="txtApellido">Apellido <em>*</em></label>
+                <input name="txtApellido" type="text" id="txtApellido" autocomplete="nope" />
+              </li>
+              <li>
+                <label for="txtDni">D.N.I. <em>*</em></label>
+                <input name="txtDni" type="text" id="txtDni" autocomplete="nope" />
+              </li>
+              <li class="wide">
+                <label for="txtDireccion">Domicilio completo <em>*</em></label>
+                <input name="txtDireccion" type="text" id="txtDireccion" autocomplete="nope" />
+              </li>
+              <li>
+                <label for="txtProvincia">Provincia <em>*</em></label>
+                <select name="ddProvincia" id="ddProvincia">
+                  <option value="Buenos Aires">Buenos Aires</option>
+                  <option value="Catamarca">Catamarca</option>
+                  <option value="CABA">CABA</option>
+                  <option value="Chaco">Chaco</option>
+                  <option value="Chubut">Chubut</option>
+                  <option value="Cordoba">Cordoba</option>
+                  <option value="Corrientes">Corrientes</option>
+                  <option value="Entre Rios">Entre Rios</option>
+                  <option value="Formosa">Formosa</option>
+                  <option value="Jujuy">Jujuy</option>
+                  <option value="La Pampa">La Pampa</option>
+                  <option value="La Rioja">La Rioja</option>
+                  <option value="Mendoza">Mendoza</option>
+                  <option value="Misiones">Misiones</option>
+                  <option value="Salta">Salta</option>
+                  <option value="San Juan">San Juan</option>
+                  <option value="San Luis">San Luis</option>
+                  <option value="Santa Cruz">Santa Cruz</option>
+                  <option value="Santa Fe">Santa Fe</option>
+                  <option value="Sgo. del Estero">Sgo. del Estero</option>
+                  <option value="Tucuman">Tucuman</option>
+                </select>
+              </li>
+              <li>
+                <label for="txtCiudad">Ciudad <em>*</em></label>
+                <input name="txtCiudad" type="text" id="txtCiudad" autocomplete="nope" />
+              </li>
+              <li class="tel">
+                <label for="txtTelefono">Tel&eacute;fono <em>*</em></label>
+                <div class="campos">
+                  <input name="txtArea" type="text" id="txtArea" class="are" autocomplete="nope" />
+                  <input name="txtTelefono" type="text" id="txtTelefono" class="num" autocomplete="nope" />
+                </div>
+              </li>
+              <li class="tel">
+                <label for="txtTelefono">M&oacute;vil <em>*</em></label>
+                <div class="campos">
+                  <input name="txtMovArea" type="text" id="txtMovArea" class="are" autocomplete="nope" />
+                  <input name="txtMovTelefono" type="text" id="txtMovTelefono" class="num" autocomplete="nope" />
+                </div>
+              </li>
+              <li class="wide">
+                <label for="txtEmail">Email <em>*</em></label>
+                <input name="txtEmail" type="text" id="txtEmail" autocomplete="nope" />
+              </li>
+              <li class="wide">
+                <label for="txtComentario">Comentario <em>*</em></label>
+                <textarea name="txtComentario" id="txtComentario" cols="30" rows="10"></textarea>
+              </li>
+              <li class="wide">
+                <label for="men">Ingres&aacute; el captcha <em>*</em></label>
+                <!--'TODO: GENERAR CLAVES PARA LOS DISTINTOS DOMINIOS-->
+                <div class="g-recaptcha-parent">
+                  <div class="g-recaptcha" data-sitekey="6LfgtgwUAAAAAJ0WgOIfyMKWDjLcySzRjV9f_ze7"></div>
+                </div>
+              </li>
+              <li class="wide btn">
+                <input type="submit" name="cmdCargar" value="Enviar" id="cmdCargar" />
+              </li>
             </ul>
-        </nav>
-        <main>
-            <div class="intro">
-                <div class="wrapper">
-                    <div class="anim">
-                        <div class="owl-carousel">
-                            <div class="slide1">
-                                <img src="~/images/intro-slide1.png" alt="Podés ganar $1.000.000 y premios espectaculares" />
-                            </div>
-                            <div class="slide2">
-                                <img src="~/images/intro-slide2.png" alt="Miles de $ todos los días!" />
-                            </div>
-                        </div>
-                    </div>
-                    <a asp-controller="Carga" asp-action="CargarCodigo" class="btn-cargar">Cargar código</a>
-                    <p class="ws"><span>o envialo al <img src="~/images/ico-ws.png" /> <a href="">11 2184 8832</a></span></p>
-                </div>
-            </div>
-            <div class="productos">
-                <div class="wrapper">
-                    <h2>PRODUCTOS<br />PARTICIPANTES</h2>
-                    <div class="logos-container">
-                        <ul class="logos owl-carousel">
-                            <li><img src="~/images/producto-1.png" alt="Topline 7 Cherry" /></li>
-                            <li><img src="~/images/producto-2.png" alt="Topline 7 Frutilla" /></li>
-                            <li><img src="~/images/producto-3.png" alt="Topline 7 Mandarina" /></li>
-                            <li><img src="~/images/producto-4.png" alt="Topline 7 Menthol" /></li>
-                            <li><img src="~/images/producto-5.png" alt="Topline 7 Mint" /></li>
-                            <li><img src="~/images/producto-6.png" alt="Topline 7 Sandia" /></li>
-                            <li><img src="~/images/producto-7.png" alt="Topline 7 Strong" /></li>
-                        </ul>
-                    </div>
-                    <a data-fancybox data-type="iframe" data-src="envases.html" href="javascript:;" class="datos">Mirá donde están los datos</a>
-                </div>
-            </div>
-        </main>
-        <footer>
-            <p>
-                SIN OBLIGACI&Oacute;N DE COMPRA. V&Aacute;LIDA DEL 18/05/20 AL 13/09/20. CONSULTE LA INFORMACI&Oacute;N EN LAS BASES Y CONDICIONES EN ESTA WEB. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPA POR PREMIOS OFRECIDOS.<br />
-                CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.
-            </p>
-        </footer>
-    </form>
+          </fieldset>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer>
+    <div class="wrapper">
+      <p>SIN OBLIGACIÓN DE COMPRA. VÁLIDA DEL 15/02/2021 AL 15/4/2021. CONSULTA LA INFORMACIÓN EN LAS BASES Y CONDICIONES EN ESTA WEB. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPÁ POR PREMIOS OFRECIDOS.<br />
+      CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.</p>
+    </div>
+  </footer>
+  <div id="menu-blocker"></div>
+  <div id="menu">
+    <nav>
+      <a href="javascript;" class="menu-close"><span class="fa fa-times"></span></a>
+      <img src="images/logo-bagley.png" alt="Bagley" class="logo">
+      <ul>
+        <li><a href="~/"><span>Home</span></a></li>
+        <li><a href="~/Carga/CargarCodigo"><span>Cargá<br />tu código</span></a></li>
+        <li><a href="~/Bases"><span>Bases<br />y condiciones</span></a></li>
+        <li><a href="~/Premios"><span>Listado<br />de premios</span></a></li>
+        <li><a href="~/FAQs"><span>Preguntas<br />frecuentes</span></a></li>
+        <li class="sel"><span>Contacto</span></li>
+      </ul>
+    </nav>
+  </div>
 </body>
 </html>

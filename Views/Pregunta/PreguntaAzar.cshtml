@@ -1,78 +1,66 @@
 ﻿@model PromoDH.Models.PreguntaPromo
-@{
-        ViewData["Title"] = "PreguntaAzar";
-}
-
-    <!doctype html>
-    <html lang="es" class="scroll">
-    <head>
-        <meta charset="UTF-8">
-        <title>Bienvenidos a la promo Topline Seven</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
-        <link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
-        <!--[if lt IE 9]>
-        <script type="text/javascript" src="scripts/html5shiv.min.js"></script>
-        <script type="text/javascript" src="scripts/respond.min.js"></script>
-        <![endif] -->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="~/js/jQuery.plugins.js"></script>
-        <script type="text/javascript" src="~/js/jQuery.js"></script>
-    </head>
-    <body id="int">
-        <form asp-action="PreguntaAzar">
-            <header>
-                <h1>Promo "Topline Seven"</h1>
-            </header>
-            <img src="~/images/intro-slide1.png" alt="Podés ganar $1.000.000 y premios espectaculares" class="coin" />
-            <main>
-                <div class="container">
-                    <div class="textos notitle">
-                        <div class="static juego">
-                            <div class="pregunta2">
-                                <h3>Estás más cerca de ganar, responde esta pregunta:</h3>
-                                <p class="codigo">ZCTYCeLCkA</p>
-
-                                <input type="hidden" asp-for="id" />
-                                <input type="hidden" asp-for="pregunta" />
-                                <input type="hidden" asp-for="r1" />
-                                <input type="hidden" asp-for="r2" />
-                                <input type="hidden" asp-for="r3" />
-                                <input type="hidden" asp-for="rc" />
-
-
-                                <div class="form-group">
-                                    <label asp-for="pregunta" class="control-label">@Model.pregunta</label>
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="radio"  value=1 name="rsel" />
-                                    <label asp-for="r1" class="control-label">@Model.r1</label><br />
-                                    <input type="radio" value=2 name="rsel" />
-                                    <label asp-for="r2" class="control-label">@Model.r2</label><br />
-                                    <input type="radio" value=3 name="rsel"  />
-                                    <label asp-for="r3" class="control-label">@Model.r3</label><br />
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="submit" value="Responder" class="btn btn-success btn-sm" />
-                                </div>
-
-
-
-
-
-                            </div>
-                            </div>
-                    </div>
-                </div>
-            </main>
-            <footer>
-                <p>
-                    SIN OBLIGACI&Oacute;N DE COMPRA. V&Aacute;LIDA DEL 18/05/20 AL 13/09/20. CONSULTE LA INFORMACI&Oacute;N EN LAS BASES Y CONDICIONES EN ESTA WEB. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPA POR PREMIOS OFRECIDOS.<br />
-                    CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.
-                </p>
-            </footer>
-        </form>
-    </body>
+@{ ViewData["Title"] = "PreguntaAzar"; }
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Bienvenidos a "A Todo Bagley"</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+<link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
+<!-- [if lt IE 9]>
+<script type="text/javascript" src="~/scripts/html5shiv.min.js"></script>
+<script type="text/javascript" src="~/scripts/respond.min.js"></script>
+<![endif] -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.plugins.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.js"></script>
+</head>
+<body id="int" class="pregunta">
+	<form asp-action="PreguntaAzar">
+		<div class="site-container">
+			<section class="toldo">
+				<h1>A Todo Bagley</h1>
+			</section>
+			<main class="conElems">
+				<div class="wrapper">
+					<h2>Respondé esta pregunta</h2>
+					<div class="textos">
+						<fieldset class="pregunta">
+							<input type="hidden" asp-for="id" />
+              <input type="hidden" asp-for="pregunta" />
+							<input type="hidden" asp-for="r1" />
+							<input type="hidden" asp-for="r2" />
+							<input type="hidden" asp-for="r3" />
+							<input type="hidden" asp-for="rc" />
+							<p asp-for="pregunta">@Model.pregunta</p>
+							<div class="radio-buttons">
+								<label for="radRes1" asp-for="r1">@Model.r1
+									<input id="radRes1" type="radio" value=1 name="rsel" />
+									<span class="checkmark"></span>
+								</label>
+								<label for="radRes2" asp-for="r2">@Model.r2
+									<input id="radRes2" type="radio" value=2 name="rsel" />
+									<span class="checkmark"></span>
+								</label>
+								<label for="radRes3" asp-for="r3">@Model.r3
+									<input id="radRes3" type="radio" value=3 name="rsel" />
+									<span class="checkmark"></span>
+								</label>
+							</div>
+							<input type="submit" value="Responder" />
+						</fieldset>
+					</div>
+				</div>
+			</main>
+		</div>
+		<footer>
+			<div class="wrapper">
+				<p>SIN OBLIGACIÓN DE COMPRA. VÁLIDA DEL 15/02/2021 AL 15/4/2021. CONSULTA LA INFORMACIÓN EN LAS BASES Y CONDICIONES EN ESTA WEB. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPÁ POR PREMIOS OFRECIDOS.<br />
+				CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.</p>
+			</div>
+		</footer>
+	</form>
+</body>
 </html>
-

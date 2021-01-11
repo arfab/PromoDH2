@@ -35,8 +35,8 @@ namespace PromoDH.Controllers
         [HttpGet]
         public IActionResult PreguntaAzar()
         {
-            if (HttpContext.Session.GetString("REGISTRO_ID") == null )
-                return RedirectToAction("Index","Home");
+            /*if (HttpContext.Session.GetString("REGISTRO_ID") == null )
+                return RedirectToAction("Index","Home");*/
 
             PreguntaPromo preg = Datos.ObtenerPreguntaAzar();
             if (preg == null)

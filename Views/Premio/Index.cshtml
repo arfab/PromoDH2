@@ -1,79 +1,87 @@
 ﻿@model IEnumerable<PromoDH.Models.Premio>
-@{
-    ViewData["Title"] = "Index";
-}
-
+@{ ViewData["Title"] = "Index"; }
 <!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Bienvenidos a la promo Topline Seven</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
-    <link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="scripts/html5shiv.min.js"></script>
-    <script type="text/javascript" src="scripts/respond.min.js"></script>
-    <![endif] -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="~/js/jQuery.plugins.js"></script>
-    <script type="text/javascript" src="~/js/jQuery.js"></script>
+<meta charset="UTF-8">
+<title>Bienvenidos a "A Todo Bagley"</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+<link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
+<!-- [if lt IE 9]>
+<script type="text/javascript" src="~/scripts/html5shiv.min.js"></script>
+<script type="text/javascript" src="~/scripts/respond.min.js"></script>
+<![endif] -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.plugins.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.js"></script>
 </head>
-<body id="int" class="pre">
+<body id="int" class="premios">
+  <div class="site-container">
     <header>
-        <h1><a href="Default.aspx">Promo "Topline Seven"</a></h1>
-        <a href="#" class="menu-open">Menú</a>
+      <a href="javascript;" class="btn menu-open"><span class="fa fa-navicon"></span>Menú</a>
+      <a href="~/Contacto" class="btn contacto"><span class="fa fa-comment"></span>Contacto</a>
     </header>
-    <div id="menu-blocker"></div>
-    <nav id="menu">
-        <a href="#" class="menu-close">Cerrar menú</a>
-        <img src="images/logo-promo.png" alt="Promo Topline Seven" class="logo" />
-        <ul>
-            <li><a href="Default.aspx">Home</a></li>
-            <li><a href="Cargar.aspx">Cargá<br />tu código</a></li>
-            <li><a href="Bases.aspx">Bases<br />y condiciones</a></li>
-            <li class="sel">Listado<br />de premios</li>
-            <li><a href="FAQs.aspx">Preguntas<br />frecuentes</a></li>
-            <li><a href="Contacto.aspx">Contacto</a></li>
-        </ul>
-    </nav>
-    <img src="images/intro-slide1.png" alt="Podés ganar $1.000.000 y premios espectaculares" class="coin" />
-    <main>
+    <section class="toldo">
+      <h1><a href="~/">A Todo Bagley</a></h1>
+    </section>
+    <main class="conElems">
+      <div class="wrapper">
         <h2>Premios</h2>
-        <div class="container">
-            <div class="textos">
-                <p class="sub">Si figurás en este listado,<br />conservá el pack, ¡te vamos a contactar!</p>
-                <div class="thead" style="@(Model.Count()==0  ? "visibility:hidden" : "")">
-                    <div><span>DNI</span></div>
-                    <div><span>Premio</span></div>
-                </div>
-                <div class="nano">
-                    <div class="nano-content @(Model.Count()==0  ? " noganadoresContainer center" : "")">
-                        <table>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td>@Html.DisplayFor(model => item.Dni)</td>
-                                        <td>@Html.DisplayFor(model => item.PremioDesc)</td>
-                                    </tr>
-                                }
-                                @if (@Model.Count() == 0)
-                                {
-                                    <h4>No hay ganadores<br />hasta el momento</h4>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <p class="nota">Si figurás en este listado conservá el pack.<br />Te llamaremos.</p>
+        <div class="textos">
+          <div class="nano">
+            <div class="nano-content @(Model.Count()==0  ? " noganadoresContainer center" : "")">
+              <table>
+								<thead style="@(Model.Count()==0  ? "visibility:hidden" : "")">
+                  <tr>
+                    <th>DNI</th>
+                    <th>Premio</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach (var item in Model) {
+                    <tr>
+                      <td>@Html.DisplayFor(model => item.Dni)</td>
+                      <td>@Html.DisplayFor(model => item.PremioDesc)</td>
+                    </tr>
+                  }
+                  @if (@Model.Count() == 0) {
+                    <h4>No hay ganadores<br />hasta el momento</h4>
+                  }
+                </tbody>
+              </table>
             </div>
+          </div>
         </div>
+      </div>
+      <img src="images/hom-slide2-img1.png" class="img img1" alt="Combo campamento" />
+      <img src="images/hom-slide2-img2.png" class="img img2" alt="Combo paseo" />
+      <img src="images/hom-slide2-img4.png" class="img img3" alt="Combo tarde en casa" />
+      <img src="images/hom-slide2-img5.png" class="img img4" alt="Combo gamer" />
     </main>
-    <footer>
-        <p>
-            SIN OBLIGACI&Oacute;N DE COMPRA. V&Aacute;LIDA DEL 18/05/20 AL 13/09/20. CONSULTE LA INFORMACI&Oacute;N EN LAS BASES Y CONDICIONES EN ESTA WEB. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPA POR PREMIOS OFRECIDOS.<br />
-            CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.
-        </p>
-    </footer>
+  </div>
+  <footer>
+    <div class="wrapper">
+      <p>SIN OBLIGACIÓN DE COMPRA. VÁLIDA DEL 15/02/2021 AL 15/4/2021. CONSULTA LA INFORMACIÓN EN LAS BASES Y CONDICIONES EN ESTA WEB. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPÁ POR PREMIOS OFRECIDOS.<br />
+      CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.</p>
+    </div>
+  </footer>
+  <div id="menu-blocker"></div>
+  <div id="menu">
+    <nav>
+      <a href="javascript;" class="menu-close"><span class="fa fa-times"></span></a>
+      <img src="images/logo-bagley.png" alt="Bagley" class="logo">
+      <ul>
+        <li><a href="~/"><span>Home</span></a></li>
+        <li><a href="~/Carga/CargarCodigo"><span>Cargá<br />tu código</span></a></li>
+        <li><a href="~/Bases"><span>Bases<br />y condiciones</span></a></li>
+        <li class="sel"><span>Listado<br />de premios</span></li>
+        <li><a href="~/FAQs"><span>Preguntas<br />frecuentes</span></a></li>
+        <li><a href="~/Contacto"><span>Contacto</span></a></li>
+      </ul>
+    </nav>
+  </div>
 </body>
 </html>
-

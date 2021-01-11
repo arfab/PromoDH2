@@ -1,150 +1,254 @@
 ﻿@model PromoDH.Models.Registro
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
-
-
 @{
     ViewData["Title"] = "CargarCodigo";
 }
-
 <!doctype html>
-<html class="scroll">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Bienvenidos a la promo Topline Seven</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
-    <link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="scripts/html5shiv.min.js"></script>
-    <script type="text/javascript" src="scripts/respond.min.js"></script>
-    <![endif] -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="~/js/jQuery.plugins.js"></script>
-    <script type="text/javascript" src="~/js/jQuery.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js"></script>
+<meta charset="UTF-8">
+<title>Bienvenidos a "A Todo Bagley"</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="~/scripts/html5shiv.min.js"></script>
+<script type="text/javascript" src="~/scripts/respond.min.js"></script>
+<![endif] -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.plugins.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.js"></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body id="int">
-    <form asp-action="CargarCodigo">
-        <header>
-            <h1><a href="Default.aspx">Promo "Topline Seven"</a></h1>
-            <a href="#" class="menu-open">Menú</a>
-        </header>
-        <div id="menu-blocker"></div>
-        <nav id="menu">
-            <a href="#" class="menu-close">Cerrar menú</a>
-            <img src="~/images/logo-promo.png" alt="Promo Topline Seven" class="logo" />
-            <ul>
-                <li><a href="Default.aspx">Home</a></li>
-                <li class="sel">Carg&aacute;<br />tu c&oacute;digo</li>
-                <li><a href="Bases.aspx">Bases<br />y condiciones</a></li>
-                <li><a href="Premios.aspx">Listado<br />de premios</a></li>
-                <li><a href="FAQs.aspx">Preguntas<br />frecuentes</a></li>
-                <li><a href="Contacto.aspx">Contacto</a></li>
-            </ul>
-        </nav>
-        <img src="~/images/intro-slide1.png" alt="Podés ganar $1.000.000 y premios espectaculares" class="coin" />
-        <main>
-            <h2>Carg&aacute; el C&oacute;digo</h2>
-            <input type="hidden" name="captcha" id="captchaInput" />
-            <div class="container">
-                <div class="textos">
-                    <fieldset>
-                        <ul>
+  <form asp-action="CargarCodigo">
+		<div class="site-container">
+      <header>
+      	<a href="javascript;" class="btn menu-open"><span class="fa fa-navicon"></span>Menú</a>
+      	<a href="~/Contacto" class="btn contacto"><span class="fa fa-comment"></span>Contacto</a>
+    	</header>
+      <section class="toldo">
+      	<h1><a href="~/">A Todo Bagley</a></h1>
+    	</section>
+      <main class="conElems">
+				<div class="wrapper">
+					<h2>Cargá tus datos</h2>
+        	<p class="nota">Registrá la fecha de vencimiento del paquete<br />y participá por increíbles premios</p>
+          <input type="hidden" name="captcha" id="captchaInput" />
+          <li class="textos">
+            <fieldset>
+              <div asp-validation-summary="None" class="text-danger"></div>
+              <ul>
+                  <li>
+                      <label asp-for="Nombre">Nombre <em>*</em></label>
+                      <input asp-for="Nombre" />
+                      <span asp-validation-for="Nombre" class="text-danger"></span>
+                  </li>
+                  <li>
+                      <label asp-for="Apellido">Apellido <em>*</em></label>
+                      <input asp-for="Apellido" />
+                      <span asp-validation-for="Apellido" class="text-danger"></span>
+                  </li>
+                  <li>
+                      <label asp-for="Dni">D.N.I <em>*</em></label>
+                      <input asp-for="Dni" />
+                      <span asp-validation-for="Dni" class="text-danger"></span>
+                  </li>
+                  <li>
+                      <label>Fecha de Nacimiento <em>*</em></label>
+                      <input asp-for="fecha_nacimiento" data-date-format="yyyy-mm-dd" />
+                      <span asp-validation-for="fecha_nacimiento" class="text-danger"></span>
+                  </li>
+                  <li class="wide">
+                      <label asp-for="Direccion">Domicilio completo <em>*</em></label>
+                      <input asp-for="Direccion" />
+                      <span asp-validation-for="Direccion" class="text-danger"></span>
+                  </li>
 
-                            <div asp-validation-summary="None" class="text-danger"></div>
+                  <li>
+                      <label asp-for="Provincia" class="control-lable">Provincia <em>*</em></label>
+                      <select asp-for="Provincia" asp-items="@(new SelectList(@ViewBag.ListofProvincias,"id", "descripcion"))" class="custom-select">
+                          <option value="">Seleccione la provincia</option>
+                      </select>
+                  </li>
 
-                            <li>
-                                <label asp-for="Nombre" class="control-label"></label>
-                                <input asp-for="Nombre" class="form-control" />
-                                <span asp-validation-for="Nombre" class="text-danger"></span>
-                            </li>
-                            <li>
-                                <label asp-for="Apellido" class="control-label"></label>
-                                <input asp-for="Apellido" class="form-control" />
-                                <span asp-validation-for="Apellido" class="text-danger"></span>
-                            </li>
-                            <li>
-                                <label asp-for="Provincia" class="control-label"></label>
-                                <input asp-for="Provincia" class="form-control" />
-                                <span asp-validation-for="Provincia" class="text-danger"></span>
-                            </li>
-                            <li>
-                                <label asp-for="Direccion" class="control-label"></label>
-                                <input asp-for="Direccion" class="form-control" />
-                                <span asp-validation-for="Direccion" class="text-danger"></span>
-                            </li>
-                            <li>
-                                <label asp-for="Localidad" class="control-label"></label>
-                                <input asp-for="Localidad" class="form-control" />
-                                <span asp-validation-for="Localidad" class="text-danger"></span>
-                            </li>
-                            <li>
-                                <label asp-for="Telefono" class="control-label"></label>
-                                <input asp-for="Telefono" class="form-control" />
-                                <span asp-validation-for="Telefono" class="text-danger"></span>
-                            </li>
-                            <li>
-                                <label asp-for="Email" class="control-label"></label>
-                                <input asp-for="Email" class="form-control" />
-                                <span asp-validation-for="Email" class="text-danger"></span>
-                            </li>
-                            <li>
-                                <label asp-for="Dni" class="control-label"></label>
-                                <input asp-for="Dni" class="form-control" />
-                                <span asp-validation-for="Dni" class="text-danger"></span>
-                            </li>
-                            <li>
-                                <label asp-for="Codigo" class="control-label"></label>
-                                <input asp-for="Codigo" class="form-control" />
-                                <span asp-validation-for="Codigo" class="text-danger"></span>
-                            </li>
-                            <li>
-                                <label class="control-label">Fecha de Nacimiento</label>
-                                <input asp-for="fecha_nacimiento" class="form-control" data-date-format="yyyy-mm-dd" />
-                                <span asp-validation-for="fecha_nacimiento" class="text-danger"></span>
-                            </li>
-                            <li>
-                                <label class="control-label">Deseo recibir informaci&oacute;n sobre la empresa/producto m&aacute;s adelante</label>
-                                <input class="form-control" asp-for="recibir_info" />
-                                <span asp-validation-for="recibir_info" class="text-danger"></span>
-                            </li>
-                            <li>
-                                <input type="submit" value="Enviar" class="btn btn-primary" />
-                            </li>
+                  @*<li>
+            <label asp-for="Provincia">Provincia <em>*</em></label>
+             <input asp-for="Provincia" />
+            <select name="" id="" asp-for="Provincia">
+                <option value="Buenos Aires">Buenos Aires</option>
+                <option value="Catamarca">Catamarca</option>
+                <option value="CABA">CABA</option>
+                <option value="Chaco">Chaco</option>
+                <option value="Chubut">Chubut</option>
+                <option value="Cordoba">Cordoba</option>
+                <option value="Corrientes">Corrientes</option>
+                <option value="Entre Rios">Entre Rios</option>
+                <option value="Formosa">Formosa</option>
+                <option value="Jujuy">Jujuy</option>
+                <option value="La Pampa">La Pampa</option>
+                <option value="La Rioja">La Rioja</option>
+                <option value="Mendoza">Mendoza</option>
+                <option value="Misiones">Misiones</option>
+                <option value="Salta">Salta</option>
+                <option value="San Juan">San Juan</option>
+                <option value="San Luis">San Luis</option>
+                <option value="Santa Cruz">Santa Cruz</option>
+                <option value="Santa Fe">Santa Fe</option>
+                <option value="Sgo. del Estero">Sgo. del Estero</option>
+                <option value="Tucuman">Tucuman</option>
+            </select>
+            <span asp-validation-for="Provincia" class="text-danger"></span>
+        </li>*@
+
+                  @* <li>
+            <label asp-for="Localidad"></label>
+            <input asp-for="Localidad" />
+            <span asp-validation-for="Localidad" class="text-danger"></span>
+        </li> *@
 
 
+                  @* HARCODEADO *@
+                  @*<li>
+            <label asp-for="Localidad">Ciudad <em>*</em></label>
+            <input asp-for="Localidad" name="txtCiudad" type="text" id="txtCiudad" autocomplete="nope" />
+        </li>*@
 
-                            @section Scripts {
+                  <li>
+                      <label asp-for="Localidad">Ciudad <em>*</em></label>
+                      <input asp-for="Localidad" />
+                      <span asp-validation-for="Localidad" class="text-danger"></span>
+                  </li>
 
-                                <script src="https://www.google.com/recaptcha/api.js?render=@Configuration["googleReCaptcha:SiteKey"]"></script>
-                                <script>
-                                    grecaptcha.ready(function() {
-                                       window.grecaptcha.execute('@Configuration["googleReCaptcha:SiteKey"]', { action: 'home' }).then(function (token) {
-                                          $("#captchaInput").val(token);
-                                       });
-                                    });
-                                </script>
+                  @* HARCODEADO *@
+                  @*<li>
+                      <label>CP <em>*</em></label>
+                      <input name="txtCP" type="text" id="txtCP" autocomplete="nope" />
+                  </li>*@
+                  <li>
+                      <label asp-for="CP">CP <em>*</em></label>
+                      <input asp-for="CP" />
+                      <span asp-validation-for="CP" class="text-danger"></span>
+                  </li>
+
+                  <li>
+                      <label asp-for="Telefono">Teléfono <em>*</em></label>
+                      <input asp-for="Telefono" />
+                      <span asp-validation-for="Telefono" class="text-danger"></span>
+                  </li>
+                  <li class="wide">
+                      <label asp-for="Email">Email <em>*</em></label>
+                      <input asp-for="Email" />
+                      <span asp-validation-for="Email" class="text-danger"></span>
+                  </li>
+
+                  @* <li>
+          <label asp-for="Codigo"></label>
+          <input asp-for="Codigo" />
+          <span asp-validation-for="Codigo" class="text-danger"></span>
+        </li> *@
+
+                  @* HARCODEADO *@
+                  <li class="cod wide">
+                      <label>C&oacute;digo <em>*</em><br />Carga la fecha de vencimiento y la marca:</label>
+                      <div class="campos">
+                          <input asp-for="dia" maxlength="2" id="txtDia" placeholder="DD" autocomplete="nope" />
+                          <input asp-for="mes" maxlength="2" id="txtMes" placeholder="MM" autocomplete="nope" />
+                          <input asp-for="anio" maxlength="4" id="txtAno" class="last" placeholder="AAAA" autocomplete="nope" />
+                      </div>
+                  </li>
+
+                  <li>
+                      <label asp-for="marca_id" class="control-lable">Seleccion&aacute; una marca</label>
+                      <select asp-for="marca_id" asp-items="@(new SelectList(@ViewBag.ListofMarcas,"id", "nombre"))" class="custom-select">
+                          <option value="">Seleccione la marca</option>
+                      </select>
+                  </li>
+
+                  @* HARCODEADO *@
+                  @*<li>
+            <select name="ddMarca" id="ddMarca">
+                <option disabled selected>Seleccion&aacute; una marca</option>
+                <option value="Opera">Opera</option>
+                <option value="Rumba">Rumba</option>
+                <option value="Amor">Amor</option>
+                <option value="Sonrisas">Sonrisas</option>
+                <option value="Chocolinas">Chocolinas</option>
+                <option value="Surtido Bagley">Surtido Bagley</option>
+                <option value="Merengadas">Merengadas</option>
+                <option value="Mellizas">Mellizas</option>
+            </select>
+        </li>*@
+
+                  @* HARCODEADO *@
+                  <li class="wide">
+                      <label for="men">Ingres&aacute; el captcha <em>*</em></label>
+                      <!--'TODO: GENERAR CLAVES PARA LOS DISTINTOS DOMINIOS-->
+                      <div class="g-recaptcha-parent">
+                          <div class="g-recaptcha" data-sitekey="6LfgtgwUAAAAAJ0WgOIfyMKWDjLcySzRjV9f_ze7"></div>
+                      </div>
+                  </li>
 
 
-                                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                  <li class="wide">
+                      <div class="radio-item">
+                          <label>
+                              Acepto&nbsp;las&nbsp;bases&nbsp;y&nbsp;condiciones de&nbsp;la promoci&oacute;n&nbsp;<em>*</em>
+                              <input asp-for="recibir_info" />
+                              <span class="checkmark"></span>
+                          </label>
+                          <span asp-validation-for="recibir_info" class="text-danger"></span>
+                      </div>
+                      <div class="radio-item">
+                          <label>
+                              Deseo&nbsp;recibir&nbsp;comunicaciones comerciales&nbsp;de&nbsp;Bagley&nbsp;<em>*</em>
+                              <input />
+                              <span class="checkmark"></span>
+                          </label>
+                      </div>
+                  </li>
 
 
-                            }
-
-
-
-
-
-                        </ul>
-                    </fieldset>
-                </div>
-            </div>
-        </main>
-        <footer>
-            <p>
-                SIN OBLIGACI&Oacute;N DE COMPRA. V&Aacute;LIDA DEL 18/05/20 AL 13/09/20. CONSULTE LA INFORMACI&Oacute;N EN LAS BASES Y CONDICIONES EN ESTA WEB. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPA POR PREMIOS OFRECIDOS.<br />
-                CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.
-            </p>
-        </footer>
-    </form>
+                  <li class="wide btn">
+                      <input type="submit" value="Enviar" />
+                  </li>
+                  @section Scripts {
+                      <script src="https://www.google.com/recaptcha/api.js?render=@Configuration["googleReCaptcha:SiteKey"]"></script>
+                      <script>
+                    grecaptcha.ready(function() {
+                      window.grecaptcha.execute('@Configuration["googleReCaptcha:SiteKey"]', { action: 'home' }).then(function (token) {
+                        $("#captchaInput").val(token);
+                      });
+                    });
+                      </script>
+                      @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                  }
+              </ul>
+            </fieldset>
+          </div>
+        </div>
+      </main>
+    </div>
+  <footer>
+    <div class="wrapper">
+      <p>SIN OBLIGACIÓN DE COMPRA. VÁLIDA DEL 15/02/2021 AL 15/4/2021. CONSULTA LA INFORMACIÓN EN LAS BASES Y CONDICIONES EN ESTA WEB. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPÁ POR PREMIOS OFRECIDOS.<br />
+      CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.</p>
+    </div>
+  </footer>
+  <div id="menu-blocker"></div>
+  <div id="menu">
+    <nav>
+      <a href="javascript;" class="menu-close"><span class="fa fa-times"></span></a>
+      <img src="../images/logo-bagley.png" alt="Bagley" class="logo">
+      <ul>
+        <li><a href="~/"><span>Home</span></a></li>
+        <li class="sel"><span>Cargá<br />tu código</span></li>
+        <li><a href="~/Bases"><span>Bases<br />y condiciones</span></a></li>
+        <li><a href="~/Premios"><span>Listado<br />de premios</span></a></li>
+        <li><a href="~/FAQs"><span>Preguntas<br />frecuentes</span></a></li>
+        <li><a href="~/Contacto"><span>Contacto</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</form>	
 </body>
 </html>

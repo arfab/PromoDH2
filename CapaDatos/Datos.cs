@@ -28,19 +28,24 @@ namespace PromoDH.CapaDatos
                     if (con.State == ConnectionState.Closed)
                         con.Open();
 
+                    string sCodigo;
+
+                    sCodigo = string.Concat(registro.dia.ToString().PadLeft(2,'0'),registro.mes.ToString().PadLeft(2,'0'),registro.anio.ToString());
+                    
+
                     DynamicParameters parameters = new DynamicParameters();
                     parameters.Add("@nombre", registro.Nombre);
                     parameters.Add("@apellido", registro.Apellido);
                     parameters.Add("@dni", registro.Dni);
                     parameters.Add("@marca_id", registro.marca_id);
                     parameters.Add("@fecha_nacimiento", registro.fecha_nacimiento);
-                    parameters.Add("@codigo", registro.Codigo);
+                    parameters.Add("@codigo", sCodigo);
                     parameters.Add("@provincia", registro.Provincia);
                     parameters.Add("@localidad", registro.Localidad);
                     parameters.Add("@direccion", registro.Direccion);
                     parameters.Add("@telefono", registro.Telefono);
                     parameters.Add("@email", registro.Email);
-                    parameters.Add("@CP", "");
+                    parameters.Add("@CP", registro.CP);
                     parameters.Add("@recibir_info", registro.recibir_info);
                     parameters.Add("@activo", 1);
                     parameters.Add("@premio_id_ret", dbType: DbType.Int32, direction: ParameterDirection.Output);
@@ -78,12 +83,17 @@ namespace PromoDH.CapaDatos
                     if (con.State == ConnectionState.Closed)
                         con.Open();
 
+                    string sCodigo;
+
+                    sCodigo = string.Concat(registro.dia.ToString().PadLeft(2, '0'), registro.mes.ToString().PadLeft(2, '0'), registro.anio.ToString());
+
+
                     DynamicParameters parameters = new DynamicParameters();
                     parameters.Add("@nombre", registro.Nombre);
                     parameters.Add("@apellido", registro.Apellido);
                     parameters.Add("@dni", registro.Dni);
                     parameters.Add("@fecha_nacimiento", registro.fecha_nacimiento);
-                    parameters.Add("@codigo", registro.Codigo);
+                    parameters.Add("@codigo", sCodigo);
                     parameters.Add("@provincia", registro.Provincia);
                     parameters.Add("@recibir_info", registro.recibir_info);
                     parameters.Add("@activo", 1);
@@ -227,6 +237,36 @@ namespace PromoDH.CapaDatos
             return rowAffected;
         }
 
+
+        public static List<Models.Provincia> ObtenerProvincias()
+        {
+            List<Models.Provincia> lProvincias = new List<Models.Provincia>();
+
+            using (IDbConnection con = new SqlConnection(strConnectionString))
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                lProvincias = con.Query<Models.Provincia>("spObtenerProvincias").ToList();
+            }
+
+            return lProvincias;
+        }
+
+        public static List<Models.Marca> ObtenerMarcas()
+        {
+            List<Models.Marca> lMarcas = new List<Models.Marca>();
+
+            using (IDbConnection con = new SqlConnection(strConnectionString))
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                lMarcas = con.Query<Models.Marca>("spObtenerMarcas").ToList();
+            }
+
+            return lMarcas;
+        }
 
 
     }

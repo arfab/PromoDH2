@@ -45,9 +45,17 @@ namespace PromoDH.Models
         [Required(ErrorMessage = "Ingrese la marca")]
         public int marca_id { get; set; }
 
+        [Required(ErrorMessage = "Ingrese el día")]
+        public int dia { get; set; }
 
-        [Required(ErrorMessage = "Ingrese el Código")]
-        public string Codigo { get; set; }
+        [Required(ErrorMessage = "Ingrese el mes")]
+        public int mes { get; set; }
+
+        [Required(ErrorMessage = "Ingrese el año")]
+        public int anio { get; set; }
+
+        [Required(ErrorMessage = "Ingrese el CP")]
+        public string CP { get; set; }
 
         [Required(ErrorMessage = "Ingrese la fecha de nacimiento")]
         [DataType(DataType.Date)]
