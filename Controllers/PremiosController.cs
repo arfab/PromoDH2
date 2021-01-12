@@ -7,7 +7,7 @@ using PromoDH.CapaDatos;
 
 namespace PromoDH.Controllers
 {
-    public class PremioController : Controller
+    public class PremiosController : Controller
     {
         public IActionResult Index()
         {

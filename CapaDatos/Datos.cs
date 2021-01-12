@@ -268,6 +268,26 @@ namespace PromoDH.CapaDatos
             return lMarcas;
         }
 
+        public static int EsCodigoValido(string codigo)
+        {
+
+            var lRes = 0;
+
+
+            using (IDbConnection con = new SqlConnection(strConnectionString))
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                DynamicParameters parameter = new DynamicParameters();
+                parameter.Add("@codigo", codigo);
+
+
+                lRes = con.Query<int>("spEsCodigoValido", parameter, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+
+            return lRes;
+        }
 
     }
 }

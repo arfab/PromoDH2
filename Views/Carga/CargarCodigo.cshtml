@@ -71,47 +71,7 @@
                                     </select>
                                 </li>
 
-                                @*<li>
-                                        <label asp-for="Provincia">Provincia <em>*</em></label>
-                                         <input asp-for="Provincia" />
-                                        <select name="" id="" asp-for="Provincia">
-                                            <option value="Buenos Aires">Buenos Aires</option>
-                                            <option value="Catamarca">Catamarca</option>
-                                            <option value="CABA">CABA</option>
-                                            <option value="Chaco">Chaco</option>
-                                            <option value="Chubut">Chubut</option>
-                                            <option value="Cordoba">Cordoba</option>
-                                            <option value="Corrientes">Corrientes</option>
-                                            <option value="Entre Rios">Entre Rios</option>
-                                            <option value="Formosa">Formosa</option>
-                                            <option value="Jujuy">Jujuy</option>
-                                            <option value="La Pampa">La Pampa</option>
-                                            <option value="La Rioja">La Rioja</option>
-                                            <option value="Mendoza">Mendoza</option>
-                                            <option value="Misiones">Misiones</option>
-                                            <option value="Salta">Salta</option>
-                                            <option value="San Juan">San Juan</option>
-                                            <option value="San Luis">San Luis</option>
-                                            <option value="Santa Cruz">Santa Cruz</option>
-                                            <option value="Santa Fe">Santa Fe</option>
-                                            <option value="Sgo. del Estero">Sgo. del Estero</option>
-                                            <option value="Tucuman">Tucuman</option>
-                                        </select>
-                                        <span asp-validation-for="Provincia" class="text-danger"></span>
-                                    </li>*@
-
-                                @* <li>
-                                        <label asp-for="Localidad"></label>
-                                        <input asp-for="Localidad" />
-                                        <span asp-validation-for="Localidad" class="text-danger"></span>
-                                    </li> *@
-
-
-                                @* HARCODEADO *@
-                                @*<li>
-                                        <label asp-for="Localidad">Ciudad <em>*</em></label>
-                                        <input asp-for="Localidad" name="txtCiudad" type="text" id="txtCiudad" autocomplete="nope" />
-                                    </li>*@
+                               
 
                                 <li>
                                     <label asp-for="Localidad">Ciudad <em>*</em></label>
@@ -119,11 +79,7 @@
                                     <span asp-validation-for="Localidad" class="text-danger"></span>
                                 </li>
 
-                                @* HARCODEADO *@
-                                @*<li>
-                                        <label>CP <em>*</em></label>
-                                        <input name="txtCP" type="text" id="txtCP" autocomplete="nope" />
-                                    </li>*@
+                              
                                 <li>
                                     <label asp-for="CP">CP <em>*</em></label>
                                     <input asp-for="CP" />
@@ -141,19 +97,13 @@
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </li>
 
-                                @* <li>
-                                      <label asp-for="Codigo"></label>
-                                      <input asp-for="Codigo" />
-                                      <span asp-validation-for="Codigo" class="text-danger"></span>
-                                    </li> *@
-
-                                @* HARCODEADO *@
+                          
                                 <li class="cod wide">
                                     <label>C&oacute;digo <em>*</em><br />Carga la fecha de vencimiento y la marca:</label>
                                     <div class="campos">
                                         <input asp-for="dia" maxlength="2"  placeholder="DD" autocomplete="nope" />
                                         <input asp-for="mes"  maxlength="2"  placeholder="MM" autocomplete="nope" />
-                                        <input asp-for="anio"  maxlength="4"  class="last" placeholder="AAAA" autocomplete="nope" />
+                                        <input asp-for="anio"  maxlength="2"  class="last" placeholder="AA" autocomplete="nope" />
                                     </div>
                                 </li>
 
@@ -193,10 +143,10 @@
                                     <div class="radio-item">
                                         <label>
                                             Acepto&nbsp;las&nbsp;bases&nbsp;y&nbsp;condiciones de&nbsp;la promoci&oacute;n&nbsp;<em>*</em>
-                                            <input asp-for="recibir_info" />
+                                            <input asp-for="bases" />
                                             <span class="checkmark"></span>
                                         </label>
-                                        <span asp-validation-for="recibir_info" class="text-danger"></span>
+                                        <span asp-validation-for="bases" class="text-danger"></span>
                                     </div>
                                     <div class="radio-item">
                                         <label>

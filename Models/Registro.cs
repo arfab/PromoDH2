@@ -64,6 +64,9 @@ namespace PromoDH.Models
         [Required(ErrorMessage = "Ingrese si desea recibir información")]
         public bool recibir_info { get; set; }
 
+        [Required(ErrorMessage = "Debe aceptar bases y condiciones")]
+        public bool bases { get; set; }
+
         public int premio_id_ret;
         public int user_id_ret;
         public int premio_rango_id_ret;
