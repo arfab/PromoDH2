@@ -289,5 +289,53 @@ namespace PromoDH.CapaDatos
             return lRes;
         }
 
+
+
+
+        public static int InsertarConsulta(Contacto contacto)
+        {
+            int rowAffected = 0;
+
+            try
+            {
+
+
+                using (IDbConnection con = new SqlConnection(strConnectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                    
+                    DynamicParameters parameters = new DynamicParameters();
+                    parameters.Add("@nombre", contacto.Nombre);
+                    parameters.Add("@apellido", contacto.Apellido);
+                    parameters.Add("@dni", contacto.Dni);
+                    parameters.Add("@pais", "");
+                    parameters.Add("@provincia", contacto.Provincia);
+                    parameters.Add("@localidad", contacto.Localidad);
+                    parameters.Add("@direccion", contacto.Direccion);
+                    parameters.Add("@telefono", contacto.Telefono);
+                    parameters.Add("@movil", contacto.Telefono);
+                    parameters.Add("@email", contacto.Email);
+                    parameters.Add("@consulta", contacto.Consulta);
+
+                    rowAffected = con.Execute("spInsertarConsulta", parameters, commandType: CommandType.StoredProcedure);
+
+               
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                contacto.errorDesc = ex.Message;
+            }
+
+            return rowAffected;
+        }
+
     }
+
+
+
 }
