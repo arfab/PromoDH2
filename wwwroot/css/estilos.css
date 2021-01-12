@@ -336,16 +336,16 @@ fieldset ul li { font-size: 0.75rem; text-align: left; margin-bottom: 1.5em!impo
 fieldset ul li.btn { text-align: center; margin: 1em 0 0 0!important; }
 fieldset ul li label { display: block; font-size: 1.1em; line-height: 1.3em; margin-bottom: 0.6em; }
 fieldset ul li label em { font-style: normal; color: #FFD204; }
-fieldset ul li input[type="text"], fieldset ul li input[type="email"], fieldset ul li input[type="date"], fieldset ul li select, fieldset ul li textarea { width: 100%; display: block; background: #FFF; border: none; height: 3em; line-height: 3em; padding: 0 1em; font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 1.2em; border-radius: 1em; }
+fieldset ul li input[type="text"], fieldset ul li input[type="email"], fieldset ul li input[type="date"], fieldset ul li input[type="number"], fieldset ul li select, fieldset ul li textarea { width: 100%; display: block; background: #FFF; border: none; height: 3em; line-height: 3em; padding: 0 1em; font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 1.2em; border-radius: 1em; }
 fieldset ul li textarea { resize: none; height: auto; line-height: 1.2em; padding: 0.5em 1em; height: 8em; }
 fieldset .tel:after { content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; }
 fieldset .tel input[type="text"] { float: left; }
 fieldset .tel .are { width: 25%; margin-right: 5%; }
 fieldset .tel .num { width: 70%; }
 fieldset .cod:after { content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; }
-fieldset .cod input[type="text"] { float: left; width: 30%; margin-right: 5%; }
-fieldset .cod input[type="text"].last { margin-right: 0; }
-fieldset .cod input[type="text"]::placeholder { color: #333; }
+fieldset .cod input[type="text"], fieldset .cod input[type="number"] { float: left; width: 30%; margin-right: 5%; }
+fieldset .cod input[type="text"].last, fieldset .cod input[type="number"].last { margin-right: 0; }
+fieldset .cod input[type="text"]::placeholder, fieldset .cod input[type="number"]::placeholder { color: #333; }
 fieldset .cod p { clear: both; text-align: left!important; margin: 0!important; line-height: 1.2em!important; padding-top: 0.5em; font-style: italic; opacity: 0.8; }
 fieldset .cod .env { display: inline-block; margin-top: 0.5em; text-decoration: underline; color: #FFF; }
 

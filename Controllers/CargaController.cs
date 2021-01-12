@@ -40,17 +40,7 @@ namespace PromoDH.Controllers
         {
             string sRet;
 
-            sRet = Validar(registro);
-
-            if (sRet != "")
-            {
-                ViewBag.Message = sRet;
-
-                ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
-                ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
-
-                return View(registro);
-            }
+         
 
             if (ModelState.IsValid)
             {
@@ -58,7 +48,17 @@ namespace PromoDH.Controllers
                 // Por ahora hardcodeo la marca hasta que esté en el frontend
                 //registro.marca_id = 1;
 
-               
+                sRet = Validar(registro);
+
+                if (sRet != "")
+                {
+                    ViewBag.Message = sRet;
+
+                    ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
+                    ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
+
+                    return View(registro);
+                }
 
                 if (Datos.InsertarRegistro(registro) > 0)
                 {
@@ -73,6 +73,11 @@ namespace PromoDH.Controllers
                         return RedirectToAction("NoGano", "Carga");
 
                     //return Redirect("~/");
+                }
+                else
+
+                {
+                    ViewBag.Message = "Algunos campos están incompletos.";
                 }
             }
 

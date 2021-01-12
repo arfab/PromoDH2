@@ -62,6 +62,8 @@ namespace PromoDH.Controllers
 
                         if (iPremio>0)
                         {
+                            HttpContext.Session.SetString("PREMIO_ID", iPremio.ToString());
+
                             return RedirectToAction("Gano", "Pregunta");
                         }
                         else

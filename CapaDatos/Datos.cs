@@ -314,8 +314,8 @@ namespace PromoDH.CapaDatos
                     parameters.Add("@provincia", contacto.Provincia);
                     parameters.Add("@localidad", contacto.Localidad);
                     parameters.Add("@direccion", contacto.Direccion);
-                    parameters.Add("@telefono", contacto.Telefono);
-                    parameters.Add("@movil", contacto.Telefono);
+                    parameters.Add("@telefono", string.Concat(contacto.Area,"-",contacto.Telefono));
+                    parameters.Add("@movil", string.Concat(contacto.Area, "-",contacto.Movil));
                     parameters.Add("@email", contacto.Email);
                     parameters.Add("@consulta", contacto.Consulta);
 
