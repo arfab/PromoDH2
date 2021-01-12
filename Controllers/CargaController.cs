@@ -41,7 +41,18 @@ namespace PromoDH.Controllers
             {
 
                 // Por ahora hardcodeo la marca hasta que esté en el frontend
-                registro.marca_id = 1;
+                //registro.marca_id = 1;
+
+                if (registro.Dni.Length < 7)
+                {
+                    ViewBag.Message = "Dni inválido";
+
+                    ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
+                    ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
+
+                    return View(registro);
+                }
+
                 if (Datos.InsertarRegistro(registro) > 0)
                 {
                     // Guardar datos registro y premio en sesión
