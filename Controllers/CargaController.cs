@@ -97,7 +97,7 @@ namespace PromoDH.Controllers
                 else
 
                 {
-                    ViewBag.Message = "Algunos campos están incompletos.";
+                    ViewBag.Message = "Algunos campos estan incompletos.";
                 }
             }
 
@@ -112,43 +112,43 @@ namespace PromoDH.Controllers
             string sRet="";
 
             if (registro.Nombre.Trim().Length > 50) return "El Nombre no debe exceder los 50 caracteres";
-            if (registro.Nombre.Trim().Length == 0) return "Algunos campos están incompletos.";
+            if (registro.Nombre.Trim().Length == 0) return "Algunos campos estan incompletos.";
 
             if (registro.Apellido.Trim().Length > 50) return "El Apellido no debe exceder los 50 caracteres";
-            if (registro.Apellido.Trim().Length == 0) return "Algunos campos están incompletos.";
+            if (registro.Apellido.Trim().Length == 0) return "Algunos campos estan incompletos.";
 
-            if (registro.Dni.Trim().Length == 0) return "Algunos campos están incompletos.";
+            if (registro.Dni.Trim().Length == 0) return "Algunos campos estan incompletos.";
             
             if (registro.Dni.Trim() == "") return "Algunos campos están incompletos.";
-            if (!int.TryParse(registro.Dni, out _)) return "El DNI no es válido";
-            if (registro.Dni.Length < 7) return "El DNI no es válido";
-            if (registro.Dni.Length > 8) return "El DNI no es válido";
+            if (!int.TryParse(registro.Dni, out _)) return "El DNI no es valido";
+            if (registro.Dni.Length < 7) return "El DNI no es valido";
+            if (registro.Dni.Length > 8) return "El DNI no es valido";
             if (registro.Dni.StartsWith("00")) return "El DNI no es válido";
-            if (registro.Dni.StartsWith("111111")) return "El DNI no es válido";
-            if (registro.Dni.StartsWith("222222")) return "El DNI no es válido";
-            if (registro.Dni.StartsWith("333333")) return "El DNI no es válido";
-            if (registro.Dni.StartsWith("444444")) return "El DNI no es válido";
-            if (registro.Dni.StartsWith("555555")) return "El DNI no es válido";
-            if (registro.Dni.StartsWith("666666")) return "El DNI no es válido";
-            if (registro.Dni.StartsWith("777777")) return "El DNI no es válido";
-            if (registro.Dni.StartsWith("888888")) return "El DNI no es válido";
-            if (registro.Dni.StartsWith("999999")) return "El DNI no es válido";
-            if (registro.Dni.StartsWith("123456")) return "El DNI no es válido";
-            if (registro.Dni.StartsWith("987654")) return "El DNI no es válido";
+            if (registro.Dni.StartsWith("111111")) return "El DNI no es valido";
+            if (registro.Dni.StartsWith("222222")) return "El DNI no es valido";
+            if (registro.Dni.StartsWith("333333")) return "El DNI no es valido";
+            if (registro.Dni.StartsWith("444444")) return "El DNI no es valido";
+            if (registro.Dni.StartsWith("555555")) return "El DNI no es valido";
+            if (registro.Dni.StartsWith("666666")) return "El DNI no es valido";
+            if (registro.Dni.StartsWith("777777")) return "El DNI no es valido";
+            if (registro.Dni.StartsWith("888888")) return "El DNI no es valido";
+            if (registro.Dni.StartsWith("999999")) return "El DNI no es valido";
+            if (registro.Dni.StartsWith("123456")) return "El DNI no es valido";
+            if (registro.Dni.StartsWith("987654")) return "El DNI no es valido";
 
-            if (registro.dia.ToString().Trim().Length == 0) return "Algunos campos están incompletos.";
-            if (registro.mes.ToString().Trim().Length == 0) return "Algunos campos están incompletos.";
-            if (registro.dia.ToString().Trim().Length == 0) return "Algunos campos están incompletos.";
+            if (registro.dia.ToString().Trim().Length == 0) return "Algunos campos estan incompletos.";
+            if (registro.mes.ToString().Trim().Length == 0) return "Algunos campos estan incompletos.";
+            if (registro.dia.ToString().Trim().Length == 0) return "Algunos campos estan incompletos.";
 
-            if (registro.fecha_nacimiento.ToString().Trim().Length == 0) return "Algunos campos están incompletos.";
+            if (registro.fecha_nacimiento.ToString().Trim().Length == 0) return "Algunos campos estan incompletos.";
 
             try
             {
                 DateTime d = new DateTime(registro.anio, registro.mes, registro.dia, 0, 0, 0, 0);
 
-                if (registro.dia < 1 || registro.dia > 31) return "Fecha Inválida";
-                if (registro.mes < 1 || registro.dia > 12) return "Fecha Inválida";
-                if (registro.anio < 21 || registro.anio > 24) return "Fecha Inválida";
+                if (registro.dia < 1 || registro.dia > 31) return "Fecha Invalida";
+                if (registro.mes < 1 || registro.dia > 12) return "Fecha Invalida";
+                if (registro.anio < 21 || registro.anio > 24) return "Fecha Invalida";
             }
             catch (Exception e)
             {
