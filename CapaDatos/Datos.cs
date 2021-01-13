@@ -31,7 +31,6 @@ namespace PromoDH.CapaDatos
                     string sCodigo;
 
                     sCodigo = string.Concat(registro.dia.ToString().PadLeft(2,'0'),registro.mes.ToString().PadLeft(2,'0'),registro.anio.ToString());
-                    
 
                     DynamicParameters parameters = new DynamicParameters();
                     parameters.Add("@nombre", registro.Nombre);

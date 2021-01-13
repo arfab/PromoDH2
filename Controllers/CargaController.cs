@@ -28,6 +28,19 @@ namespace PromoDH.Controllers
         public IActionResult CargarCodigo()
         {
 
+            HttpContext.Session.SetString("CODIGO", "");
+            HttpContext.Session.SetString("DNI", "");
+            HttpContext.Session.SetString("PREMIO_ID", "");
+            HttpContext.Session.SetString("REGISTRO_ID", "");
+            HttpContext.Session.SetString("PREMIO_RANGO_ID","");
+            HttpContext.Session.Remove("CODIGO");
+            HttpContext.Session.Remove("DNI");
+            HttpContext.Session.Remove("PREMIO_ID");
+            HttpContext.Session.Remove("REGISTRO_ID");
+            HttpContext.Session.Remove("PREMIO_RANGO_ID");
+
+
+
             ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
             ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
 
@@ -63,6 +76,13 @@ namespace PromoDH.Controllers
                 if (Datos.InsertarRegistro(registro) > 0)
                 {
                     // Guardar datos registro y premio en sesión
+                    string sCodigo = string.Concat(registro.dia.ToString().PadLeft(2, '0'), registro.mes.ToString().PadLeft(2, '0'), registro.anio.ToString());
+
+                    HttpContext.Session.SetString("CODIGO", sCodigo);
+                    HttpContext.Session.SetString("DNI", registro.Dni);
+
+
+                    HttpContext.Session.SetString("PREMIO_ID", registro.premio_id_ret.ToString());
                     HttpContext.Session.SetString("PREMIO_ID", registro.premio_id_ret.ToString());
                     HttpContext.Session.SetString("REGISTRO_ID", registro.user_id_ret.ToString());
                     HttpContext.Session.SetString("PREMIO_RANGO_ID", registro.premio_rango_id_ret.ToString());
