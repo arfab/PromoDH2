@@ -118,8 +118,9 @@ namespace PromoDH.Controllers
             if (registro.Apellido.Trim().Length == 0) return "Algunos campos están incompletos.";
 
             if (registro.Dni.Trim().Length == 0) return "Algunos campos están incompletos.";
-            /* Falta condicion para que sea numerico*/
+            
             if (registro.Dni.Trim() == "") return "Algunos campos están incompletos.";
+            if (!int.TryParse(registro.Dni, out _)) return "El DNI no es válido";
             if (registro.Dni.Length < 7) return "El DNI no es válido";
             if (registro.Dni.Length > 8) return "El DNI no es válido";
             if (registro.Dni.StartsWith("00")) return "El DNI no es válido";
