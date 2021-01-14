@@ -155,7 +155,7 @@
                                 <li class="wide btn">
                                     <input type="submit" value="Enviar" />
                                 </li>
-                               
+
 
                             </ul>
                         </fieldset>
@@ -198,12 +198,11 @@
     @if (ViewBag.Message != null)
     {
         <script type="text/javascript">
-        window.onload = function () {
-            setTimeout(function () {
-                alert("@ViewBag.Message");
-            }, 1);
+            alert('@Html.Raw(@ViewBag.Message)');
+
         </script>
     }
+
 
 </body>
 </html>

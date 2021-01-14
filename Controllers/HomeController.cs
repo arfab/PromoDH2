@@ -20,6 +20,7 @@ namespace PromoDH.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 
