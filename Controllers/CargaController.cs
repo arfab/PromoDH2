@@ -63,15 +63,20 @@ namespace PromoDH.Controllers
         {
             string sRet;
 
+            try
 
-            if (ModelState.IsValid)
             {
-               
+                sRet = Validar(registro);
+
+
+
+                if (ModelState.IsValid)
+                {
+
                 // Por ahora hardcodeo la marca hasta que esté en el frontend
                 //registro.marca_id = 1;
 
-                sRet = Validar(registro);
-
+      
                 if (sRet != "")
                 {
                     ViewBag.Message = sRet;
@@ -109,6 +114,8 @@ namespace PromoDH.Controllers
                     ViewBag.Message = "Algunos campos estan incompletos.";
                    
                 }
+
+              
             }
 
             //ME FIJO SI EL PROBLEMA ES EL CAPTCHA
@@ -124,6 +131,14 @@ namespace PromoDH.Controllers
                 
             }
 
+
+            }
+            catch (Exception)
+            {
+                ViewBag.Message = "Ha ocurrido un error en el sitio. Inténtelo nuevamente.";
+                // return RedirectToAction("Index", "Home");
+            }
+
             ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
             ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
 
@@ -133,6 +148,9 @@ namespace PromoDH.Controllers
         public string Validar(Registro registro)
         {
             string sRet="";
+
+           // object m = null;
+           // string s = m.ToString();
 
             if (registro.Nombre.Trim().Length > 50) return "El Nombre no debe exceder los 50 caracteres";
             if (registro.Nombre.Trim().Length == 0) return "Algunos campos están incompletos.";
