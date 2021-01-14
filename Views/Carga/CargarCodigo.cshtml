@@ -3,13 +3,6 @@
 @{
     ViewData["Title"] = "CargarCodigo";
 }
-@inject IOptions<RecaptchaSettings> RecaptchaSettings;
-@using reCAPTCHA.AspNetCore
-@using reCAPTCHA.AspNetCore.Versions;
-@using Microsoft.Extensions.Options
-
-
-
 <!doctype html>
 <html lang="es">
 <head>
@@ -24,10 +17,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="~/scripts/jQuery.plugins.js"></script>
     <script type="text/javascript" src="~/scripts/jQuery.js"></script>
-
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-
+    <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body id="int">
     <form asp-action="CargarCodigo">
@@ -43,7 +33,7 @@
                 <div class="wrapper">
                     <h2>Cargá tus datos</h2>
                     <p class="nota">Registrá la fecha de vencimiento del paquete<br />y participá por increíbles premios</p>
-
+                    <input type="hidden" name="captcha" id="captchaInput" />
                     <li class="textos">
                         <fieldset>
                             <div asp-validation-summary="None" class="text-danger"></div>
@@ -81,7 +71,7 @@
                                     </select>
                                 </li>
 
-
+                               
 
                                 <li>
                                     <label asp-for="Localidad">Ciudad <em>*</em></label>
@@ -89,7 +79,7 @@
                                     <span asp-validation-for="Localidad" class="text-danger"></span>
                                 </li>
 
-
+                              
                                 <li>
                                     <label asp-for="CP">CP <em>*</em></label>
                                     <input asp-for="CP" />
@@ -107,13 +97,13 @@
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </li>
 
-
+                          
                                 <li class="cod wide">
                                     <label>C&oacute;digo <em>*</em><br />Carga la fecha de vencimiento y la marca:</label>
                                     <div class="campos">
-                                        <input asp-for="dia" maxlength="2" placeholder="DD" autocomplete="nope" />
-                                        <input asp-for="mes" maxlength="2" placeholder="MM" autocomplete="nope" />
-                                        <input asp-for="anio" maxlength="2" class="last" placeholder="AA" autocomplete="nope" />
+                                        <input asp-for="dia" maxlength="2"  placeholder="DD" autocomplete="nope" />
+                                        <input asp-for="mes"  maxlength="2"  placeholder="MM" autocomplete="nope" />
+                                        <input asp-for="anio"  maxlength="2"  class="last" placeholder="AA" autocomplete="nope" />
                                     </div>
                                 </li>
 
@@ -124,25 +114,16 @@
                                     </select>
                                 </li>
 
-
+                              
 
                                 @* HARCODEADO *@
-                            <li class="wide">
-
-
-
-
-
-
-
-
-
-                                <label for="men">Ingres&aacute; el captcha <em>*</em></label>
-
-                                @(Html.Recaptcha<RecaptchaV2Checkbox>(RecaptchaSettings.Value))
-
-
-                            </li>
+                                <li class="wide">
+                                    <label for="men">Ingres&aacute; el captcha <em>*</em></label>
+                                    <!--'TODO: GENERAR CLAVES PARA LOS DISTINTOS DOMINIOS-->
+                                    <div class="g-recaptcha-parent">
+                                        <div class="g-recaptcha" data-sitekey="6LfgtgwUAAAAAJ0WgOIfyMKWDjLcySzRjV9f_ze7"></div>
+                                    </div>
+                                </li>
 
 
                                 <li class="wide">
@@ -165,13 +146,19 @@
 
 
                                 <li class="wide btn">
-
-
-
-
                                     <input type="submit" value="Enviar" />
                                 </li>
-
+                                @section Scripts {
+                                    <script src="https://www.google.com/recaptcha/api.js?render=@Configuration["googleReCaptcha:SiteKey"]"></script>
+                                    <script>
+                    grecaptcha.ready(function() {
+                      window.grecaptcha.execute('@Configuration["googleReCaptcha:SiteKey"]', { action: 'home' }).then(function (token) {
+                        $("#captchaInput").val(token);
+                      });
+                    });
+                                    </script>
+                                    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                                }
 
 
 
@@ -212,18 +199,16 @@
         </div>
     </form>
 
-
-    @if (ViewBag.Message != null)
-    {
-        <script type="text/javascript">
-                            window.onload = function () {
-                             alert("@ViewBag.Message");
-                            };
-        </script>
-    }
-
-
-
+    
+@if (ViewBag.Message != null)
+{
+<script type="text/javascript">
+        window.onload = function () {
+            setTimeout(function () {
+                alert("@ViewBag.Message");
+            }, 1);
+</script>
+}
 
 </body>
 </html>
