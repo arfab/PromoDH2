@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 
 namespace PromoDH
@@ -10,7 +12,15 @@ namespace PromoDH
     {
         public static string GetConnectionString(string name = "DefaultConnection")
         {
-            return "Data Source=190.210.198.8;Initial Catalog=PromoATodoBagley2021;Persist Security Info=True;User ID=PromoATodoBagley2021;Password=PromoATodoBagley2021";
+            IConfigurationBuilder builder = new ConfigurationBuilder()
+                                        .SetBasePath(Directory.GetCurrentDirectory())
+                                        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            IConfigurationRoot configuration = builder.Build();
+            IConfigurationSection sConnString = configuration.GetSection("DB").GetSection("conn");
+
+            return sConnString.Value;
+
         }
 
     }
