@@ -88,6 +88,8 @@ namespace PromoDH.Controllers
                 {
                     //ModelState.AddModelError(string.Empty, "You failed the CAPTCHA.");
                     ViewBag.Message = "Falló el CAPTCHA.";
+                    ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
+                    ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
                     return View(registro);
                     //return Page();
                 }
