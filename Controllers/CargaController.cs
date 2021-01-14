@@ -162,48 +162,15 @@ namespace PromoDH.Controllers
             if (ModelState.IsValid)
             {
                
-                
-                var state = ViewData.ModelState.FirstOrDefault(x => x.Key.Equals("Recaptcha"));
-                if (state.Value != null && state.Value.Errors.Any(x => !string.IsNullOrEmpty(x.ErrorMessage)))
-                {
-                    ViewBag.Message = "Falló el CAPTCHA.";
-                    ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
-                    ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
-                    return View(registro);
-                    //return Page();}
-                }
-
                 // Por ahora hardcodeo la marca hasta que esté en el frontend
                 //registro.marca_id = 1;
-
-                //if (!ReCaptchaPassed(Request.Form["g-recaptcha-response"]))
-                //{
-                //    //ModelState.AddModelError(string.Empty, "You failed the CAPTCHA.");
-                //    ViewBag.Message = "Falló el CAPTCHA.";
-                //    ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
-                //    ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
-                //    return View(registro);
-                //    //return Page();
-                //}
-
-
-                //if (!GoogleValidate(Request, Request.Host.ToString()))
-                //{
-                //    ViewBag.Message = "Falló el CAPTCHA.";
-                //    ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
-                //    ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
-                //    return View(registro);
-                //    //return Page();
-                //}
-
-
 
                 sRet = Validar(registro);
 
                 if (sRet != "")
                 {
                     ViewBag.Message = sRet;
-
+                    
                     ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
                     ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
 
@@ -235,7 +202,21 @@ namespace PromoDH.Controllers
 
                 {
                     ViewBag.Message = "Algunos campos estan incompletos.";
+                   
                 }
+            }
+
+            //ME FIJO SI EL PROBLEMA ES EL CAPTCHA
+            var state = ViewData.ModelState.FirstOrDefault(x => x.Key.Equals("Recaptcha"));
+            if (state.Value != null && state.Value.Errors.Any(x => !string.IsNullOrEmpty(x.ErrorMessage)))
+            {
+                ViewBag.Message = "Revise el CAPTCHA.";
+                
+            }
+            else
+            {
+                ViewBag.Message = "Faltan datos obligatorios";
+                
             }
 
             ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
