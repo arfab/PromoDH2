@@ -10,6 +10,10 @@ using System.Collections.Immutable;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using reCAPTCHA.AspNetCore.Attributes;
+using Newtonsoft.Json;
+using System.Text;
+
 
 namespace PromoDH.Controllers
 {
@@ -25,6 +29,7 @@ namespace PromoDH.Controllers
 
 
         [HttpPost]
+        [ValidateRecaptcha]
         public IActionResult Index([Bind] Contacto contacto)
         {
             string sRet;
@@ -129,6 +134,22 @@ namespace PromoDH.Controllers
                 }
             }
 
+
+            //ME FIJO SI EL PROBLEMA ES EL CAPTCHA
+            var state = ViewData.ModelState.FirstOrDefault(x => x.Key.Equals("Recaptcha"));
+            if (state.Value != null && state.Value.Errors.Any(x => !string.IsNullOrEmpty(x.ErrorMessage)))
+            {
+                ViewBag.Message = "Revise el CAPTCHA.";
+
+            }
+            else
+            {
+                ViewBag.Message = "Hubo un problema con el formulario, por favor revise los campos.";
+
+            }
+
+
+            
             ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
 
             return View(contacto);

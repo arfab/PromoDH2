@@ -1,6 +1,12 @@
 ﻿@model PromoDH.Models.Contacto
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 @{ ViewData["Title"] = "Contacto"; }
+
+
+@inject IOptions<RecaptchaSettings> RecaptchaSettings;
+@using reCAPTCHA.AspNetCore
+@using reCAPTCHA.AspNetCore.Versions;
+@using Microsoft.Extensions.Options
 <!doctype html>
 <html lang="es">
 <head>
@@ -96,9 +102,7 @@
                                 <li class="wide">
                                     <label for="men">Ingres&aacute; el captcha <em>*</em></label>
                                     <!--'TODO: GENERAR CLAVES PARA LOS DISTINTOS DOMINIOS-->
-                                    <div class="g-recaptcha-parent">
-                                        <div class="g-recaptcha" data-sitekey="6LfgtgwUAAAAAJ0WgOIfyMKWDjLcySzRjV9f_ze7"></div>
-                                    </div>
+                                    @(Html.Recaptcha<RecaptchaV2Checkbox>(RecaptchaSettings.Value))
                                 </li>
                                 @*<li class="wide btn">
                                         <input type="submit" name="cmdCargar" value="Enviar" id="cmdCargar" />
@@ -137,15 +141,16 @@
                 </ul>
             </nav>
         </div>
-        </form>
-        @if (ViewBag.Message != null)
-        {
-          <script type="text/javascript">
-            window.onload = function () {
-                  alert("@ViewBag.Message");
-               };
-          </script>
-}
+    </form>
+
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            alert('@Html.Raw(ViewBag.Message)');
+
+        </script>
+    }
+
 
 
 </body>
