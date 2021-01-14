@@ -12,29 +12,110 @@ using Newtonsoft.Json.Linq;
 using PromoDH.CapaDatos;
 using PromoDH.Models;
 using Microsoft.Extensions.Configuration;
+using reCAPTCHA.AspNetCore.Attributes;
+using Newtonsoft.Json;
+using System.Text;
+using System.IO;
 
 namespace PromoDH.Controllers
 {
     public class CargaController : Controller
     {
 
-        public static bool ReCaptchaPassed(string gRecaptchaResponse)
-        {
-            HttpClient httpClient = new HttpClient();
 
-            var res = httpClient.GetAsync($"https://www.google.com/recaptcha/api/siteverify?secret=6LfgtgwUAAAAAMu6LktSBMJ-WjNRl_oPmnHNo9L3&response={gRecaptchaResponse}").Result;
+        //private const string secret_key = "6LfgtgwUAAAAAMu6LktSBMJ-WjNRl_oPmnHNo9L3";
 
-            if (res.StatusCode != HttpStatusCode.OK)
-                return false;
+        //public static bool GoogleValidate(HttpRequest Request, string hostname)
+        //{
+        //    var g_captcha_response = Request.Form["g-recaptcha-response"];
+        //    if (!string.IsNullOrEmpty(g_captcha_response))
+        //    {
+        //        var response = ExecuteVerification(g_captcha_response);
+        //        if (!response.StartsWith("ERROR:"))
+        //        {
+        //            var json_obj = JsonConvert.DeserializeObject<ValidateResponse>(response);
+        //            if (json_obj.success)
+        //            {
+        //                if (json_obj.hostname.ToString().ToLower() == hostname.ToString().ToLower())
+        //                    return true;
+        //            }
+        //        }
+        //    }
+        //    return false;
+        //}
 
-            string JSONres = res.Content.ReadAsStringAsync().Result;
-            dynamic JSONdata = JObject.Parse(JSONres);
 
-            if (JSONdata.success != "true")
-                return false;
+        //public class ValidateResponse
+        //{
+        //    public bool success { get; set; }
+        //    public DateTime challenge_ts { get; set; }
+        //    public string hostname { get; set; }
+        //    [JsonProperty("error-codes")]
+        //    public List<string> error_codes { get; set; }
+        //}
 
-            return true;
-        }
+
+        //private static string ExecuteVerification(string g_captcha_response)
+        //{
+        //    System.Net.WebRequest request = System.Net.WebRequest.Create("https://www.google.com/recaptcha/api/siteverify?secret=" + secret_key + "&response=" + g_captcha_response + "&remoteip=" + GetIPv4Address());
+        //    request.Timeout = 5 * 1000; // 5 Seconds to avoid getting locked up
+        //    request.Method = "POST";
+        //    request.ContentType = "application/json";
+        //    try
+        //    {
+        //        byte[] byteArray = Encoding.UTF8.GetBytes("");
+        //        request.ContentLength = byteArray.Length;
+        //        Stream dataStream = request.GetRequestStream();
+        //        dataStream.Write(byteArray, 0, byteArray.Length);
+        //        dataStream.Close();
+        //        System.Net.WebResponse response = request.GetResponse();
+        //        dataStream = response.GetResponseStream();
+        //        StreamReader reader = new StreamReader(dataStream);
+        //        string responseFromServer = reader.ReadToEnd();
+        //        reader.Close();
+        //        response.Close();
+        //        return responseFromServer;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return "ERROR: " + ex.Message;
+        //    }
+        //}
+
+
+        //public static string GetIPv4Address()
+        //{
+        //    string GetIPv4AddressRet = string.Empty;
+        //    string strHostName = System.Net.Dns.GetHostName();
+        //    System.Net.IPHostEntry iphe = System.Net.Dns.GetHostEntry(strHostName);
+
+        //    foreach (System.Net.IPAddress ipheal in iphe.AddressList)
+        //    {
+        //        if (ipheal.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+        //            GetIPv4AddressRet = ipheal.ToString();
+        //    }
+        //    return GetIPv4AddressRet;
+        //}
+
+
+
+        //public static bool ReCaptchaPassed(string gRecaptchaResponse)
+        //{
+        //    HttpClient httpClient = new HttpClient();
+
+        //    var res = httpClient.GetAsync($"https://www.google.com/recaptcha/api/siteverify?secret=6LfgtgwUAAAAAMu6LktSBMJ-WjNRl_oPmnHNo9L3&response={gRecaptchaResponse}").Result;
+
+        //    if (res.StatusCode != HttpStatusCode.OK)
+        //        return false;
+
+        //    string JSONres = res.Content.ReadAsStringAsync().Result;
+        //    dynamic JSONdata = JObject.Parse(JSONres);
+
+        //    if (JSONdata.success != "true")
+        //        return false;
+
+        //    return true;
+        //}
 
         public IActionResult Index()
         {
@@ -72,27 +153,50 @@ namespace PromoDH.Controllers
         }
 
         [HttpPost]
+        [ValidateRecaptcha]
         public IActionResult CargarCodigo([Bind] Registro registro)
         {
             string sRet;
 
-         
 
             if (ModelState.IsValid)
             {
-
-                // Por ahora hardcodeo la marca hasta que esté en el frontend
-                //registro.marca_id = 1;
-
-                if (!ReCaptchaPassed(Request.Form["g-recaptcha-response"]))
+               
+                
+                var state = ViewData.ModelState.FirstOrDefault(x => x.Key.Equals("Recaptcha"));
+                if (state.Value != null && state.Value.Errors.Any(x => !string.IsNullOrEmpty(x.ErrorMessage)))
                 {
-                    //ModelState.AddModelError(string.Empty, "You failed the CAPTCHA.");
                     ViewBag.Message = "Falló el CAPTCHA.";
                     ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
                     ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
                     return View(registro);
-                    //return Page();
+                    //return Page();}
                 }
+
+                // Por ahora hardcodeo la marca hasta que esté en el frontend
+                //registro.marca_id = 1;
+
+                //if (!ReCaptchaPassed(Request.Form["g-recaptcha-response"]))
+                //{
+                //    //ModelState.AddModelError(string.Empty, "You failed the CAPTCHA.");
+                //    ViewBag.Message = "Falló el CAPTCHA.";
+                //    ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
+                //    ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
+                //    return View(registro);
+                //    //return Page();
+                //}
+
+
+                //if (!GoogleValidate(Request, Request.Host.ToString()))
+                //{
+                //    ViewBag.Message = "Falló el CAPTCHA.";
+                //    ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
+                //    ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
+                //    return View(registro);
+                //    //return Page();
+                //}
+
+
 
                 sRet = Validar(registro);
 
@@ -183,7 +287,7 @@ namespace PromoDH.Controllers
                 if (registro.mes < 1 || registro.dia > 12) return "Fecha Invalida";
                 if (registro.anio < 21 || registro.anio > 24) return "Fecha Invalida";
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
                 string sCodigo;
