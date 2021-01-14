@@ -202,12 +202,11 @@
     
 @if (ViewBag.Message != null)
 {
-<script type="text/javascript">
-        window.onload = function () {
-            setTimeout(function () {
-                alert("@ViewBag.Message");
-            }, 1);
-</script>
+    <script type="text/javascript">
+            window.onload = function () {
+                  alert("@ViewBag.Message");
+               };
+    </script>
 }
 
 </body>

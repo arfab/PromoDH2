@@ -140,12 +140,11 @@
         </form>
         @if (ViewBag.Message != null)
         {
-           <script type="text/javascript">
-              window.onload = function () {
-                  setTimeout(function () {
+          <script type="text/javascript">
+            window.onload = function () {
                   alert("@ViewBag.Message");
-               }, 1000);
-            </script>
+               };
+          </script>
 }
 
 
