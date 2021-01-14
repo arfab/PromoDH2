@@ -1,18 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.VisualBasic;
+using Newtonsoft.Json.Linq;
 using PromoDH.CapaDatos;
 using PromoDH.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace PromoDH.Controllers
 {
     public class CargaController : Controller
     {
+
+        public static bool ReCaptchaPassed(string gRecaptchaResponse)
+        {
+            HttpClient httpClient = new HttpClient();
+
+            var res = httpClient.GetAsync($"https://www.google.com/recaptcha/api/siteverify?secret=6LfgtgwUAAAAAMu6LktSBMJ-WjNRl_oPmnHNo9L3&response={gRecaptchaResponse}").Result;
+
+            if (res.StatusCode != HttpStatusCode.OK)
+                return false;
+
+            string JSONres = res.Content.ReadAsStringAsync().Result;
+            dynamic JSONdata = JObject.Parse(JSONres);
+
+            if (JSONdata.success != "true")
+                return false;
+
+            return true;
+        }
+
         public IActionResult Index()
         {
         
@@ -60,6 +83,14 @@ namespace PromoDH.Controllers
 
                 // Por ahora hardcodeo la marca hasta que esté en el frontend
                 //registro.marca_id = 1;
+
+                if (!ReCaptchaPassed(Request.Form["g-recaptcha-response"]))
+                {
+                    //ModelState.AddModelError(string.Empty, "You failed the CAPTCHA.");
+                    ViewBag.Message = "Falló el CAPTCHA.";
+                    return View(registro);
+                    //return Page();
+                }
 
                 sRet = Validar(registro);
 
