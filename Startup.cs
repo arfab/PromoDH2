@@ -2,14 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GoogleReCaptcha.V3;
-using GoogleReCaptcha.V3.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using reCAPTCHA.AspNetCore;
 
 namespace PromoDH
 {
@@ -39,11 +38,10 @@ namespace PromoDH
 
             services.AddControllersWithViews();
             services.AddHttpContextAccessor();
-            services.AddHttpClient<ICaptchaValidator, GoogleReCaptchaValidator>();
-
+            
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
-
+            services.AddRecaptcha(Configuration.GetSection("RecaptchaSettings"));
 
         }
 
