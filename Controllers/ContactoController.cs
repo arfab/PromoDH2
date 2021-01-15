@@ -64,13 +64,18 @@ namespace PromoDH.Controllers
                     IConfigurationRoot configuration = builder.Build();
                     IConfigurationSection SmtpServer = configuration.GetSection("Smtp").GetSection("Server");
                     IConfigurationSection SmtpFrom = configuration.GetSection("Smtp").GetSection("FromAddress");
+                    IConfigurationSection SmtpAdmin = configuration.GetSection("Smtp").GetSection("AdminAddress");
                     IConfigurationSection SmtpUser = configuration.GetSection("Smtp").GetSection("User");
                     IConfigurationSection SmtpPassword = configuration.GetSection("Smtp").GetSection("Password");
+                    IConfigurationSection SmtpPort = configuration.GetSection("Smtp").GetSection("Port");
+                    IConfigurationSection UseSSL = configuration.GetSection("Smtp").GetSection("UseSSL");
 
 
-                    MimeMessage message = new MimeMessage();
+                        MimeMessage message = new MimeMessage();
                     MailboxAddress from = new MailboxAddress("Admin", SmtpFrom.Value);
-                    MailboxAddress to = new MailboxAddress(contacto.Nombre + ", " + contacto.Apellido, contacto.Email);
+                    //MailboxAddress to = new MailboxAddress(contacto.Nombre + ", " + contacto.Apellido, contacto.Email);
+
+                    MailboxAddress to = new MailboxAddress("Arcor", SmtpAdmin.Value);
                     message.Subject = "Consulta desde el Sitio Promo A Todo Bagley 2021";
                     message.To.Add(to);
                     message.From.Add(from);
@@ -116,7 +121,8 @@ namespace PromoDH.Controllers
                     message.Body = bodyBuilder.ToMessageBody();
 
                     SmtpClient client = new SmtpClient();
-                    client.Connect(SmtpServer.Value, 25, false);
+                    //client.Connect(SmtpServer.Value, 25, false);
+                    client.Connect(SmtpServer.Value, Int32.Parse(SmtpPort.Value), bool.Parse(UseSSL.Value));
                     client.Authenticate(SmtpUser.Value, SmtpPassword.Value);
 
                     client.Send(message);

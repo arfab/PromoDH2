@@ -116,6 +116,8 @@ namespace PromoDH.Controllers
                 IConfigurationSection SmtpAdmin = configuration.GetSection("Smtp").GetSection("AdminAddress");
                 IConfigurationSection SmtpUser = configuration.GetSection("Smtp").GetSection("User");
                 IConfigurationSection SmtpPassword = configuration.GetSection("Smtp").GetSection("Password");
+                IConfigurationSection SmtpPort = configuration.GetSection("Smtp").GetSection("Port");
+                IConfigurationSection UseSSL = configuration.GetSection("Smtp").GetSection("UseSSL");
 
 
                 if (iPremio == 1)
@@ -170,7 +172,8 @@ namespace PromoDH.Controllers
                 message.Body = bodyBuilder.ToMessageBody();
 
                 SmtpClient client = new SmtpClient();
-                client.Connect(SmtpServer.Value, 25, false);
+                //client.Connect(SmtpServer.Value, 25, false);
+                client.Connect(SmtpServer.Value, Int32.Parse(SmtpPort.Value), bool.Parse(UseSSL.Value));
                 client.Authenticate(SmtpUser.Value, SmtpPassword.Value);
 
                 client.Send(message);
