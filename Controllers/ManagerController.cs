@@ -40,6 +40,12 @@ namespace PromoDH.Controllers
             return View("Consultas", Datos.ObtenerConsultas("",""));
         }
 
+        [HttpGet]
+        public IActionResult Codigos()
+        {
+            return View("Codigos", Datos.ObtenerRegistros("", -1));
+        }
+
 
     }
 

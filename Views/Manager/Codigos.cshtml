@@ -1,0 +1,50 @@
+﻿@model IEnumerable<PromoDH.Models.Registro>
+@{
+    ViewData["Title"] = "Códigos";
+}
+@{
+    Layout = "~/Views/Shared/_Manager.cshtml";
+}
+
+
+
+<h2>Códigos</h2>
+@*<asp:button id="cmdExport" runat="server" text="Exportar Excel" />*@
+<hr />
+<div class="thead">
+    <div><span>Id</span></div>
+    <div><span>Email</span></div>
+    <div><span>Nombre</span></div>
+    <div><span>Apellido</span></div>
+    <div><span>Fecha</span></div>
+    <div><span>Direccion</span></div>
+    <div><span>Ciudad</span></div>
+    <div><span>Provincia</span></div>
+    <div><span>Telefono</span></div>
+    <div><span>Código</span></div>
+</div>
+<div class="nano">
+    <div class="nano-content">
+        <table>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(model => item.Id)</td>
+                        <td>@Html.DisplayFor(model => item.Email)</td>
+                        <td>@Html.DisplayFor(model => item.Nombre)</td>
+                        <td>@Html.DisplayFor(model => item.Apellido)</td>
+                        <td>@Html.DisplayFor(model => item.fecha_str)</td>
+                        <td>@Html.DisplayFor(model => item.Direccion)</td>
+                        <td>@Html.DisplayFor(model => item.Localidad)</td>
+                        <td>@Html.DisplayFor(model => item.Provincia)</td>
+                        <td>@Html.DisplayFor(model => item.Telefono)</td>
+                        <td>@Html.DisplayFor(model => item.codigo)</td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

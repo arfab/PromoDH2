@@ -204,6 +204,26 @@ namespace PromoDH.CapaDatos
             return lContacto;
         }
 
+        public static List<Models.Registro> ObtenerRegistros(string dni, int activo)
+        {
+            List<Models.Registro> lRegistro = new List<Models.Registro>();
+
+            using (IDbConnection con = new SqlConnection(strConnectionString))
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                DynamicParameters parameter = new DynamicParameters();
+                parameter.Add("@dni", dni);
+                parameter.Add("@activo", activo);
+
+
+                lRegistro = con.Query<Models.Registro>("spObtenerRegistros", parameter, commandType: CommandType.StoredProcedure).ToList();
+            }
+
+            return lRegistro;
+        }
+
 
         public static int InsertarRespuesta(PreguntaPromo preg, int iRegistro, int iPremioRango)
         {

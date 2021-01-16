@@ -47,5 +47,6 @@ namespace PromoDH.Models
         [Required(ErrorMessage = "Ingrese el comentario")]
         public string Consulta { get; set; }
 
+        public string fecha { get; set; }
     }
 }

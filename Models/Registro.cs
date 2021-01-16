@@ -67,6 +67,10 @@ namespace PromoDH.Models
         [Required(ErrorMessage = "Debe aceptar bases y condiciones")]
         public bool bases { get; set; }
 
+        public string fecha_str { get; set; }
+        public string fechanac_str{ get; set; }
+        public string codigo { get; set; }
+
         public int premio_id_ret;
         public int user_id_ret;
         public int premio_rango_id_ret;
