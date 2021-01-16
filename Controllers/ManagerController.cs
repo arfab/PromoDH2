@@ -21,6 +21,26 @@ namespace PromoDH.Controllers
             return View("Premios",  Datos.ObtenerSembrado());
         }
 
+        [HttpGet]
+        public IActionResult Preguntas()
+        {
+            return View("Preguntas", Datos.ObtenerPreguntas());
+        }
+
+        [HttpGet]
+        public IActionResult Ganadores()
+        {
+            return View("Ganadores", Datos.ObtenerGanadores());
+        }
+
+
+        [HttpGet]
+        public IActionResult Consultas()
+        {
+            return View("Consultas", Datos.ObtenerConsultas("",""));
+        }
+
+
     }
 
   

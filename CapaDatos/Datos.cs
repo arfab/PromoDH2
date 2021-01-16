@@ -152,6 +152,20 @@ namespace PromoDH.CapaDatos
         }
 
 
+        public static List<Models.PreguntaPromo> ObtenerPreguntas()
+        {
+            List<Models.PreguntaPromo> lPregunta = new List<Models.PreguntaPromo>();
+
+            using (IDbConnection con = new SqlConnection(strConnectionString))
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                lPregunta = con.Query<Models.PreguntaPromo>("spObtenerPreguntas").ToList();
+            }
+
+            return lPregunta;
+        }
 
 
         public static PreguntaPromo ObtenerPreguntaAzar()
@@ -169,6 +183,27 @@ namespace PromoDH.CapaDatos
 
             return preg;
         }
+
+        public static List<Models.Contacto> ObtenerConsultas(string apellido, string email)
+        {
+            List<Models.Contacto> lContacto = new List<Models.Contacto>();
+
+            using (IDbConnection con = new SqlConnection(strConnectionString))
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                DynamicParameters parameter = new DynamicParameters();
+                parameter.Add("@apellido", apellido);
+                parameter.Add("@email", email);
+
+
+                lContacto = con.Query<Models.Contacto>("spObtenerConsultas", parameter, commandType: CommandType.StoredProcedure).ToList();
+            }
+
+            return lContacto;
+        }
+
 
         public static int InsertarRespuesta(PreguntaPromo preg, int iRegistro, int iPremioRango)
         {

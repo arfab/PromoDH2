@@ -1,0 +1,27 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manager</title>
+    <link href="~/css/estilos2.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <header>
+
+        <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Premios">Premios</a>
+        <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Preguntas">Preguntas</a>
+        <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Ganadores">Ganadores</a>
+        <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Consultas">Consultas</a>
+
+    </header>
+    <div class="container">
+        <div id="main">
+            @RenderBody()
+        </div>
+    </div>
+
+        <div id="footer">
+            &copy; 2021
+        </div>
+</body>
+</html>

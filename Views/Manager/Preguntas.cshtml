@@ -1,0 +1,39 @@
+﻿@model IEnumerable<PromoDH.Models.PreguntaPromo>
+@{
+    ViewData["Title"] = "Preguntas";
+}
+@{
+    Layout = "~/Views/Shared/_Manager.cshtml";
+}
+
+
+
+<h2>Preguntas</h2>
+@*<asp:button id="cmdExport" runat="server" text="Exportar Excel" />*@
+<hr />
+<div class="thead">
+    <div><span>Pregunta</span></div>
+    <div><span>r1</span></div>
+    <div><span>r2</span></div>
+    <div><span>r3</span></div>
+    <div><span>rc</span></div>
+</div>
+<div class="nano">
+    <div class="nano-content">
+        <table>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@Html.DisplayFor(model => item.pregunta)</td>
+                    <td>@Html.DisplayFor(model => item.r1)</td>
+                    <td>@Html.DisplayFor(model => item.r2)</td>
+                    <td>@Html.DisplayFor(model => item.r3)</td>
+                    <td>@Html.DisplayFor(model => item.rc)</td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
