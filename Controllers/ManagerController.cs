@@ -104,7 +104,7 @@ namespace PromoDH.Controllers
                     }
                 }
                 HttpContext.Session.SetInt32("USUARIO_ID", usu.id);
-                return View("Codigos", Datos.ObtenerRegistros("", -1));
+                return View("Index");
             }
             else
             {
@@ -112,9 +112,16 @@ namespace PromoDH.Controllers
 
                 return View();
             }
-
-
         }
+
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.SetString("USUARIO_ID", "");
+            HttpContext.Session.SetString("ESCRIBANO", "");
+            return RedirectToAction("Login");
+        }
+
 
     }
 
