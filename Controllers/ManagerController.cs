@@ -13,26 +13,43 @@ namespace PromoDH.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            if (HttpContext.Session.GetInt32("USUARIO_ID").GetValueOrDefault() != 0)
+                return View();
+            else
+                return View("Login");
         }
 
 
         [HttpGet]
         public IActionResult Premios()
         {
-            if (HttpContext.Session.GetInt32("USUARIO_ID").GetValueOrDefault()!=0)
-              return View("Premios",  Datos.ObtenerSembrado());
+            if (HttpContext.Session.GetInt32("ESCRIBANO").GetValueOrDefault() > 0 || HttpContext.Session.GetString("USERMANAGER") == "adminmxt") {
+                
+                return View("Premios", Datos.ObtenerSembrado());
+            }
+             
             else
-               return View("Login");
+            {
+                ViewBag.Message = "No está autorizado a ver esta página";
+                return View("Index");
+            }
+              
         }
 
         [HttpGet]
         public IActionResult Preguntas()
         {
-            if (HttpContext.Session.GetInt32("USUARIO_ID").GetValueOrDefault() != 0)
+            if (HttpContext.Session.GetInt32("ESCRIBANO").GetValueOrDefault() > 0 || HttpContext.Session.GetString("USERMANAGER") == "adminmxt")
+            {
+
                 return View("Preguntas", Datos.ObtenerPreguntas());
+            }
             else
-                return View("Login");
+            {
+                ViewBag.Message = "No está autorizado a ver esta página";
+                return View("Index");
+            }
+
         }
 
         [HttpGet]
@@ -89,6 +106,7 @@ namespace PromoDH.Controllers
             if (usu != null)
             {
                 HttpContext.Session.SetInt32("ESCRIBANO", usu.escribano);
+                HttpContext.Session.SetString("USERMANAGER", usu.usuario);
 
                 if (usu.escribano==1)
                 {

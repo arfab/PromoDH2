@@ -29,21 +29,30 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
-                    <td>@Html.DisplayFor(model => item.id)</td>
-                    <td>@Html.DisplayFor(model => item.registro_id)</td>
-                    <td>@Html.DisplayFor(model => item.pregunta_id)</td>
-                    <td>@Html.DisplayFor(model => item.respuesta_nro)</td>
-                    <td>@Html.DisplayFor(model => item.correcta_nro)</td>
-                    <td>@Html.DisplayFor(model => item.respuesta)</td>
-                    <td>@Html.DisplayFor(model => item.fecha_hora_respuesta)</td>
-                    <td>@Html.DisplayFor(model => item.id_sembrado)</td>
-                    <td>@Html.DisplayFor(model => item.fecha_hora_sembrado)</td>
-                    <td>@Html.DisplayFor(model => item.Resultado)</td>
-                </tr>
+                    <tr>
+                        <td>@Html.DisplayFor(model => item.id)</td>
+                        <td>@Html.DisplayFor(model => item.registro_id)</td>
+                        <td>@Html.DisplayFor(model => item.pregunta_id)</td>
+                        <td>@Html.DisplayFor(model => item.respuesta_nro)</td>
+                        <td>@Html.DisplayFor(model => item.correcta_nro)</td>
+                        <td>@Html.DisplayFor(model => item.respuesta)</td>
+                        <td>@Html.DisplayFor(model => item.fecha_hora_respuesta)</td>
+                        <td>@Html.DisplayFor(model => item.id_sembrado)</td>
+                        <td>@Html.DisplayFor(model => item.fecha_hora_sembrado)</td>
+                        <td>@Html.DisplayFor(model => item.Resultado)</td>
+                    </tr>
                 }
 
             </tbody>
         </table>
     </div>
 </div>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                    alert('@Html.Raw(ViewBag.Message)');
+            };
+    </script>
+}

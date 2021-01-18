@@ -30,22 +30,32 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
-                    <td>@Html.DisplayFor(model => item.Id)</td>
-                    <td>@Html.DisplayFor(model => item.Email)</td>
-                    <td>@Html.DisplayFor(model => item.Nombre)</td>
-                    <td>@Html.DisplayFor(model => item.Apellido)</td>
-                    <td>@Html.DisplayFor(model => item.fecha)</td>
-                    <td>@Html.DisplayFor(model => item.Direccion)</td>
-                    <td>@Html.DisplayFor(model => item.Localidad)</td>
-                    <td>@Html.DisplayFor(model => item.Provincia)</td>
-                    <td>@Html.DisplayFor(model => item.Telefono)</td>
-                    <td>@Html.DisplayFor(model => item.Movil)</td>
-                    <td>@Html.DisplayFor(model => item.Consulta)</td>
-                </tr>
+                    <tr>
+                        <td>@Html.DisplayFor(model => item.Id)</td>
+                        <td>@Html.DisplayFor(model => item.Email)</td>
+                        <td>@Html.DisplayFor(model => item.Nombre)</td>
+                        <td>@Html.DisplayFor(model => item.Apellido)</td>
+                        <td>@Html.DisplayFor(model => item.fecha)</td>
+                        <td>@Html.DisplayFor(model => item.Direccion)</td>
+                        <td>@Html.DisplayFor(model => item.Localidad)</td>
+                        <td>@Html.DisplayFor(model => item.Provincia)</td>
+                        <td>@Html.DisplayFor(model => item.Telefono)</td>
+                        <td>@Html.DisplayFor(model => item.Movil)</td>
+                        <td>@Html.DisplayFor(model => item.Consulta)</td>
+                    </tr>
                 }
 
             </tbody>
         </table>
     </div>
 </div>
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                    alert('@Html.Raw(ViewBag.Message)');
+            };
+    </script>
+}
