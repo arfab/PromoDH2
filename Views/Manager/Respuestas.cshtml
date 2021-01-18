@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PromoDH.Models.Respuesta>
+@{
+    ViewData["Title"] = "Respuestas";
+}
+@{
+    Layout = "~/Views/Shared/_Manager.cshtml";
+}
+
+
+
+<h2>Respuestas</h2>
+@*<asp:button id="cmdExport" runat="server" text="Exportar Excel" />*@
+<hr />
+<div class="thead">
+    <div><span>id</span></div>
+    <div><span>registro_id</span></div>
+    <div><span>pregunta_id</span></div>
+    <div><span>respuesta_nro</span></div>
+    <div><span>correcta_nro</span></div>
+    <div><span>respuesta</span></div>
+    <div><span>fecha_hora_respuesta</span></div>
+    <div><span>id_sembrado</span></div>
+    <div><span>fecha_hora_sembrado</span></div>
+    <div><span>Resultado</span></div>
+</div>
+<div class="nano">
+    <div class="nano-content">
+        <table>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@Html.DisplayFor(model => item.id)</td>
+                    <td>@Html.DisplayFor(model => item.registro_id)</td>
+                    <td>@Html.DisplayFor(model => item.pregunta_id)</td>
+                    <td>@Html.DisplayFor(model => item.respuesta_nro)</td>
+                    <td>@Html.DisplayFor(model => item.correcta_nro)</td>
+                    <td>@Html.DisplayFor(model => item.respuesta)</td>
+                    <td>@Html.DisplayFor(model => item.fecha_hora_respuesta)</td>
+                    <td>@Html.DisplayFor(model => item.id_sembrado)</td>
+                    <td>@Html.DisplayFor(model => item.fecha_hora_sembrado)</td>
+                    <td>@Html.DisplayFor(model => item.Resultado)</td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

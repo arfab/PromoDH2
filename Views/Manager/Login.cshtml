@@ -1,0 +1,47 @@
+﻿@model PromoDH.Models.Usuario
+
+@{
+    ViewData["Title"] = "LOGIN";
+
+}
+
+<h2>LOGIN</h2>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Login">
+            <div class="form-group">
+                <label asp-for="usuario" class="control-label">Usuario</label>
+                <input asp-for="usuario" class="form-control" />
+                <span class="alert-danger" asp-validation-for="usuario"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="clave" class="control-label">Clave</label>
+                <input asp-for="clave" class="form-control" />
+                <span class="alert-danger" asp-validation-for="clave"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-success btn-sm" />
+            </div>
+           
+        </form>
+    </div>
+    <div class="col-md-8">
+
+    </div>
+</div>
+<div>
+    <a asp-action="Index" asp-controller="Home">Volver</a>
+</div>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+
+
+
+

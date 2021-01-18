@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PromoDH.CapaDatos;
+using PromoDH.Models;
 
 namespace PromoDH.Controllers
 {
@@ -18,37 +20,104 @@ namespace PromoDH.Controllers
         [HttpGet]
         public IActionResult Premios()
         {
-            return View("Premios",  Datos.ObtenerSembrado());
+            if (HttpContext.Session.GetInt32("USUARIO_ID").GetValueOrDefault()!=0)
+              return View("Premios",  Datos.ObtenerSembrado());
+            else
+               return View("Login");
         }
 
         [HttpGet]
         public IActionResult Preguntas()
         {
-            return View("Preguntas", Datos.ObtenerPreguntas());
+            if (HttpContext.Session.GetInt32("USUARIO_ID").GetValueOrDefault() != 0)
+                return View("Preguntas", Datos.ObtenerPreguntas());
+            else
+                return View("Login");
+        }
+
+        [HttpGet]
+        public IActionResult Respuestas()
+        {
+            if (HttpContext.Session.GetInt32("USUARIO_ID").GetValueOrDefault() != 0)
+                return View("Respuestas", Datos.ObtenerRespuestas());
+            else
+                return View("Login");
         }
 
         [HttpGet]
         public IActionResult Ganadores()
         {
-            return View("Ganadores", Datos.ObtenerGanadores());
+            if (HttpContext.Session.GetInt32("USUARIO_ID").GetValueOrDefault() != 0)
+                return View("Ganadores", Datos.ObtenerGanadores());
+            else
+                return View("Login");
         }
 
 
         [HttpGet]
         public IActionResult Consultas()
         {
-            return View("Consultas", Datos.ObtenerConsultas("",""));
+            if (HttpContext.Session.GetInt32("USUARIO_ID").GetValueOrDefault() != 0)
+                return View("Consultas", Datos.ObtenerConsultas("",""));
+            else
+                return View("Login");
         }
 
         [HttpGet]
         public IActionResult Codigos()
         {
-            return View("Codigos", Datos.ObtenerRegistros("", -1));
+            if (HttpContext.Session.GetInt32("USUARIO_ID").GetValueOrDefault() != 0)
+                return View("Codigos", Datos.ObtenerRegistros("", -1));
+            else
+                return View("Login");
         }
 
 
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Login([Bind] Usuario usu)
+        {
+                
+            usu = Datos.Login(usu.usuario, usu.clave);
+
+            if (usu != null)
+            {
+                HttpContext.Session.SetInt32("ESCRIBANO", usu.escribano);
+
+                if (usu.escribano==1)
+                {
+                    if (usu.logged_date != null)
+                    {
+                        ViewBag.Message = "El escribano ya ha ingresado anteriormente.";
+
+                        return View();
+                    }
+                    else
+                    {
+
+                    }
+                }
+                HttpContext.Session.SetInt32("USUARIO_ID", usu.id);
+                return View("Codigos", Datos.ObtenerRegistros("", -1));
+            }
+            else
+            {
+                ViewBag.Message = "Usuario o clave incorrectas";
+
+                return View();
+            }
+
+
+        }
+
     }
 
-  
+
 
 }

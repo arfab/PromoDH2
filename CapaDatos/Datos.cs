@@ -167,6 +167,21 @@ namespace PromoDH.CapaDatos
             return lPregunta;
         }
 
+        public static List<Models.Respuesta> ObtenerRespuestas()
+        {
+            List<Models.Respuesta> lRespuesta = new List<Models.Respuesta>();
+
+            using (IDbConnection con = new SqlConnection(strConnectionString))
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                lRespuesta = con.Query<Models.Respuesta>("spObtenerRespuestas").ToList();
+            }
+
+            return lRespuesta;
+        }
+
 
         public static PreguntaPromo ObtenerPreguntaAzar()
         {
@@ -387,6 +402,29 @@ namespace PromoDH.CapaDatos
 
             return rowAffected;
         }
+
+
+
+        public static Models.Usuario Login(string usuario, string clave)
+        {
+            Models.Usuario usu = new Models.Usuario();
+
+            using (IDbConnection con = new SqlConnection(strConnectionString))
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                DynamicParameters parameter = new DynamicParameters();
+                parameter.Add("@usuario", usuario);
+                parameter.Add("@password", clave);
+                usu = con.Query<Models.Usuario>("spLoginAdmin", parameter, commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+            }
+
+            return usu;
+        }
+
+
 
     }
 
