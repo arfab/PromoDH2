@@ -425,6 +425,35 @@ namespace PromoDH.CapaDatos
         }
 
 
+        public static int SetearIngresoEscribanoAdmin(int iId, out string sError)
+        {
+            int rowAffected = 0;
+            sError = "";
+
+            try
+            {
+
+
+                using (IDbConnection con = new SqlConnection(strConnectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                    DynamicParameters parameters = new DynamicParameters();
+                    parameters.Add("@id", iId);
+                    rowAffected = con.Execute("spModificarEscribanoAdmin", parameters, commandType: CommandType.StoredProcedure);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                sError = ex.Message;
+            }
+
+            return rowAffected;
+        }
+
 
     }
 

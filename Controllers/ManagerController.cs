@@ -100,7 +100,7 @@ namespace PromoDH.Controllers
         [HttpPost]
         public IActionResult Login([Bind] Usuario usu)
         {
-                
+            string sError="";
             usu = Datos.Login(usu.usuario, usu.clave);
 
             if (usu != null)
@@ -118,7 +118,8 @@ namespace PromoDH.Controllers
                     }
                     else
                     {
-
+                        Datos.SetearIngresoEscribanoAdmin(usu.id, out sError);
+                        return View("Index");
                     }
                 }
                 HttpContext.Session.SetInt32("USUARIO_ID", usu.id);

@@ -18,7 +18,7 @@ namespace PromoDH.Models
 
         public int escribano { get; set; }
 
-        public DateTime logged_date { get; set; }
+        public DateTime? logged_date { get; set; }
 
 
     }

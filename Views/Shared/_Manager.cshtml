@@ -1,21 +1,38 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Manager</title>
     <link href="~/css/estilos2.css" rel="stylesheet" type="text/css" />
+
+   
 </head>
 <body>
     <header>
+        <script>
+          @{
+           var _usuario_id = @HttpContextAccessor.HttpContext.Session.GetInt32("USUARIO_ID");
+           var _escribano = @HttpContextAccessor.HttpContext.Session.GetInt32("ESCRIBANO");
+           var _usermanager = @HttpContextAccessor.HttpContext.Session.GetString("USERMANAGER");
+           }
+        </script>
+        @if (_escribano == 1 || _usermanager == "adminmxt")
+        {
+            <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Premios">Premios</a>
+            <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Preguntas">Preguntas</a>
 
-        <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Premios">Premios</a>
-        <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Preguntas">Preguntas</a>
-        <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Ganadores">Ganadores</a>
-        <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Consultas">Consultas</a>
-        <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Codigos">Códigos</a>
-        <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Respuestas">Respuestas</a>
+        }
+
+        @if (_escribano == 0)
+        {
+            <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Ganadores">Ganadores</a>
+            <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Consultas">Consultas</a>
+            <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Codigos">Códigos</a>
+            <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Respuestas">Respuestas</a>
+        }
         <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Logout">Salir</a>
-
     </header>
     <div class="container">
         <div id="main">
@@ -23,8 +40,8 @@
         </div>
     </div>
 
-        <div id="footer">
-            &copy; 2021
-        </div>
+    <div id="footer">
+        &copy; 2021
+    </div>
 </body>
 </html>
