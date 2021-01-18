@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using ClosedXML.Excel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PromoDH.CapaDatos;
@@ -140,6 +142,112 @@ namespace PromoDH.Controllers
             HttpContext.Session.SetString("ESCRIBANO", "");
             return RedirectToAction("Login");
         }
+
+
+        public IActionResult DescargarCodigos()
+        {
+            string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            string fileName = "Codigos.xlsx";
+
+            List<Registro> lGrilla = Datos.ObtenerRegistros("", -1);
+
+            try
+            {
+                using (var workbook = new XLWorkbook())
+                {
+                    IXLWorksheet worksheet =
+                    workbook.Worksheets.Add("Codigos");
+                    worksheet.Cell(1, 1).Value = "Id";
+                    worksheet.Cell(1, 2).Value = "Email";
+                    worksheet.Cell(1, 3).Value = "Nombre";
+                    worksheet.Cell(1, 4).Value = "Apellido";
+                    worksheet.Cell(1, 5).Value = "Fecha";
+                    worksheet.Cell(1, 6).Value = "Direccion";
+                    worksheet.Cell(1, 7).Value = "Ciudad";
+                    worksheet.Cell(1, 8).Value = "Provincia";
+                    worksheet.Cell(1, 9).Value = "Telefono";
+                    worksheet.Cell(1, 10).Value = "Codigo";
+                    for (int index = 1; index <= lGrilla.Count; index++)
+                    {
+                        worksheet.Cell(index + 1, 1).Value = lGrilla[index - 1].Id;
+                        worksheet.Cell(index + 1, 2).Value = lGrilla[index - 1].Email;
+                        worksheet.Cell(index + 1, 3).Value = lGrilla[index - 1].Nombre;
+                        worksheet.Cell(index + 1, 4).Value = lGrilla[index - 1].Apellido;
+                        worksheet.Cell(index + 1, 5).Value = lGrilla[index - 1].fecha_str;
+                        worksheet.Cell(index + 1, 6).Value = lGrilla[index - 1].Direccion;
+                        worksheet.Cell(index + 1, 7).Value = lGrilla[index - 1].Localidad;
+                        worksheet.Cell(index + 1, 9).Value = lGrilla[index - 1].Provincia;
+                        worksheet.Cell(index + 1, 10).Value = lGrilla[index - 1].codigo;
+                    }
+                    using (var stream = new MemoryStream())
+                    {
+                        workbook.SaveAs(stream);
+                        var content = stream.ToArray();
+                        return File(content, contentType, fileName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return  View("Codigos", Datos.ObtenerRegistros("", -1)); 
+            }
+          
+
+        }
+
+
+        public IActionResult DescargarConsultas()
+        {
+            string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            string fileName = "Consultas.xlsx";
+
+            List<Contacto> lGrilla = Datos.ObtenerConsultas("", "");
+
+            try
+            {
+                using (var workbook = new XLWorkbook())
+                {
+                    IXLWorksheet worksheet =
+                    workbook.Worksheets.Add("Codigos");
+                    worksheet.Cell(1, 1).Value = "Id";
+                    worksheet.Cell(1, 2).Value = "Email";
+                    worksheet.Cell(1, 3).Value = "Nombre";
+                    worksheet.Cell(1, 4).Value = "Apellido";
+                    worksheet.Cell(1, 5).Value = "Fecha";
+                    worksheet.Cell(1, 6).Value = "Direccion";
+                    worksheet.Cell(1, 7).Value = "Ciudad";
+                    worksheet.Cell(1, 8).Value = "Provincia";
+                    worksheet.Cell(1, 9).Value = "Telefono";
+                    worksheet.Cell(1, 9).Value = "Movil";
+                    worksheet.Cell(1, 10).Value = "Consulta";
+                    for (int index = 1; index <= lGrilla.Count; index++)
+                    {
+                        worksheet.Cell(index + 1, 1).Value = lGrilla[index - 1].Id;
+                        worksheet.Cell(index + 1, 2).Value = lGrilla[index - 1].Email;
+                        worksheet.Cell(index + 1, 3).Value = lGrilla[index - 1].Nombre;
+                        worksheet.Cell(index + 1, 4).Value = lGrilla[index - 1].Apellido;
+                        worksheet.Cell(index + 1, 5).Value = lGrilla[index - 1].fecha;
+                        worksheet.Cell(index + 1, 6).Value = lGrilla[index - 1].Direccion;
+                        worksheet.Cell(index + 1, 7).Value = lGrilla[index - 1].Localidad;
+                        worksheet.Cell(index + 1, 9).Value = lGrilla[index - 1].Provincia;
+                        worksheet.Cell(index + 1, 10).Value = lGrilla[index - 1].Consulta;
+                    }
+                    using (var stream = new MemoryStream())
+                    {
+                        workbook.SaveAs(stream);
+                        var content = stream.ToArray();
+                        return File(content, contentType, fileName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return View("Codigos", Datos.ObtenerRegistros("", -1));
+            }
+
+
+        }
+
 
 
     }
