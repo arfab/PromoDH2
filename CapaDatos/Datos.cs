@@ -219,6 +219,25 @@ namespace PromoDH.CapaDatos
             return lContacto;
         }
 
+        public static List<Models.Contacto> ObtenerConsulta(int id)
+        {
+            List<Models.Contacto> lContacto = new List<Models.Contacto>();
+
+            using (IDbConnection con = new SqlConnection(strConnectionString))
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                DynamicParameters parameter = new DynamicParameters();
+                parameter.Add("@id", id);
+
+                lContacto = con.Query<Models.Contacto>("spObtenerConsulta", parameter, commandType: CommandType.StoredProcedure).ToList();
+            }
+
+            return lContacto;
+        }
+
+
         public static List<Models.Registro> ObtenerRegistros(string dni, int activo)
         {
             List<Models.Registro> lRegistro = new List<Models.Registro>();

@@ -83,6 +83,12 @@ namespace PromoDH.Controllers
         }
 
         [HttpGet]
+        public IActionResult Consulta(int id)
+        {
+                return View("Consulta", Datos.ObtenerConsulta(id));
+        }
+
+        [HttpGet]
         public IActionResult Codigos()
         {
             int? pag_codigos = HttpContext.Session.GetInt32("PAG_CODIGOS");

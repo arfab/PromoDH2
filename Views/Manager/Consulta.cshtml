@@ -1,0 +1,50 @@
+﻿@model IEnumerable<PromoDH.Models.Contacto>
+@{
+    ViewData["Title"] = "Consulta";
+}
+@{
+    Layout = "~/Views/Shared/_Manager.cshtml";
+}
+
+
+
+<h2>Consultas</h2>
+
+   
+
+                    <div class="nano">
+                        <div class="nano-content">
+
+
+                            @foreach (var item in Model)
+                            {
+
+                                <span>ID: </span> @Html.DisplayFor(model => item.Id)<br />
+                                <span>Email: </span> @Html.DisplayFor(model => item.Email)<br />
+                                <span>Nombre: </span> @Html.DisplayFor(model => item.Nombre)<br />
+                                <span>Apellido: </span> @Html.DisplayFor(model => item.Apellido)<br />
+                                <span>Fecha: </span> @Html.DisplayFor(model => item.fecha)<br />
+                                <span>Dirección: </span> @Html.DisplayFor(model => item.Direccion)<br />
+                                <span>Localidad: </span> @Html.DisplayFor(model => item.Localidad)<br />
+                                <span>Provincia: </span> @Html.DisplayFor(model => item.Provincia)<br />
+                                <span>Teléfono: </span> @Html.DisplayFor(model => item.Telefono)<br />
+                                <span>Móvil: </span> @Html.DisplayFor(model => item.Movil)<br />
+                                <span>Consulta: </span> @Html.DisplayFor(model => item.Consulta)<br />
+
+                            }
+
+
+                        </div>
+                    </div>
+
+
+                    @if (ViewBag.Message != null)
+                    {
+                        <script type="text/javascript">
+                          window.onload = function () {
+                           alert('@Html.Raw(ViewBag.Message)');
+                        };
+                        </script>
+                    }
+  
+
