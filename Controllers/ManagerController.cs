@@ -85,10 +85,46 @@ namespace PromoDH.Controllers
         [HttpGet]
         public IActionResult Codigos()
         {
+            int? pag_codigos = HttpContext.Session.GetInt32("PAG_CODIGOS");
+            int cant = Datos.ObtenerRegistrosCantidad();
+
+            HttpContext.Session.SetInt32("TOT_PAG_CODIGOS", 10);
+            HttpContext.Session.SetInt32("TOT__CODIGOS", cant);
+
+            //int? tot_pag_codigos = HttpContext.Session.GetInt32("TOT_PAG_CODIGOS");
+            HttpContext.Session.SetInt32("TOT_PAG_CODIGOS", cant % 25 == 0 ? cant / 25 : cant / 25 + 1);
+
+
+            if (pag_codigos == null)
+            {
+                pag_codigos = 1;
+                HttpContext.Session.SetInt32("PAG_CODIGOS", 1);
+            }
+
             if (HttpContext.Session.GetInt32("USUARIO_ID").GetValueOrDefault() != 0)
-                return View("Codigos", Datos.ObtenerRegistros("", -1));
+                return View("Codigos", Datos.ObtenerRegistrosPag("", -1, pag_codigos,25));
             else
                 return View("Login");
+        }
+
+        [HttpGet]
+        public IActionResult CodigosSiguiente()
+        {
+            int pag_codigos = HttpContext.Session.GetInt32("PAG_CODIGOS").GetValueOrDefault();
+
+            HttpContext.Session.SetInt32("PAG_CODIGOS", pag_codigos + 1);
+
+            return RedirectToAction("Codigos");
+        }
+
+        [HttpGet]
+        public IActionResult CodigosAnterior()
+        {
+            int pag_codigos = HttpContext.Session.GetInt32("PAG_CODIGOS").GetValueOrDefault();
+
+            HttpContext.Session.SetInt32("PAG_CODIGOS", pag_codigos - 1);
+
+            return RedirectToAction("Codigos");
         }
 
 

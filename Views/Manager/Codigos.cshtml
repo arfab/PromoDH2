@@ -5,8 +5,16 @@
 @{
     Layout = "~/Views/Shared/_Manager.cshtml";
 }
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<script>
+    @{
+        var pagina = @HttpContextAccessor.HttpContext.Session.GetInt32("PAG_CODIGOS");
+        var total_paginas = @HttpContextAccessor.HttpContext.Session.GetInt32("TOT_PAG_CODIGOS");
 
+      }
 
+</script>
 
 <h2>Códigos</h2>
 @*<asp:button id="cmdExport" runat="server" text="Exportar Excel" />*@
@@ -27,6 +35,16 @@
     <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="DescargarCodigos">Descargar</a>
 
     <div class="nano-content">
+
+        @if (pagina > 1)
+        {
+            <a asp-action="CodigosAnterior">Anterior</a>
+        }
+        @pagina / @total_paginas
+        @if (pagina < total_paginas)
+        {
+            <a asp-action="CodigosSiguiente">Siguiente</a>
+        }
         <table>
             <tbody>
                 @foreach (var item in Model)

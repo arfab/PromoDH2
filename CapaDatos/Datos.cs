@@ -240,6 +240,47 @@ namespace PromoDH.CapaDatos
         }
 
 
+        public static List<Models.Registro> ObtenerRegistrosPag(string dni, int activo, int? pag, int? cantxpag)
+        {
+            List<Models.Registro> lRegistro = new List<Models.Registro>();
+
+            using (IDbConnection con = new SqlConnection(strConnectionString))
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                DynamicParameters parameter = new DynamicParameters();
+                parameter.Add("@dni", dni);
+                parameter.Add("@activo", activo);
+                parameter.Add("@pag", pag);
+                parameter.Add("@cantxpag", cantxpag);
+
+
+                lRegistro = con.Query<Models.Registro>("spObtenerRegistrosPag", parameter, commandType: CommandType.StoredProcedure).ToList();
+            }
+
+            return lRegistro;
+        }
+
+        public static int ObtenerRegistrosCantidad()
+        {
+
+            var lRes = 0;
+
+            //List<Torneo> lRes = new List<Torneo>();
+
+            using (IDbConnection con = new SqlConnection(strConnectionString))
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+                lRes = con.Query<int>("spObtenerRegistrosCantidad",  commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+
+            return lRes;
+        }
+
+
+
         public static int InsertarRespuesta(PreguntaPromo preg, int iRegistro, int iPremioRango)
         {
             int rowAffected = 0;
