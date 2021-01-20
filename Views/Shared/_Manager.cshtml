@@ -1,47 +1,61 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
-
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Manager</title>
-    <link href="~/css/estilos2.css" rel="stylesheet" type="text/css" />
-
-   
+<title>Manager - Promo "A Todo Bagley"</title>
+@* <link href="~/css/estilos2.css" rel="stylesheet" type="text/css" /> *@
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&display=swap" rel="stylesheet">
+<link href="~/css/estilos-manager.css" rel="stylesheet" type="text/css" />
+<!-- [if lt IE 9]>
+<script type="text/javascript" src="~/scripts/html5shiv.min.js"></script>
+<script type="text/javascript" src="~/scripts/respond.min.js"></script>
+<![endif] -->
 </head>
 <body>
+    <script>
+		@{
+			var _usuario_id = @HttpContextAccessor.HttpContext.Session.GetInt32("USUARIO_ID");
+			var _escribano = @HttpContextAccessor.HttpContext.Session.GetInt32("ESCRIBANO");
+			var _usermanager = @HttpContextAccessor.HttpContext.Session.GetString("USERMANAGER");
+	 }
+    </script>
     <header>
-        <script>
-          @{
-           var _usuario_id = @HttpContextAccessor.HttpContext.Session.GetInt32("USUARIO_ID");
-           var _escribano = @HttpContextAccessor.HttpContext.Session.GetInt32("ESCRIBANO");
-           var _usermanager = @HttpContextAccessor.HttpContext.Session.GetString("USERMANAGER");
-           }
-        </script>
-        @if (_escribano == 1 || _usermanager == "adminmxt")
-        {
-            <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Premios">Premios</a>
-            <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Preguntas">Preguntas</a>
-
-        }
-
-        @if (_escribano == 0)
-        {
-            <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Ganadores">Ganadores</a>
-            <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Consultas">Consultas</a>
-            <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Codigos">Códigos</a>
-            <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Respuestas">Respuestas</a>
-        }
-        <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="Logout">Salir</a>
-    </header>
-    <div class="container">
-        <div id="main">
-            @RenderBody()
+        <div class="wrapper">
+            <h1><a href="Default.aspx">Promo "A Todo Bagley"</a></h1>
+            <h2>Manager <span>de Contenidos</span></h2>
         </div>
-    </div>
-
-    <div id="footer">
-        &copy; 2021
-    </div>
-</body>
+    </header>
+    @if (_usuario_id != null)
+    {
+        <nav>
+            <div class="wrapper">
+                <ul>
+                    @if (_escribano == 1 || _usermanager == "adminmxt")
+                    {
+                        <li><a asp-area="" asp-controller="Manager" asp-action="Premios">Premios</a></li>
+                        <li><a asp-area="" asp-controller="Manager" asp-action="Preguntas">Preguntas</a></li>
+                    }
+                    @if (_escribano == 0)
+                    {
+                        <li><a asp-area="" asp-controller="Manager" asp-action="Ganadores">Ganadores</a></li>
+                        <li><a asp-area="" asp-controller="Manager" asp-action="Consultas">Consultas</a></li>
+                        <li><a asp-area="" asp-controller="Manager" asp-action="Codigos">Códigos</a></li>
+                        <li><a asp-area="" asp-controller="Manager" asp-action="Respuestas">Respuestas</a></li>
+                    }
+                    <li class="logout"><a asp-area="" asp-controller="Manager" asp-action="Logout">Log-out</a></li>
+                </ul>
+            </div>
+        </nav>
+    }
+        <main>
+            <div class="wrapper">
+                @RenderBody()
+            </div>
+        </main>
+        <footer>
+            <div class="wrapper">2021 &copy; Bagley.</div>
+        </footer>
+    </body>
 </html>

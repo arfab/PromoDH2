@@ -182,6 +182,43 @@ namespace PromoDH.CapaDatos
             return lRespuesta;
         }
 
+        public static List<Models.Respuesta> ObtenerRespuestasPag(int? pag, int? cantxpag)
+        {
+            List<Models.Respuesta> lRespuesta = new List<Models.Respuesta>();
+
+            using (IDbConnection con = new SqlConnection(strConnectionString))
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+
+                DynamicParameters parameter = new DynamicParameters();
+                parameter.Add("@pag", pag);
+                parameter.Add("@cantxpag", cantxpag);
+
+                lRespuesta = con.Query<Models.Respuesta>("spObtenerRespuestasPag", parameter, commandType: CommandType.StoredProcedure).ToList();
+            }
+
+            return lRespuesta;
+        }
+
+
+        public static int ObtenerRespuestasCantidad()
+        {
+
+            var lRes = 0;
+
+
+            using (IDbConnection con = new SqlConnection(strConnectionString))
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+                lRes = con.Query<int>("spObtenerRespuestasCantidad", commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+
+            return lRes;
+        }
+
 
         public static PreguntaPromo ObtenerPreguntaAzar()
         {
@@ -217,6 +254,48 @@ namespace PromoDH.CapaDatos
             }
 
             return lContacto;
+        }
+
+        public static List<Models.Contacto> ObtenerConsultasPag(string apellido, string email, int? pag, int? cantxpag)
+        {
+            List<Models.Contacto> lContacto = new List<Models.Contacto>();
+
+            using (IDbConnection con = new SqlConnection(strConnectionString))
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                DynamicParameters parameter = new DynamicParameters();
+                parameter.Add("@apellido", apellido);
+                parameter.Add("@email", email);
+                parameter.Add("@pag", pag);
+                parameter.Add("@cantxpag", cantxpag);
+
+                lContacto = con.Query<Models.Contacto>("spObtenerConsultasPag", parameter, commandType: CommandType.StoredProcedure).ToList();
+            }
+
+            return lContacto;
+        }
+
+        public static int ObtenerConsultasCantidad(string apellido, string email)
+        {
+
+            var lRes = 0;
+
+
+            using (IDbConnection con = new SqlConnection(strConnectionString))
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                DynamicParameters parameter = new DynamicParameters();
+                parameter.Add("@apellido", apellido);
+                parameter.Add("@email", email);
+
+                lRes = con.Query<int>("spObtenerConsultasCantidad", parameter, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+
+            return lRes;
         }
 
         public static List<Models.Contacto> ObtenerConsulta(int id)

@@ -1,46 +1,35 @@
 ﻿@model IEnumerable<PromoDH.Models.Sembrado>
-@{
-    ViewData["Title"] = "Premios";
-}
-@{
-    Layout = "~/Views/Shared/_Manager.cshtml";
-}
-
-
-
-<h2>Premios</h2>
+@{ ViewData["Title"] = "Premios"; }
+@{ Layout = "~/Views/Shared/_Manager.cshtml"; }
 @*<asp:button id="cmdExport" runat="server" text="Exportar Excel" />*@
-<hr />
-<div class="thead">
-    <div><span>Descripcion</span></div>
-    <div><span>ID</span></div>
-    <div><span>Fecha Hora</span></div>
-    <div><span>Registro</span></div>
+<h3>Premios</h3>
+<div class="table-responsive">
+	<table class="dataTabla">
+		<thead>
+			<tr>
+				<th>Descripción</th>
+				<th>ID</th>
+				<th>Fecha Hora</th>
+				<th>Registro</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model) {
+				<tr>
+					<td>@Html.DisplayFor(model => item.descripcion)</td>
+					<td>@Html.DisplayFor(model => item.id)</td>
+					<td>@Html.DisplayFor(model => item.fecha_hora)</td>
+					<td>@Html.DisplayFor(model => item.registro_id)</td>
+				</tr>
+			}
+		</tbody>
+	</table>
 </div>
-<div class="nano">
-    <div class="nano-content">
-        <table>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(model => item.descripcion)</td>
-                        <td>@Html.DisplayFor(model => item.id)</td>
-                        <td>@Html.DisplayFor(model => item.fecha_hora)</td>
-                        <td>@Html.DisplayFor(model => item.registro_id)</td>
-                    </tr>
-                }
-
-            </tbody>
-        </table>
-    </div>
-</div>
-
 @if (ViewBag.Message != null)
 {
-    <script type="text/javascript">
-            window.onload = function () {
-                    alert('@Html.Raw(ViewBag.Message)');
-            };
-    </script>
+	<script type="text/javascript">
+	window.onload = function () {
+		alert('@Html.Raw(ViewBag.Message)');
+	};
+</script>
 }

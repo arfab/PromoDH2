@@ -1,48 +1,37 @@
 ﻿@model IEnumerable<PromoDH.Models.PreguntaPromo>
-@{
-    ViewData["Title"] = "Preguntas";
-}
-@{
-    Layout = "~/Views/Shared/_Manager.cshtml";
-}
-
-
-
-<h2>Preguntas</h2>
+@{ ViewData["Title"] = "Preguntas"; }
+@{ Layout = "~/Views/Shared/_Manager.cshtml"; }
 @*<asp:button id="cmdExport" runat="server" text="Exportar Excel" />*@
-<hr />
-<div class="thead">
-    <div><span>Pregunta</span></div>
-    <div><span>r1</span></div>
-    <div><span>r2</span></div>
-    <div><span>r3</span></div>
-    <div><span>rc</span></div>
+<h3>Preguntas</h3>
+<div class="table-responsive">
+	<table class="dataTabla">
+		<thead>
+			<tr>
+				<th>Pregunta</th>
+				<th>r1</th>
+				<th>r2</th>
+				<th>r3</th>
+				<th>rc</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model) {
+				<tr>
+				<td>@Html.DisplayFor(model => item.pregunta)</td>
+				<td>@Html.DisplayFor(model => item.r1)</td>
+				<td>@Html.DisplayFor(model => item.r2)</td>
+				<td>@Html.DisplayFor(model => item.r3)</td>
+				<td>@Html.DisplayFor(model => item.rc)</td>
+				</tr>
+			}
+		</tbody>
+	</table>
 </div>
-<div class="nano">
-    <div class="nano-content">
-        <table>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(model => item.pregunta)</td>
-                        <td>@Html.DisplayFor(model => item.r1)</td>
-                        <td>@Html.DisplayFor(model => item.r2)</td>
-                        <td>@Html.DisplayFor(model => item.r3)</td>
-                        <td>@Html.DisplayFor(model => item.rc)</td>
-                    </tr>
-                }
-
-            </tbody>
-        </table>
-    </div>
-</div>
-
 @if (ViewBag.Message != null)
 {
-    <script type="text/javascript">
-            window.onload = function () {
-                    alert('@Html.Raw(ViewBag.Message)');
-            };
-    </script>
+	<script type="text/javascript">
+	window.onload = function () {
+		alert('@Html.Raw(ViewBag.Message)');
+	};
+</script>
 }

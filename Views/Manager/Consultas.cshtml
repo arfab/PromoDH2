@@ -1,64 +1,79 @@
 ﻿@model IEnumerable<PromoDH.Models.Contacto>
-@{
-    ViewData["Title"] = "Consultas";
-}
-@{
-    Layout = "~/Views/Shared/_Manager.cshtml";
-}
-
-
-
-<h2>Consultas</h2>
+@{ ViewData["Title"] = "Consultas"; }
+@{ Layout = "~/Views/Shared/_Manager.cshtml"; }
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 @*<asp:button id="cmdExport" runat="server" text="Exportar Excel" />*@
-<hr />
-<div class="thead">
-    <div><span>Id</span></div>
-    <div><span>Email</span></div>
-    <div><span>Nombre</span></div>
-    <div><span>Apellido</span></div>
-    <div><span>Fecha</span></div>
-    <div><span>Direccion</span></div>
-    <div><span>Ciudad</span></div>
-    <div><span>Provincia</span></div>
-    <div><span>Telefono</span></div>
-    <div><span>Movil</span></div>
-    <div><span>Consulta</span></div>
+<script>
+	@{
+		var pagina = @HttpContextAccessor.HttpContext.Session.GetInt32("PAG_CONSULTAS");
+		var total_paginas = @HttpContextAccessor.HttpContext.Session.GetInt32("TOT_PAG_CONSULTAS");
+	}
+</script>
+<h3>Consultas</h3>
+<div class="botonera top">
+    <a asp-area="" asp-controller="Manager" asp-action="DescargarConsultas">Descargar consultas</a>
 </div>
-<div class="nano">
-    <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="DescargarConsultas">Descargar</a>
+<div class="table-responsive">
+    <table class="dataTabla">
+        <thead>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Fecha</th>
+                <th>Dirección</th>
+                <th>Ciudad</th>
+                <th>Provincia</th>
+                <th>Teléfono</th>
+                <th>Móvil</th>
+                <th>Consulta</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><a class="link" asp-controller="Manager" asp-action="Consulta" asp-route-id=@item.Id>Ver Detalle</a></td>
+                    <td>@Html.DisplayFor(model => item.Id)</td>
+                    <td>@Html.DisplayFor(model => item.Email)</td>
+                    <td>@Html.DisplayFor(model => item.Nombre)</td>
+                    <td>@Html.DisplayFor(model => item.Apellido)</td>
+                    <td>@Html.DisplayFor(model => item.fecha)</td>
+                    <td>@Html.DisplayFor(model => item.Direccion)</td>
+                    <td>@Html.DisplayFor(model => item.Localidad)</td>
+                    <td>@Html.DisplayFor(model => item.Provincia)</td>
+                    <td>@Html.DisplayFor(model => item.Telefono)</td>
+                    <td>@Html.DisplayFor(model => item.Movil)</td>
+                    <td>@Html.DisplayFor(model => item.Consulta)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
-    <div class="nano-content">
-
-        <table>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td><a asp-controller="Manager" asp-action="Consulta" asp-route-id=@item.Id>@Html.DisplayFor(model => item.Id)</a></td>
-                        <td>@Html.DisplayFor(model => item.Email)</td>
-                        <td>@Html.DisplayFor(model => item.Nombre)</td>
-                        <td>@Html.DisplayFor(model => item.Apellido)</td>
-                        <td>@Html.DisplayFor(model => item.fecha)</td>
-                        <td>@Html.DisplayFor(model => item.Direccion)</td>
-                        <td>@Html.DisplayFor(model => item.Localidad)</td>
-                        <td>@Html.DisplayFor(model => item.Provincia)</td>
-                        <td>@Html.DisplayFor(model => item.Telefono)</td>
-                        <td>@Html.DisplayFor(model => item.Movil)</td>
-                        <td>@Html.DisplayFor(model => item.Consulta)</td>
-                    </tr>
-                }
-
-            </tbody>
-        </table>
+<div class="paginador">
+    @if (pagina > 1)
+    {
+        <a asp-action="ConsultasAnterior" class="ant">&#x25C0;&nbsp;&nbsp;Anterior</a>
+    }
+    @if (total_paginas > 0)
+    {
+        <span>@pagina.ToString() /  @total_paginas.ToString()</span>
+    }
+    @if (pagina < total_paginas)
+        {
+            <a asp-action="ConsultasSiguiente" class="sig">Siguiente&nbsp;&nbsp;&#x25BA;</a>
+        }
     </div>
-</div>
-
 
 @if (ViewBag.Message != null)
 {
     <script type="text/javascript">
-            window.onload = function () {
-                    alert('@Html.Raw(ViewBag.Message)');
-            };
+	window.onload = function () {
+		alert('@Html.Raw(ViewBag.Message)');
+	};
     </script>
 }

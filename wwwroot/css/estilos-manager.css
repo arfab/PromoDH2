@@ -1,0 +1,140 @@
+@charset "UTF-8";
+/* CSS Document */
+
+@font-face { font-family: 'QuotesCaps'; src: local('QuotesCaps-Regular'), url('../fonts/quotescaps-webfont.woff2') format('woff2'), url('../fonts/quotescaps-webfont.woff') format('woff'), url('../fonts/quotescaps-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/quotescaps-webfont.ttf') format('truetype'), url('../fonts/quotescaps-webfont.svg#quotes_capsregular') format('svg'); font-weight: normal; font-style: normal; }
+
+
+/* RESET */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; vertical-align: top; background: transparent }
+body { font-size: 16px; line-height: 1; color: #000; background: #FFF; font-family: 'Open Sans', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+ol, ul { list-style: none }
+blockquote, q { quotes: none }
+:focus { outline: 0 }
+table { border-collapse: collapse; border-spacing: 0 }
+a img { border: none }
+* { margin: 0 }
+.clear { clear: both; display: block; }
+.last { margin-right: 0!important }
+a:link, a:visited, a:hover, a:active { color: #000; text-decoration: none; }
+*, *::after, *::before { box-sizing: border-box; }
+input, select { border-radius: 0; }
+html { -webkit-text-size-adjust: 100%; }
+.clearfix:after { content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; }
+.clearfix { display: inline-block; }
+html[xmlns] .clearfix { display: block; }
+* html .clearfix { height: 1%; }
+
+
+/*-----------------------------------------------------------------*/
+/*-- GENERAL -----------------------------------------------------*/
+form { width: 100%; }
+.wrapper { position: relative; width: 100%; max-width: 900px; margin: 0 auto; padding: 0 2em; }
+header { margin: auto; width: 100%; position: relative; background: #CCC; text-align: center; padding: 0.5em 0; }
+header h1 { margin: 0 auto 0.5em auto; }
+header h1 a { display: block; width: 100%; height: 100%; }
+header h2 { font-size: 1.75em; }
+header h2 span { display: block; font-size: 0.8em; }
+main { display: flex; min-height: 60vh; padding: 2em 0; }
+footer { font-size: 0.7em; line-height: 1.2em; text-align: center; width: 100%; padding: 2em 0; }
+
+@media only screen and (min-width: 600px) {
+header { padding: 1em 0; }
+header .wrapper { display: flex; justify-content: space-between; align-items: center; }
+header h1 { margin: 0; }
+header h2 { text-align: right; }
+header h2 span { font-size: 1em; }
+}
+
+/* FORMS ------------------------------------------------------------------- */
+fieldset { position: relative; width: 100%; margin: auto; border: none; }
+fieldset .error { position: absolute; top: 2px; left: 36%; color: #F00; font-size: 14px; font-weight: bold; }
+fieldset .error2 { display: block; color: #F00; font-size: 14px; font-weight: bold; padding-top: 5px; text-align: center; }
+fieldset ul li { margin-bottom: 0.8em; position: relative; }
+fieldset label { display: block; text-transform: uppercase; font-size: 1em; margin-bottom: 0.4em; }
+fieldset input[type=text], fieldset input[type=password] { background: #666; color: #FFF; border: none; padding: 0 10px; font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif; padding: 0 2.5%; border-radius: 0.5em; padding: 0.75em 1em; width: 100%; }
+fieldset ul .btn { margin-top: 2em; }
+fieldset input[type=submit] { width: 100%; }
+fieldset input[type=submit], .botonera a { background: #333; color: #FFF; -webkit-appearance: none; border: none; cursor: pointer; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-align: center; display: inline-block; margin: auto; padding: 1em 1.4em; }
+
+#login { flex: 1; display: flex; justify-content: center; align-items: center; }
+#login fieldset { max-width: 320px; }
+
+/* MENU ------------------------------------------------------------------- */
+nav { font-size: 0.9em; padding: 0.5em 0; background: rgb(102,102,102); background: -moz-linear-gradient(0deg, #555 15%, #333 85%); background: -webkit-linear-gradient(0deg, #555 15%, #333 85%); background: linear-gradient(0deg, #555 15%, #333 85%); }
+nav ul { width: 100%; display: inline-block; }
+nav ul li { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; display: inline-block; margin-right: 1em; }
+nav ul li a { color: #FFF!important; line-height: 1.2em; }
+
+@media only screen and (min-width: 860px) {
+nav ul li.logout { float: right; }
+}
+
+/* SECCION ------------------------------------------------------------------- */
+h3 { font-size: 2em; line-height: 1.2em; margin-bottom: 1em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+h3.seleccione { text-align: center; }
+
+.botonera { background: #F5F5F5; padding: 0.8em; text-align: right; width: 100%; }
+.botonera a { font-size: 1.1em; margin-left: 2em; }
+.botonera.top { margin-bottom: 2em; }
+.botonera.bottom { margin-top: 2em; }
+
+.paginador { font-size: 0.9em; background: #F5F5F5; padding: 0.8em; margin-top: 2em; text-align: center; width: 100%; }
+.paginador a { font-size: 0.9em; font-weight: bold; }
+.paginador a:hover { text-decoration: underline; }
+.paginador a.ant { margin-right: 1em; }
+.paginador a.sig { margin-left: 1em; }
+
+.table-responsive { min-height: .01%; overflow-x: auto; -webkit-box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.03); -moz-box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.03); box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.03); }
+.table-responsive > table { margin: auto; }
+
+.dataTabla { width: 100%; font-size: 0.8em; }
+.dataTabla th, .dataTabla td { padding: 1em; line-height: 1.2em; }
+.dataTabla th { background: #333; color: #FFF; text-align: left; }
+.dataTabla th a { color: #FFF; }
+.dataTabla th a:hover { text-decoration: underline; }
+.dataTabla td { color: #666; }
+.dataTabla tr:nth-child(even) { background: #EEE; }
+.dataTabla tr:nth-child(odd) { background: #F5F5F5; }
+.dataTabla tr:hover { background: #E0F6FD!important; }
+.dataTabla td a { display: block; }
+.dataTabla td a:hover { text-decoration: underline; }
+.dataTabla .link { text-decoration: underline; font-weight: bold; }
+
+dl dt, dl dd { font-size: 0.8em; line-height: 1.2em; padding: 0.7em 1em; }
+dl dt { background: #DDD; font-weight: bold; }
+dl dd { background: #EFEFEF; margin-bottom: 0.3em; }
+
+@media only screen and (min-width: 600px) {
+dl { display: flex; flex-wrap: wrap; }
+dl dt { width: 30%; margin-bottom: 0.3em; }
+dl dd { width: 70%; }
+}
+
+@media only screen and (min-width: 768px) {
+dl dt { width: 20%; }
+dl dd { width: 80%; }
+}
+
+
+/* CUSTOM ------------------------------------------------------------------- */
+header { background: #00BB9E; }
+header h2 { font-size: 2em; text-transform: uppercase; color: #F5F68A; font-family: 'QuotesCaps', sans-serif; font-weight: normal; text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35); }
+header h1 { background: url("../images/manager-logo.png") no-repeat; background-size: cover; width: 83px; height: 65px; }
+header h1 a { text-indent: -9999px; }
+
+nav ul li a { font-family: 'QuotesCaps', sans-serif; text-transform: uppercase; font-size: 1.4em; line-height: 1.2em; }
+nav ul li.logout a { color: #F5F68A!important; }
+nav ul li a:hover { color: #00BB9E!important; }
+
+h3 { text-transform: uppercase; font-weight: normal; font-family: 'QuotesCaps', sans-serif; color: #FFF; font-size: 2.2em; line-height: 1.2em; margin-bottom: 1em; text-shadow: 3px 0 0 #EF3854, -3px 0 0 #EF3854, 0 3px 0 #EF3854, 0 -3px 0 #EF3854, 2px 2px #EF3854, -2px -2px 0 #EF3854, 2px -2px 0 #EF3854, -2px 2px 0 #EF3854; }
+
+fieldset input[type=text], fieldset input[type=password] { background: #00BB9E; color: #FFF; }
+fieldset input[type=submit], .botonera a { font-family: 'QuotesCaps', sans-serif; color: #FFF!important; text-transform: uppercase; background: #EF3854; font-size: 1.3em; padding: 0.4em 1.4em; border-radius: 0.6em; border: 2px solid #EF3854; }
+fieldset input[type=submit]:hover, .botonera a:hover { color: #EF3854!important; background: #FFF!important; }
+
+.dataTabla .link { color: #EF3854; }
+.paginador a:hover { text-decoration: underline; color: #EF3854; }
+
+@media only screen and (min-width: 600px) {
+header h1 { width: 103px; height: 80px; }
+}

@@ -1,52 +1,39 @@
 ﻿@model IEnumerable<PromoDH.Models.Premio>
-@{
-    ViewData["Title"] = "Ganadores";
-}
-@{
-    Layout = "~/Views/Shared/_Manager.cshtml";
-}
-
-
-
-<h2>Ganadores</h2>
+@{ ViewData["Title"] = "Ganadores"; }
+@{ Layout = "~/Views/Shared/_Manager.cshtml"; }
 @*<asp:button id="cmdExport" runat="server" text="Exportar Excel" />*@
-<hr />
-<div class="thead">
-    <div><span>Id</span></div>
-    <div><span>Dni</span></div>
-    <div><span>Nombre</span></div>
-    <div><span>Apellido</span></div>
-    <div><span>Premio</span></div>
-    <div><span>Codigo</span></div>
-    <div><span>Fecha</span></div>
+<h3>Ganadores</h3>
+<div class="table-responsive">
+	<table class="dataTabla">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>DNI</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Premio</th>
+				<th>Código</th>
+				<th>Fecha</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model) {
+				<tr>
+				<td>@Html.DisplayFor(model => item.Id)</td>
+				<td>@Html.DisplayFor(model => item.nombre)</td>
+				<td>@Html.DisplayFor(model => item.apellido)</td>
+				<td>@Html.DisplayFor(model => item.PremioDesc)</td>
+				<td>@Html.DisplayFor(model => item.Codigo)</td>
+				<td>@Html.DisplayFor(model => item.Fecha_str)</td>
+				</tr>
+			}
+	</tbody>
+	</table>
 </div>
-<div class="nano">
-    <div class="nano-content">
-        <table>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(model => item.Id)</td>
-                        <td>@Html.DisplayFor(model => item.nombre)</td>
-                        <td>@Html.DisplayFor(model => item.apellido)</td>
-                        <td>@Html.DisplayFor(model => item.PremioDesc)</td>
-                        <td>@Html.DisplayFor(model => item.Codigo)</td>
-                        <td>@Html.DisplayFor(model => item.Fecha_str)</td>
-                    </tr>
-                }
-
-            </tbody>
-        </table>
-    </div>
-</div>
-
-
-@if (ViewBag.Message != null)
-{
-    <script type="text/javascript">
-            window.onload = function () {
-                    alert('@Html.Raw(ViewBag.Message)');
-            };
-    </script>
+@if (ViewBag.Message != null) {
+	<script type="text/javascript">
+	window.onload = function () {
+		alert('@Html.Raw(ViewBag.Message)');
+	};
+</script>
 }

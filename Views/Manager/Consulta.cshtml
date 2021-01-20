@@ -1,50 +1,40 @@
 ﻿@model IEnumerable<PromoDH.Models.Contacto>
-@{
-    ViewData["Title"] = "Consulta";
+@{ ViewData["Title"] = "Consulta"; }
+@{ Layout = "~/Views/Shared/_Manager.cshtml"; }
+<h3>Consulta</h3>
+@foreach (var item in Model) {
+	<dl>
+		<dt>ID</dt>
+		<dd>@Html.DisplayFor(model => item.Id)</dd>
+		<dt>Email</dt>
+		<dd>@Html.DisplayFor(model => item.Email)</dd>
+		<dt>Nombre</dt>
+		<dd>@Html.DisplayFor(model => item.Nombre)</dd>
+		<dt>Apellido</dt>
+		<dd>@Html.DisplayFor(model => item.Apellido)</dd>
+		<dt>Fecha</dt>
+		<dd>@Html.DisplayFor(model => item.fecha)</dd>
+		<dt>Dirección</dt>
+		<dd>@Html.DisplayFor(model => item.Direccion)</dd>
+		<dt>Localidad</dt>
+		<dd>@Html.DisplayFor(model => item.Localidad)</dd>
+		<dt>Provincia</dt>
+		<dd>@Html.DisplayFor(model => item.Provincia)</dd>
+		<dt>Teléfono</dt>
+		<dd>@Html.DisplayFor(model => item.Telefono)</dd>
+		<dt>Móvil</dt>
+		<dd>@Html.DisplayFor(model => item.Movil)</dd>
+		<dt>Consulta</dt>
+		<dd>@Html.DisplayFor(model => item.Consulta)</dd>
+	</dl>
+	<div class="botonera bottom">
+		<a asp-area="" asp-controller="Manager" asp-action="Consultas">Volver</a>
+	</div>
 }
-@{
-    Layout = "~/Views/Shared/_Manager.cshtml";
+@if (ViewBag.Message != null) {
+	<script type="text/javascript">
+	window.onload = function () {
+		alert('@Html.Raw(ViewBag.Message)');
+	};
+</script>
 }
-
-
-
-<h2>Consultas</h2>
-
-   
-
-                    <div class="nano">
-                        <div class="nano-content">
-
-
-                            @foreach (var item in Model)
-                            {
-
-                                <span>ID: </span> @Html.DisplayFor(model => item.Id)<br />
-                                <span>Email: </span> @Html.DisplayFor(model => item.Email)<br />
-                                <span>Nombre: </span> @Html.DisplayFor(model => item.Nombre)<br />
-                                <span>Apellido: </span> @Html.DisplayFor(model => item.Apellido)<br />
-                                <span>Fecha: </span> @Html.DisplayFor(model => item.fecha)<br />
-                                <span>Dirección: </span> @Html.DisplayFor(model => item.Direccion)<br />
-                                <span>Localidad: </span> @Html.DisplayFor(model => item.Localidad)<br />
-                                <span>Provincia: </span> @Html.DisplayFor(model => item.Provincia)<br />
-                                <span>Teléfono: </span> @Html.DisplayFor(model => item.Telefono)<br />
-                                <span>Móvil: </span> @Html.DisplayFor(model => item.Movil)<br />
-                                <span>Consulta: </span> @Html.DisplayFor(model => item.Consulta)<br />
-
-                            }
-
-
-                        </div>
-                    </div>
-
-
-                    @if (ViewBag.Message != null)
-                    {
-                        <script type="text/javascript">
-                          window.onload = function () {
-                           alert('@Html.Raw(ViewBag.Message)');
-                        };
-                        </script>
-                    }
-  
-

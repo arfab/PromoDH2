@@ -1,58 +1,72 @@
 ﻿@model IEnumerable<PromoDH.Models.Respuesta>
-@{
-    ViewData["Title"] = "Respuestas";
-}
-@{
-    Layout = "~/Views/Shared/_Manager.cshtml";
-}
-
-
-
-<h2>Respuestas</h2>
+@{ ViewData["Title"] = "Respuestas"; }
+@{ Layout = "~/Views/Shared/_Manager.cshtml"; }
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 @*<asp:button id="cmdExport" runat="server" text="Exportar Excel" />*@
-<hr />
-<div class="thead">
-    <div><span>id</span></div>
-    <div><span>registro_id</span></div>
-    <div><span>pregunta_id</span></div>
-    <div><span>respuesta_nro</span></div>
-    <div><span>correcta_nro</span></div>
-    <div><span>respuesta</span></div>
-    <div><span>fecha_hora_respuesta</span></div>
-    <div><span>id_sembrado</span></div>
-    <div><span>fecha_hora_sembrado</span></div>
-    <div><span>Resultado</span></div>
+    <script>
+	@{
+		var pagina = @HttpContextAccessor.HttpContext.Session.GetInt32("PAG_RESPUESTAS");
+		var total_paginas = @HttpContextAccessor.HttpContext.Session.GetInt32("TOT_PAG_RESPUESTAS");
+	}
+    </script>
+<h3>Respuestas</h3>
+<div class="table-responsive">
+    <table class="dataTabla">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ID Registro</th>
+                <th>ID Pregunta</th>
+                <th>Nro. Respuesta</th>
+                <th>Correcta Nro.</th>
+                <th>Respuesta</th>
+                <th>Fecha Respuesta</th>
+                <th>ID Sembrado</th>
+                <th>Fecha Sembrado</th>
+                <th>Resultado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => item.id)</td>
+                    <td>@Html.DisplayFor(model => item.registro_id)</td>
+                    <td>@Html.DisplayFor(model => item.pregunta_id)</td>
+                    <td>@Html.DisplayFor(model => item.respuesta_nro)</td>
+                    <td>@Html.DisplayFor(model => item.correcta_nro)</td>
+                    <td>@Html.DisplayFor(model => item.respuesta)</td>
+                    <td>@Html.DisplayFor(model => item.fecha_hora_respuesta)</td>
+                    <td>@Html.DisplayFor(model => item.id_sembrado)</td>
+                    <td>@Html.DisplayFor(model => item.fecha_hora_sembrado)</td>
+                    <td>@Html.DisplayFor(model => item.Resultado)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
-<div class="nano">
-    <div class="nano-content">
-        <table>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(model => item.id)</td>
-                        <td>@Html.DisplayFor(model => item.registro_id)</td>
-                        <td>@Html.DisplayFor(model => item.pregunta_id)</td>
-                        <td>@Html.DisplayFor(model => item.respuesta_nro)</td>
-                        <td>@Html.DisplayFor(model => item.correcta_nro)</td>
-                        <td>@Html.DisplayFor(model => item.respuesta)</td>
-                        <td>@Html.DisplayFor(model => item.fecha_hora_respuesta)</td>
-                        <td>@Html.DisplayFor(model => item.id_sembrado)</td>
-                        <td>@Html.DisplayFor(model => item.fecha_hora_sembrado)</td>
-                        <td>@Html.DisplayFor(model => item.Resultado)</td>
-                    </tr>
-                }
 
-            </tbody>
-        </table>
-    </div>
+<div class="paginador">
+    @if (pagina > 1)
+    {
+        <a asp-action="RespuestasAnterior" class="ant">&#x25C0;&nbsp;&nbsp;Anterior</a>
+    }
+    @if (total_paginas > 0)
+    {
+        <span>@pagina.ToString() /  @total_paginas.ToString()</span>
+    }
+    @if (pagina < total_paginas)
+    {
+        <a asp-action="RespuestasSiguiente" class="sig">Siguiente&nbsp;&nbsp;&#x25BA;</a>
+    }
 </div>
 
 @if (ViewBag.Message != null)
 {
     <script type="text/javascript">
-            window.onload = function () {
-                    alert('@Html.Raw(ViewBag.Message)');
-            };
+	window.onload = function () {
+		alert('@Html.Raw(ViewBag.Message)');
+	};
     </script>
 }

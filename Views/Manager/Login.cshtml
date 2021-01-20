@@ -1,47 +1,37 @@
 ﻿@model PromoDH.Models.Usuario
-
 @{
-    ViewData["Title"] = "LOGIN";
-
+	ViewData["Title"] = "LOGIN";
 }
-
-<h2>LOGIN</h2>
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Login">
-            <div class="form-group">
-                <label asp-for="usuario" class="control-label">Usuario</label>
-                <input asp-for="usuario" class="form-control" />
-                <span class="alert-danger" asp-validation-for="usuario"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="clave" class="control-label">Clave</label>
-                <input asp-for="clave" class="form-control" />
-                <span class="alert-danger" asp-validation-for="clave"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-success btn-sm" />
-            </div>
-           
-        </form>
-    </div>
-    <div class="col-md-8">
-
-    </div>
+@{
+	Layout = "~/Views/Shared/_Manager.cshtml";
+}
+<div id="login">
+	<form asp-action="Login">
+		<fieldset>
+			<h3>Ingreso</h3>
+			<ul>
+				<li>
+					<label asp-for="usuario" class="control-label">Usuario</label>
+					<input asp-for="usuario" class="form-control" />
+					<span class="alert-danger" asp-validation-for="usuario"></span>
+				</li>
+				<li>
+					<label asp-for="clave" class="control-label">Clave</label>
+					<input asp-for="clave" class="form-control" type="password" />
+					<span class="alert-danger" asp-validation-for="clave"></span>
+				</li>
+				<li class="btn">
+					<input type="submit" value="Login" />
+				</li>
+			</ul>
+		</fieldset>
+	</form>
 </div>
-<div>
-    <a asp-action="Index" asp-controller="Home">Volver</a>
-</div>
-
 @if (ViewBag.Message != null)
 {
-<script type="text/javascript">
-            window.onload = function () {
-                    alert('@Html.Raw(ViewBag.Message)');
-            };
+	<script type="text/javascript">
+	window.onload = function () {
+		alert('@Html.Raw(ViewBag.Message)');
+	};
 </script>
 }
-
-
-
-

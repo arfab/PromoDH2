@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ClosedXML.Excel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using PromoDH.CapaDatos;
 using PromoDH.Models;
 
@@ -57,10 +58,55 @@ namespace PromoDH.Controllers
         [HttpGet]
         public IActionResult Respuestas()
         {
+
+            IConfigurationBuilder builder = new ConfigurationBuilder()
+                                          .SetBasePath(Directory.GetCurrentDirectory())
+                                          .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            IConfigurationRoot configuration = builder.Build();
+            int iCantxPag = Int32.Parse(configuration.GetSection("Manager").GetSection("cantxpag_respuestas").Value);
+
+
+            int? pag_respuestas = HttpContext.Session.GetInt32("PAG_RESPUESTAS");
+            int cant = Datos.ObtenerRespuestasCantidad();
+
+            HttpContext.Session.SetInt32("TOT_RESPUESTAS", cant);
+
+            HttpContext.Session.SetInt32("TOT_PAG_RESPUESTAS", cant % iCantxPag == 0 ? cant / iCantxPag : cant / iCantxPag + 1);
+
+
+            if (pag_respuestas == null)
+            {
+                pag_respuestas = 1;
+                HttpContext.Session.SetInt32("PAG_RESPUESTAS", 1);
+            }
+
+
             if (HttpContext.Session.GetInt32("USUARIO_ID").GetValueOrDefault() != 0)
-                return View("Respuestas", Datos.ObtenerRespuestas());
+                return View("Respuestas", Datos.ObtenerRespuestasPag(pag_respuestas, iCantxPag));
             else
                 return View("Login");
+        }
+
+
+        [HttpGet]
+        public IActionResult RespuestasSiguiente()
+        {
+            int pag_respuestas = HttpContext.Session.GetInt32("PAG_RESPUESTAS").GetValueOrDefault();
+
+            HttpContext.Session.SetInt32("PAG_RESPUESTAS", pag_respuestas + 1);
+
+            return RedirectToAction("Respuestas");
+        }
+
+        [HttpGet]
+        public IActionResult RespuestasAnterior()
+        {
+            int pag_respuestas = HttpContext.Session.GetInt32("PAG_RESPUESTAS").GetValueOrDefault();
+
+            HttpContext.Session.SetInt32("PAG_RESPUESTAS", pag_respuestas - 1);
+
+            return RedirectToAction("Respuestas");
         }
 
         [HttpGet]
@@ -76,11 +122,54 @@ namespace PromoDH.Controllers
         [HttpGet]
         public IActionResult Consultas()
         {
+
+            IConfigurationBuilder builder = new ConfigurationBuilder()
+                                         .SetBasePath(Directory.GetCurrentDirectory())
+                                         .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            IConfigurationRoot configuration = builder.Build();
+            int iCantxPag = Int32.Parse(configuration.GetSection("Manager").GetSection("cantxpag_consultas").Value);
+
+
+            int? pag_consultas = HttpContext.Session.GetInt32("PAG_CONSULTAS");
+            int cant = Datos.ObtenerConsultasCantidad("","");
+
+            HttpContext.Session.SetInt32("TOT_CONSULTAS", cant);
+
+            HttpContext.Session.SetInt32("TOT_PAG_CONSULTAS", cant % iCantxPag == 0 ? cant / iCantxPag : cant / iCantxPag + 1);
+
+
+            if (pag_consultas == null)
+            {
+                pag_consultas = 1;
+                HttpContext.Session.SetInt32("PAG_CONSULTAS", 1);
+            }
             if (HttpContext.Session.GetInt32("USUARIO_ID").GetValueOrDefault() != 0)
-                return View("Consultas", Datos.ObtenerConsultas("",""));
+                return View("Consultas", Datos.ObtenerConsultasPag("","",pag_consultas, iCantxPag));
             else
                 return View("Login");
         }
+
+        [HttpGet]
+        public IActionResult ConsultasSiguiente()
+        {
+            int pag_consultas = HttpContext.Session.GetInt32("PAG_CONSULTAS").GetValueOrDefault();
+
+            HttpContext.Session.SetInt32("PAG_CONSULTAS", pag_consultas + 1);
+
+            return RedirectToAction("Consultas");
+        }
+
+        [HttpGet]
+        public IActionResult ConsultasAnterior()
+        {
+            int pag_consultas = HttpContext.Session.GetInt32("PAG_CONSULTAS").GetValueOrDefault();
+
+            HttpContext.Session.SetInt32("PAG_CONSULTAS", pag_consultas - 1);
+
+            return RedirectToAction("Consultas");
+        }
+
 
         [HttpGet]
         public IActionResult Consulta(int id)
@@ -91,14 +180,20 @@ namespace PromoDH.Controllers
         [HttpGet]
         public IActionResult Codigos()
         {
+            IConfigurationBuilder builder = new ConfigurationBuilder()
+                                         .SetBasePath(Directory.GetCurrentDirectory())
+                                         .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            IConfigurationRoot configuration = builder.Build();
+            int iCantxPag = Int32.Parse(configuration.GetSection("Manager").GetSection("cantxpag_codigos").Value);
+
+
             int? pag_codigos = HttpContext.Session.GetInt32("PAG_CODIGOS");
             int cant = Datos.ObtenerRegistrosCantidad();
 
-            HttpContext.Session.SetInt32("TOT_PAG_CODIGOS", 10);
             HttpContext.Session.SetInt32("TOT__CODIGOS", cant);
 
-            //int? tot_pag_codigos = HttpContext.Session.GetInt32("TOT_PAG_CODIGOS");
-            HttpContext.Session.SetInt32("TOT_PAG_CODIGOS", cant % 25 == 0 ? cant / 25 : cant / 25 + 1);
+            HttpContext.Session.SetInt32("TOT_PAG_CODIGOS", cant % iCantxPag == 0 ? cant / iCantxPag : cant / iCantxPag + 1);
 
 
             if (pag_codigos == null)
@@ -108,7 +203,7 @@ namespace PromoDH.Controllers
             }
 
             if (HttpContext.Session.GetInt32("USUARIO_ID").GetValueOrDefault() != 0)
-                return View("Codigos", Datos.ObtenerRegistrosPag("", -1, pag_codigos,25));
+                return View("Codigos", Datos.ObtenerRegistrosPag("", -1, pag_codigos, iCantxPag));
             else
                 return View("Login");
         }
@@ -180,8 +275,10 @@ namespace PromoDH.Controllers
         [HttpGet]
         public IActionResult Logout()
         {
-            HttpContext.Session.SetString("USUARIO_ID", "");
+            /*HttpContext.Session.SetString("USUARIO_ID", "");
             HttpContext.Session.SetString("ESCRIBANO", "");
+            HttpContext.Session.SetString("USERMANAGER", "");*/
+            HttpContext.Session.Clear();
             return RedirectToAction("Login");
         }
 
