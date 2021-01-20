@@ -35,7 +35,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="~/scripts/jQuery.plugins.js"></script>
     <script type="text/javascript" src="~/scripts/jQuery.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js"></script>
+    
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-21325046-1"></script>
@@ -85,7 +85,7 @@
                                 </li>
                                 <li>
                                     <label>Fecha de Nacimiento <em>*</em></label>
-                                    <input asp-for="fecha_nacimiento" data-date-format="DD-MM-YYYY" />
+                                    <input asp-for="fecha_nacimiento" data-date-format="DD-MM-YYYY" placeholder="dd/mm/aaaa" />
                                     <span asp-validation-for="fecha_nacimiento" class="text-danger"></span>
                                 </li>
                                 <li class="wide">
@@ -165,7 +165,7 @@
                                     </div>
                                     <div class="radio-item">
                                         <label>
-                                            Deseo&nbsp;recibir&nbsp;comunicaciones comerciales&nbsp;de&nbsp;Bagley&nbsp;<em>*</em>
+                                            Deseo&nbsp;recibir&nbsp;comunicaciones comerciales&nbsp;de&nbsp;Bagley&nbsp;
                                             <input asp-for="recibir_info" />
                                             <span class="checkmark"></span>
                                         </label>

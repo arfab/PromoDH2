@@ -57,12 +57,13 @@ namespace PromoDH.Models
         [Required(ErrorMessage = "Ingrese el CP")]
         public string CP { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Ingrese la fecha de nacimiento")]
         [DataType(DataType.Date)]
-        public DateTime fecha_nacimiento { get; set; }
+        public DateTime? fecha_nacimiento { get; set; }
 
-        [Required(ErrorMessage = "Ingrese si desea recibir información")]
-        public bool recibir_info { get; set; }
+        //[Required(ErrorMessage = "Ingrese si desea recibir información")]
+        public bool? recibir_info { get; set; }
 
         [Required(ErrorMessage = "Debe aceptar bases y condiciones")]
         public bool bases { get; set; }
