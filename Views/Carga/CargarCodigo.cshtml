@@ -150,7 +150,10 @@
                                 <li class="wide">
                                     <label for="men">Ingres&aacute; el captcha <em>*</em></label>
                                     <!--'TODO: GENERAR CLAVES PARA LOS DISTINTOS DOMINIOS-->
-                                    @(Html.Recaptcha<RecaptchaV2Checkbox>(RecaptchaSettings.Value))
+                                    @(Html.Recaptcha(RecaptchaSettings?.Value, new RecaptchaV2Checkbox
+{
+    Language = "es"
+}))
                                 </li>
 
 

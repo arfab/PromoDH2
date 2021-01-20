@@ -7,6 +7,9 @@
 @using reCAPTCHA.AspNetCore
 @using reCAPTCHA.AspNetCore.Versions;
 @using Microsoft.Extensions.Options
+
+
+
 <!doctype html>
 <html lang="es">
 <head>
@@ -36,7 +39,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="~/scripts/jQuery.plugins.js"></script>
     <script type="text/javascript" src="~/scripts/jQuery.js"></script>
-  
+
 
 
 
@@ -130,7 +133,10 @@
                                 <li class="wide">
                                     <label for="men">Ingres&aacute; el captcha <em>*</em></label>
                                     <!--'TODO: GENERAR CLAVES PARA LOS DISTINTOS DOMINIOS-->
-                                    @(Html.Recaptcha<RecaptchaV2Checkbox>(RecaptchaSettings.Value))
+                                    @(Html.Recaptcha(RecaptchaSettings?.Value, new RecaptchaV2Checkbox
+{
+    Language = "es"
+}))
                                 </li>
                                 @*<li class="wide btn">
                                         <input type="submit" name="cmdCargar" value="Enviar" id="cmdCargar" />
