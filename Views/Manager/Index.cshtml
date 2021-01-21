@@ -1,27 +1,17 @@
-﻿@{
-    ViewData["Title"] = "Menú";
-}
-@{
-    Layout = "~/Views/Shared/_Manager.cshtml";
-}
-
+﻿@{ ViewData["Title"] = "Menú"; }
+@{ Layout = "~/Views/Shared/_Manager.cshtml"; }
 <!DOCTYPE html>
-
-<html>
+<html lang="es">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Manager</title>
 </head>
 <body>
-    <h2>SELECCIONA UNA DE LAS OPCIONES</h2>
+	<h3 class="seleccione">SELECCIONA UNA DE LAS OPCIONES</h3>
 </body>
 </html>
-
-@if (ViewBag.Message != null)
-{
-    <script type="text/javascript">
-            window.onload = function () {
-                    alert('@Html.Raw(ViewBag.Message)');
-            };
-    </script>
+@if (ViewBag.Message != null) {
+<script type="text/javascript">
+  window.onload = function () {
+    alert('@Html.Raw(ViewBag.Message)');
+  };
+</script>
 }

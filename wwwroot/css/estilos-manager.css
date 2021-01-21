@@ -71,7 +71,7 @@ nav ul li.logout { float: right; }
 
 /* SECCION ------------------------------------------------------------------- */
 h3 { font-size: 2em; line-height: 1.2em; margin-bottom: 1em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-h3.seleccione { text-align: center; }
+h3.seleccione { height: 100%; text-align: center; margin: 0; display: flex; align-items: center; justify-content: center; }
 
 .botonera { background: #F5F5F5; padding: 0.8em; text-align: right; width: 100%; }
 .botonera a { font-size: 1.1em; margin-left: 2em; }
@@ -127,6 +127,7 @@ nav ul li.logout a { color: #F5F68A!important; }
 nav ul li a:hover { color: #00BB9E!important; }
 
 h3 { text-transform: uppercase; font-weight: normal; font-family: 'QuotesCaps', sans-serif; color: #FFF; font-size: 2.2em; line-height: 1.2em; margin-bottom: 1em; text-shadow: 3px 0 0 #EF3854, -3px 0 0 #EF3854, 0 3px 0 #EF3854, 0 -3px 0 #EF3854, 2px 2px #EF3854, -2px -2px 0 #EF3854, 2px -2px 0 #EF3854, -2px 2px 0 #EF3854; }
+h3.seleccione { font-size: 2.6em; }
 
 fieldset input[type=text], fieldset input[type=password] { background: #00BB9E; color: #FFF; }
 fieldset input[type=submit], .botonera a { font-family: 'QuotesCaps', sans-serif; color: #FFF!important; text-transform: uppercase; background: #EF3854; font-size: 1.3em; padding: 0.4em 1.4em; border-radius: 0.6em; border: 2px solid #EF3854; }
