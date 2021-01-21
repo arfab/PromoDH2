@@ -19,7 +19,10 @@ namespace PromoDH.Models
 
         public string Fecha_str { get; set; }
 
-
+        public string DniEncriptado
+        {
+            get { return "xxxx" + Dni.Substring(Dni.Length-3);  }
+        }
 
     }
 }
