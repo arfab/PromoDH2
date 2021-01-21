@@ -100,6 +100,7 @@
                                     <select asp-for="Provincia" asp-items="@(new SelectList(@ViewBag.ListofProvincias,"descripcion", "descripcion"))" class="custom-select">
                                         <option value="">Seleccione la provincia</option>
                                     </select>
+                                    <span asp-validation-for="Provincia" class="text-danger"></span>
                                 </li>
                                 <li>
                                     <label asp-for="Localidad">Ciudad <em>*</em></label>
@@ -112,6 +113,8 @@
                                         <input asp-for="Area" class="are" autocomplete="nope" />
                                         <input asp-for="Telefono" class="num" autocomplete="nope" />
                                     </div>
+                                    <span asp-validation-for="Area" class="text-danger"></span>
+                                    <span asp-validation-for="Telefono" class="text-danger"></span>
                                 </li>
                                 <li class="tel">
                                     <label for="txtTelefono">M&oacute;vil <em>*</em></label>
@@ -119,6 +122,8 @@
                                         <input asp-for="AreaMovil" class="are" autocomplete="nope" />
                                         <input asp-for="Movil" class="num" autocomplete="nope" />
                                     </div>
+                                    <span asp-validation-for="AreaMovil" class="text-danger"></span>
+                                    <span asp-validation-for="Movil" class="text-danger"></span>
                                 </li>
                                 <li class="wide">
                                     <label asp-for="Email">Email <em>*</em></label>

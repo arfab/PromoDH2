@@ -18,14 +18,15 @@
 		</thead>
 		<tbody>
 			@foreach (var item in Model) {
-				<tr>
-				<td>@Html.DisplayFor(model => item.Id)</td>
-				<td>@Html.DisplayFor(model => item.nombre)</td>
-				<td>@Html.DisplayFor(model => item.apellido)</td>
-				<td>@Html.DisplayFor(model => item.PremioDesc)</td>
-				<td>@Html.DisplayFor(model => item.Codigo)</td>
-				<td>@Html.DisplayFor(model => item.Fecha_str)</td>
-				</tr>
+            <tr>
+                <td>@Html.DisplayFor(model => item.Id)</td>
+                <td>@Html.DisplayFor(model => item.Dni)</td>
+                <td>@Html.DisplayFor(model => item.nombre)</td>
+                <td>@Html.DisplayFor(model => item.apellido)</td>
+                <td>@Html.DisplayFor(model => item.PremioDesc)</td>
+                <td>@Html.DisplayFor(model => item.Codigo)</td>
+                <td>@Html.DisplayFor(model => item.Fecha_str)</td>
+            </tr>
 			}
 	</tbody>
 	</table>

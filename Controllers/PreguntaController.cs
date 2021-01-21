@@ -25,16 +25,33 @@ namespace PromoDH.Controllers
 
         public IActionResult Gano()
         {
+
+            if (HttpContext.Session.GetString("PREMIO_ID") == null)
+                return RedirectToAction("Index", "Home");
+
+            if (HttpContext.Session.GetString("PREMIO_ID") == "0")
+                return RedirectToAction("Index", "Home");
+
             return View();
         }
 
         public IActionResult Perdio()
         {
+            if (HttpContext.Session.GetString("PREMIO_ID") == null)
+                return RedirectToAction("Index", "Home");
+
             return View();
         }
 
         public IActionResult Tarde()
         {
+            if (HttpContext.Session.GetString("PREMIO_ID") == null)
+                return RedirectToAction("Index", "Home");
+
+            if (HttpContext.Session.GetString("PREMIO_ID") == "0")
+                return RedirectToAction("Index", "Home");
+
+
             return View();
         }
 
@@ -135,7 +152,7 @@ namespace PromoDH.Controllers
                 MimeMessage message = new MimeMessage();
                 MailboxAddress from = new MailboxAddress("Admin", SmtpFrom.Value);
                 MailboxAddress to = new MailboxAddress("Admin", SmtpAdmin.Value);
-                message.Subject = "Consulta desde el Sitio Promo A Todo Bagley 2021";
+                message.Subject = "Premio en el Sitio Promo A Todo Bagley 2021";
                 message.To.Add(to);
                 message.From.Add(from);
 

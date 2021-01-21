@@ -99,6 +99,7 @@
                                     <select asp-for="Provincia" asp-items="@(new SelectList(@ViewBag.ListofProvincias,"descripcion", "descripcion"))" class="custom-select">
                                         <option value="">Seleccione la provincia</option>
                                     </select>
+                                    <span asp-validation-for="Provincia" class="text-danger"></span>
                                 </li>
 
 
@@ -141,7 +142,7 @@
                                     <label asp-for="marca_id" class="control-lable">Seleccion&aacute; una marca</label>
                                     <select asp-for="marca_id" asp-items="@(new SelectList(@ViewBag.ListofMarcas,"id", "nombre"))" class="custom-select">
                                         <option value="">Seleccione la marca</option>
-                                    </select>
+                                    </select>      
                                 </li>
 
 
