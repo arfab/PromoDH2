@@ -22,6 +22,7 @@ namespace PromoDH.Controllers
     public class CargaController : Controller
     {
 
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Index()
         {
         
@@ -33,6 +34,8 @@ namespace PromoDH.Controllers
             return View();
         }
 
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         [HttpGet]
         public IActionResult CargarCodigo()
         {
@@ -188,7 +191,7 @@ namespace PromoDH.Controllers
                 DateTime d = new DateTime(registro.anio, registro.mes, registro.dia, 0, 0, 0, 0);
 
                 if (registro.dia < 1 || registro.dia > 31) return "Fecha Inválida";
-                if (registro.mes < 1 || registro.dia > 12) return "Fecha Inválida";
+                if (registro.mes < 1 || registro.mes > 12) return "Fecha Inválida";
                 if (registro.anio < 21 || registro.anio > 24) return "Fecha Inválida";
             }
             catch (Exception)

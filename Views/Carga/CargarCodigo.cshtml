@@ -15,6 +15,15 @@
 <!doctype html>
 <html lang="es">
 <head>
+
+
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="expires" content="Fri, 18 Jul 2014 1:00:00 GMT" />
+
+
+
     <meta charset="UTF-8">
     <title>Bienvenidos a "A Todo Bagley"</title>
 
@@ -35,7 +44,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="~/scripts/jQuery.plugins.js"></script>
     <script type="text/javascript" src="~/scripts/jQuery.js"></script>
-    
+
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-21325046-1"></script>
@@ -50,7 +59,7 @@
 
 </head>
 <body id="int">
-    <form asp-action="CargarCodigo">
+    <form asp-action="CargarCodigo" autocomplete="off">
         <div class="site-container">
             <header>
                 <a href="javascript;" class="btn menu-open"><span class="fa fa-navicon"></span>Menú</a>
@@ -70,33 +79,33 @@
                             <ul>
                                 <li>
                                     <label asp-for="Nombre">Nombre <em>*</em></label>
-                                    <input asp-for="Nombre" />
+                                    <input asp-for="Nombre" autocomplete="nope"/>
                                     <span asp-validation-for="Nombre" class="text-danger"></span>
                                 </li>
                                 <li>
                                     <label asp-for="Apellido">Apellido <em>*</em></label>
-                                    <input asp-for="Apellido" />
+                                    <input asp-for="Apellido" autocomplete="nope"/>
                                     <span asp-validation-for="Apellido" class="text-danger"></span>
                                 </li>
                                 <li>
                                     <label asp-for="Dni">D.N.I <em>*</em></label>
-                                    <input asp-for="Dni" />
+                                    <input asp-for="Dni" autocomplete="nope"/>
                                     <span asp-validation-for="Dni" class="text-danger"></span>
                                 </li>
                                 <li>
                                     <label>Fecha de Nacimiento <em>*</em></label>
-                                    <input asp-for="fecha_nacimiento" data-date-format="DD-MM-YYYY" placeholder="dd/mm/aaaa" />
+                                    <input asp-for="fecha_nacimiento" data-date-format="DD-MM-YYYY" placeholder="dd/mm/aaaa" autocomplete="nope" />
                                     <span asp-validation-for="fecha_nacimiento" class="text-danger"></span>
                                 </li>
                                 <li class="wide">
                                     <label asp-for="Direccion">Domicilio completo <em>*</em></label>
-                                    <input asp-for="Direccion" />
+                                    <input asp-for="Direccion" autocomplete="nope" />
                                     <span asp-validation-for="Direccion" class="text-danger"></span>
                                 </li>
 
                                 <li>
                                     <label asp-for="Provincia" class="control-lable">Provincia <em>*</em></label>
-                                    <select asp-for="Provincia" asp-items="@(new SelectList(@ViewBag.ListofProvincias,"descripcion", "descripcion"))" class="custom-select">
+                                    <select asp-for="Provincia" asp-items="@(new SelectList(@ViewBag.ListofProvincias,"descripcion", "descripcion"))" class="custom-select" autocomplete="nope">
                                         <option value="">Seleccione la provincia</option>
                                     </select>
                                     <span asp-validation-for="Provincia" class="text-danger"></span>
@@ -106,25 +115,25 @@
 
                                 <li>
                                     <label asp-for="Localidad">Ciudad <em>*</em></label>
-                                    <input asp-for="Localidad" />
+                                    <input asp-for="Localidad" autocomplete="nope" />
                                     <span asp-validation-for="Localidad" class="text-danger"></span>
                                 </li>
 
 
                                 <li>
                                     <label asp-for="CP">CP <em>*</em></label>
-                                    <input asp-for="CP" />
+                                    <input asp-for="CP" autocomplete="nope" />
                                     <span asp-validation-for="CP" class="text-danger"></span>
                                 </li>
 
                                 <li>
                                     <label asp-for="Telefono">Teléfono <em>*</em></label>
-                                    <input asp-for="Telefono" />
+                                    <input asp-for="Telefono" autocomplete="nope" />
                                     <span asp-validation-for="Telefono" class="text-danger"></span>
                                 </li>
                                 <li class="wide">
                                     <label asp-for="Email">Email <em>*</em></label>
-                                    <input asp-for="Email" />
+                                    <input asp-for="Email" autocomplete="nope" />
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </li>
 
@@ -132,22 +141,22 @@
                                 <li class="cod wide">
                                     <label>C&oacute;digo <em>*</em><br />Carga la fecha de vencimiento y la marca:</label>
                                     <div class="campos">
-                                        <input asp-for="dia" maxlength="2" placeholder="DD" autocomplete="nope" />
-                                        <input asp-for="mes" maxlength="2" placeholder="MM" autocomplete="nope" />
-                                        <input asp-for="anio" maxlength="2" class="last" placeholder="AA" autocomplete="nope" />
+                                        <input asp-for="dia" maxlength="2" placeholder="DD" autocomplete="nope" min="1" max="31" />
+                                        <input asp-for="mes" maxlength="2" placeholder="MM" autocomplete="nope" min="1" max="12" />
+                                        <input asp-for="anio" maxlength="2" class="last" placeholder="AA" autocomplete="nope" min="1" />
                                     </div>
                                 </li>
 
                                 <li>
                                     <label asp-for="marca_id" class="control-lable">Seleccion&aacute; una marca</label>
-                                    <select asp-for="marca_id" asp-items="@(new SelectList(@ViewBag.ListofMarcas,"id", "nombre"))" class="custom-select">
+                                    <select asp-for="marca_id" asp-items="@(new SelectList(@ViewBag.ListofMarcas,"id", "nombre"))" class="custom-select" autocomplete="nope">
                                         <option value="">Seleccione la marca</option>
-                                    </select>      
+                                    </select>
                                 </li>
 
 
 
-                                
+
                                 <li class="wide">
                                     <label for="men">Ingres&aacute; el captcha <em>*</em></label>
                                     <!--'TODO: GENERAR CLAVES PARA LOS DISTINTOS DOMINIOS-->
@@ -229,6 +238,11 @@
         </script>
     }
 
+    <script type="text/javascript">
 
+        $(window).load(function () {
+            $('form').get(0).reset(); //clear form data on page load
+        });
+    </script>
 </body>
 </html>
