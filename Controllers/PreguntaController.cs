@@ -158,7 +158,7 @@ namespace PromoDH.Controllers
                 MimeMessage message = new MimeMessage();
                 MailboxAddress from = new MailboxAddress("Admin", SmtpFrom.Value);
                 MailboxAddress to = new MailboxAddress("Admin", SmtpAdmin.Value);
-                message.Subject = "Premio en el Sitio Promo A Todo Bagley 2021";
+                message.Subject = "Premio en el Sitio Promo TOPLINE LOLLAPALOOZA";
                 message.To.Add(to);
                 message.From.Add(from);
 
@@ -169,7 +169,7 @@ namespace PromoDH.Controllers
                 String sTextBody = "";
 
                 sHtmlBody = sHtmlBody + "*************************************************************************" + nl;
-                sHtmlBody = sHtmlBody + "Se ha entregado un premio sitio Promo A Todo Bagley 2021" + nl;
+                sHtmlBody = sHtmlBody + "Se ha entregado un premio sitio Promo TOPLINE LOLLAPALOOZA" + nl;
                 sHtmlBody = sHtmlBody + "*************************************************************************" + nl + nl;
                 sHtmlBody = sHtmlBody + "Código:" + HttpContext.Session.GetString("CODIGO").ToString() + nl;
                 sHtmlBody = sHtmlBody + "Dni: " + HttpContext.Session.GetString("DNI").ToString() + nl;
@@ -179,7 +179,7 @@ namespace PromoDH.Controllers
                 sHtmlBody = sHtmlBody + "*************************************************************************" + nl + nl;
 
                 sTextBody = sTextBody + "*************************************************************************" + nl;
-                sTextBody = sTextBody + "Se ha entregado un premio sitio Promo A Todo Bagley 2021" + nl;
+                sTextBody = sTextBody + "Se ha entregado un premio sitio Promo TOPLINE LOLLAPALOOZA" + nl;
                 sTextBody = sTextBody + "*************************************************************************" + nl + nl;
                 sTextBody = sTextBody + "Código:" + HttpContext.Session.GetString("CODIGO").ToString() + nl;
                 sTextBody = sTextBody + "Dni: " + HttpContext.Session.GetString("DNI").ToString() + nl;

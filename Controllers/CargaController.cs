@@ -273,7 +273,7 @@ namespace PromoDH.Controllers
 
                 if (registro.dia < 1 || registro.dia > 31) return "Código Inválido";
                 if (registro.mes < 1 || registro.mes > 12) return "Código Inválido";
-                if (registro.anio < 21 || registro.anio > 24) return "Código Inválido";
+                if (registro.anio < 2022 || registro.anio > 2028) return "Código Inválido";
             }
             catch (Exception)
             {

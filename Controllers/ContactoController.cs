@@ -76,7 +76,7 @@ namespace PromoDH.Controllers
                     //MailboxAddress to = new MailboxAddress(contacto.Nombre + ", " + contacto.Apellido, contacto.Email);
 
                     MailboxAddress to = new MailboxAddress("Arcor", SmtpAdmin.Value);
-                    message.Subject = "Consulta desde el Sitio Promo A Todo Bagley 2021";
+                    message.Subject = "Consulta desde el Sitio Promo TOPLINE LOLLAPALOOZA";
                     message.To.Add(to);
                     message.From.Add(from);
 
@@ -87,7 +87,7 @@ namespace PromoDH.Controllers
                     String sTextBody = "";
 
                     sHtmlBody = sHtmlBody + "*************************************************************************" + nl;
-                    sHtmlBody = sHtmlBody + "Email de consulta desde el Sitio Promo A Todo Bagley 2021" + nl ;
+                    sHtmlBody = sHtmlBody + "Email de consulta desde el Sitio Promo TOPLINE LOLLAPALOOZA" + nl ;
                     sHtmlBody = sHtmlBody + "*************************************************************************" + nl + nl;
                     sHtmlBody = sHtmlBody + "Datos de la consulta:" + nl;
                     sHtmlBody = sHtmlBody + "Nombre y Apellido: " + contacto.Nombre.Trim() + " " +  contacto.Apellido.Trim() + nl;
@@ -101,7 +101,7 @@ namespace PromoDH.Controllers
                     sHtmlBody = sHtmlBody + "Comentarios: " + contacto.Consulta + nl ;
 
                     sTextBody = sTextBody + "*************************************************************************" + nl2;
-                    sTextBody = sTextBody + "Email de consulta desde el Sitio Promo A Todo Bagley 2021" + nl2;
+                    sTextBody = sTextBody + "Email de consulta desde el Sitio Promo TOPLINE LOLLAPALOOZA" + nl2;
                     sTextBody = sTextBody + "*************************************************************************" + nl2 + nl2;
                     sTextBody = sTextBody + "Datos de la consulta:" + nl2;
                     sTextBody = sTextBody + "Nombre y Apellido: " + contacto.Nombre.Trim() + " " + contacto.Apellido.Trim() + nl2;
