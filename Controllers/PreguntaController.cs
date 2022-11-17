@@ -23,6 +23,8 @@ namespace PromoDH.Controllers
             return View();
         }
 
+       
+
         public IActionResult Gano()
         {
 
@@ -31,6 +33,8 @@ namespace PromoDH.Controllers
 
             if (HttpContext.Session.GetString("PREMIO_ID") == "0")
                 return RedirectToAction("Index", "Home");
+
+        
 
             return View();
         }
@@ -89,7 +93,9 @@ namespace PromoDH.Controllers
                             HttpContext.Session.SetString("PREMIO_ID", iPremio.ToString());
                             EnviarMail(iPremio);
 
-                            return RedirectToAction("Gano", "Pregunta");
+                            return RedirectToAction("CargarGanador", "Carga");
+
+
                         }
                         else
                         {

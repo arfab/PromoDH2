@@ -25,13 +25,13 @@ namespace PromoDH.Models
         [Required(ErrorMessage = "Ingrese la Provincia")]
         public string Provincia { get; set; }
 
-        [Required(ErrorMessage = "Ingrese la Direccion")]
+        //[Required(ErrorMessage = "Ingrese la Direccion")]
         public string Direccion { get; set; }
 
-        [Required(ErrorMessage = "Ingrese la Ciudad")]
+        //[Required(ErrorMessage = "Ingrese la Ciudad")]
         public string Localidad { get; set; }
 
-        [Required(ErrorMessage = "Ingrese el Teléfono")]
+        //[Required(ErrorMessage = "Ingrese el Teléfono")]
         public string Telefono { get; set; }
 
         [EmailAddress]
@@ -42,7 +42,7 @@ namespace PromoDH.Models
         public string Dni { get; set; }
 
 
-        [Required(ErrorMessage = "Ingrese la marca")]
+        //[Required(ErrorMessage = "Ingrese la marca")]
         public int marca_id { get; set; }
 
         [Required(ErrorMessage = "Ingrese el día")]
@@ -54,7 +54,7 @@ namespace PromoDH.Models
         [Required(ErrorMessage = "Ingrese el año")]
         public int anio { get; set; }
 
-        [Required(ErrorMessage = "Ingrese el CP")]
+        //[Required(ErrorMessage = "Ingrese el CP")]
         public string CP { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]

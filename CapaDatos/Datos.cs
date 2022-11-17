@@ -69,6 +69,42 @@ namespace PromoDH.CapaDatos
             return rowAffected;
         }
 
+
+        public static int ModificarRegistro(Ganador ganador, int iRegistro)
+        {
+
+            try
+            {
+
+
+                using (IDbConnection con = new SqlConnection(strConnectionString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+
+                    DynamicParameters parameters = new DynamicParameters();
+                    parameters.Add("@id", iRegistro);
+                    parameters.Add("@localidad", ganador.Localidad);
+                    parameters.Add("@direccion", ganador.Direccion);
+                    parameters.Add("@telefono", ganador.Telefono);
+                  
+                    con.Execute("spModificarRegistro", parameters, commandType: CommandType.StoredProcedure);
+
+
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+
+            return 0;
+        }
+
         public static int InsertarCodigo(Registro registro)
         {
             int rowAffected = 0;

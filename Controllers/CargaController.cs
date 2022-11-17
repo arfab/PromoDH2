@@ -84,7 +84,7 @@ namespace PromoDH.Controllers
                 {
                     ViewBag.Message = sRet;
                     
-                    ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
+                    //ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
                     ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
 
                     return View(registro);
@@ -142,11 +142,92 @@ namespace PromoDH.Controllers
                 // return RedirectToAction("Index", "Home");
             }
 
-            ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
+           // ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
             ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
 
             return View(registro);
         }
+
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [HttpGet]
+        public IActionResult CargarGanador()
+        {
+
+           return View();
+        }
+
+        [HttpPost]
+        [ValidateRecaptcha]
+        public IActionResult CargarGanador([Bind] Ganador ganador)
+        {
+            string sRet;
+
+            try
+
+            {
+                sRet = ValidarGanador(ganador);
+
+
+
+                if (ModelState.IsValid)
+                {
+
+                    // Por ahora hardcodeo la marca hasta que esté en el frontend
+                    //registro.marca_id = 1;
+
+
+                    if (sRet != "")
+                    {
+                        ViewBag.Message = sRet;
+
+                        //ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
+                       // ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
+
+                        return View(ganador);
+                    }
+
+                    if (Datos.ModificarRegistro(ganador, Int16.Parse(HttpContext.Session.GetString("REGISTRO_ID"))) >= 0)
+                    {
+                        return RedirectToAction("Gano", "Pregunta");
+                    }
+                    else
+
+                    {
+                        ViewBag.Message = "Algunos campos estan incompletos.";
+
+                    }
+
+
+                }
+
+                //ME FIJO SI EL PROBLEMA ES EL CAPTCHA
+                var state = ViewData.ModelState.FirstOrDefault(x => x.Key.Equals("Recaptcha"));
+                if (state.Value != null && state.Value.Errors.Any(x => !string.IsNullOrEmpty(x.ErrorMessage)))
+                {
+                    ViewBag.Message = "Revise el CAPTCHA.";
+
+                }
+                else
+                {
+                    ViewBag.Message = "Faltan datos obligatorios";
+
+                }
+
+
+            }
+            catch (Exception)
+            {
+                ViewBag.Message = "Ha ocurrido un error en el sitio. Inténtelo nuevamente.";
+                // return RedirectToAction("Index", "Home");
+            }
+
+            // ViewBag.ListOfMarcas = Datos.ObtenerMarcas();
+            ViewBag.ListOfProvincias = Datos.ObtenerProvincias();
+
+            return View(ganador);
+        }
+
 
         public string Validar(Registro registro)
         {
@@ -217,6 +298,24 @@ namespace PromoDH.Controllers
             return sRet;
 
         }
+
+
+        public string ValidarGanador(Ganador ganador)
+        {
+            string sRet = "";
+
+            // object m = null;
+            // string s = m.ToString();
+
+            //if (registro.Nombre.Trim().Length > 50) return "El Nombre no debe exceder los 50 caracteres";
+            //if (registro.Nombre.Trim().Length == 0) return "Algunos campos están incompletos.";
+
+            
+
+            return sRet;
+
+        }
+
 
 
     }

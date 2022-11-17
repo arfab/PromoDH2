@@ -1,4 +1,4 @@
-﻿@model PromoDH.Models.Registro
+﻿@model PromoDH.Models.Ganador
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 @{
     ViewData["Title"] = "CargarCodigo";
@@ -59,7 +59,7 @@
 
 </head>
 <body id="int">
-    <form asp-action="CargarCodigo" autocomplete="off">
+    <form asp-action="CargarGanador" autocomplete="off">
         <div class="site-container">
             <header>
                 <a href="javascript;" class="btn menu-open"><span class="fa fa-navicon"></span>Menú</a>
@@ -77,53 +77,38 @@
                         <fieldset>
                             <div asp-validation-summary="None" class="text-danger"></div>
                             <ul>
-                                <li>
-                                    <label asp-for="Nombre">Nombre <em>*</em></label>
-                                    <input asp-for="Nombre" autocomplete="nope"/>
-                                    <span asp-validation-for="Nombre" class="text-danger"></span>
-                                </li>
-                                <li>
-                                    <label asp-for="Apellido">Apellido <em>*</em></label>
-                                    <input asp-for="Apellido" autocomplete="nope"/>
-                                    <span asp-validation-for="Apellido" class="text-danger"></span>
-                                </li>
-                                <li>
-                                    <label asp-for="Dni">D.N.I <em>*</em></label>
-                                    <input asp-for="Dni" autocomplete="nope"/>
-                                    <span asp-validation-for="Dni" class="text-danger"></span>
-                                </li>
-                                <li>
-                                    <label>Fecha de Nacimiento <em>*</em></label>
-                                    <input asp-for="fecha_nacimiento" data-date-format="DD-MM-YYYY" placeholder="dd/mm/aaaa" autocomplete="nope" />
-                                    <span asp-validation-for="fecha_nacimiento" class="text-danger"></span>
-                                </li>
-                               
-
-                                <li>
-                                    <label asp-for="Provincia" class="control-lable">Provincia <em>*</em></label>
-                                    <select asp-for="Provincia" asp-items="@(new SelectList(@ViewBag.ListofProvincias,"descripcion", "descripcion"))" class="custom-select" autocomplete="nope">
-                                        <option value="">Seleccione la provincia</option>
-                                    </select>
-                                    <span asp-validation-for="Provincia" class="text-danger"></span>
-                                </li>
-
+                              
                                 <li class="wide">
-                                    <label asp-for="Email">Email <em>*</em></label>
-                                    <input asp-for="Email" autocomplete="nope" />
-                                    <span asp-validation-for="Email" class="text-danger"></span>
-                                </li>
-
-
-                                <li class="cod wide">
-                                    <label>C&oacute;digo <em>*</em><br />Carga la fecha de vencimiento y la marca:</label>
-                                    <div class="campos">
-                                        <input asp-for="dia" maxlength="2" placeholder="DD" autocomplete="nope" min="1" max="31" />
-                                        <input asp-for="mes" maxlength="2" placeholder="MM" autocomplete="nope" min="1" max="12" />
-                                        <input asp-for="anio" maxlength="2" class="last" placeholder="AA" autocomplete="nope" min="1" />
-                                    </div>
+                                    <label asp-for="Direccion">Domicilio completo <em>*</em></label>
+                                    <input asp-for="Direccion" autocomplete="nope" />
+                                    <span asp-validation-for="Direccion" class="text-danger"></span>
                                 </li>
 
                                
+
+                                <li>
+                                    <label asp-for="Localidad">Ciudad <em>*</em></label>
+                                    <input asp-for="Localidad" autocomplete="nope" />
+                                    <span asp-validation-for="Localidad" class="text-danger"></span>
+                                </li>
+
+@*
+                                <li>
+                                    <label asp-for="CP">CP <em>*</em></label>
+                                    <input asp-for="CP" autocomplete="nope" />
+                                    <span asp-validation-for="CP" class="text-danger"></span>
+                                </li>*@
+
+                                <li>
+                                    <label asp-for="Telefono">Teléfono <em>*</em></label>
+                                    <input asp-for="Telefono" autocomplete="nope" />
+                                    <span asp-validation-for="Telefono" class="text-danger"></span>
+                                </li>
+                             
+
+
+
+
 
                                 <li class="wide">
                                     <label for="men">Ingres&aacute; el captcha <em>*</em></label>
@@ -134,24 +119,6 @@
 }))
                                 </li>
 
-
-                                <li class="wide">
-                                    <div class="radio-item">
-                                        <label>
-                                            Acepto&nbsp;las&nbsp;bases&nbsp;y&nbsp;condiciones de&nbsp;la promoci&oacute;n&nbsp;<em>*</em>
-                                            <input asp-for="bases" />
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span asp-validation-for="bases" class="text-danger"></span>
-                                    </div>
-                                    <div class="radio-item">
-                                        <label>
-                                            Deseo&nbsp;recibir&nbsp;comunicaciones comerciales&nbsp;de&nbsp;Bagley&nbsp;
-                                            <input asp-for="recibir_info" />
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                </li>
 
 
                                 <li class="wide btn">
