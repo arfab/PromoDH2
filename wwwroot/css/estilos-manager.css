@@ -1,12 +1,20 @@
 @charset "UTF-8";
 /* CSS Document */
 
-@font-face { font-family: 'QuotesCaps'; src: local('QuotesCaps-Regular'), url('../fonts/quotescaps-webfont.woff2') format('woff2'), url('../fonts/quotescaps-webfont.woff') format('woff'), url('../fonts/quotescaps-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/quotescaps-webfont.ttf') format('truetype'), url('../fonts/quotescaps-webfont.svg#quotes_capsregular') format('svg'); font-weight: normal; font-style: normal; }
+:root {
+--col-background: #F7F5F4;
+--col-verde: #3BFCB5;
+--col-rosa: #FF8EEB;
+--col-amarillo: #FEF630;
+--col-lavanda: #9BA2FF;
+--txt-shadow: -0.015em 0 #000, 0 0.06em #000, 0.06em 0 #000, 0 -0.015em #000;
+}
 
+@font-face { font-family: 'CCShake'; src: url('../fonts/CCShake.eot?#iefix') format('embedded-opentype'), url('../fonts/CCShake.woff') format('woff'), url('../fonts/CCShake.ttf') format('truetype'), url('../fonts/CCShake.svg#CCShake') format('svg'); font-weight: normal; font-style: normal; }
 
 /* RESET */
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; vertical-align: top; background: transparent }
-body { font-size: 16px; line-height: 1; color: #000; background: #FFF; font-family: 'Open Sans', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { font-size: 16px; line-height: 1; color: #000; background: var(--col-background); font-family: 'Open Sans', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 ol, ul { list-style: none }
 blockquote, q { quotes: none }
 :focus { outline: 0 }
@@ -29,11 +37,11 @@ html[xmlns] .clearfix { display: block; }
 /*-- GENERAL -----------------------------------------------------*/
 form { width: 100%; }
 .wrapper { position: relative; width: 100%; max-width: 900px; margin: 0 auto; padding: 0 2em; }
-header { margin: auto; width: 100%; position: relative; background: #CCC; text-align: center; padding: 0.5em 0; }
-header h1 { margin: 0 auto 0.5em auto; }
-header h1 a { display: block; width: 100%; height: 100%; }
+header { margin: auto; width: 100%; position: relative; text-align: center; padding: 0.5em 0; }
+header h1 { background: url("../images/logos-m.png") no-repeat; background-size: 100% 100%; width: 80%; max-width: 280px; margin: 0 auto 1em auto; }
+header h1 a { display: block; width: 100%; height: 0; text-indent: -9999px; padding-bottom: 47.6%; }
+
 header h2 { font-size: 1.75em; }
-header h2 span { display: block; font-size: 0.8em; }
 main { display: flex; min-height: 60vh; padding: 2em 0; }
 footer { font-size: 0.7em; line-height: 1.2em; text-align: center; width: 100%; padding: 2em 0; }
 
@@ -42,7 +50,12 @@ header { padding: 1em 0; }
 header .wrapper { display: flex; justify-content: space-between; align-items: center; }
 header h1 { margin: 0; }
 header h2 { text-align: right; }
-header h2 span { font-size: 1em; }
+header h2 span { font-size: 1em; display: block; font-size: 0.8em; }
+}
+
+@media only screen and (min-width: 768px) {
+header h1 { background-image: url("../images/logos-d.png"); max-width: 480px; }
+header h1 a { padding-bottom: 20%; }
 }
 
 /* FORMS ------------------------------------------------------------------- */
@@ -57,6 +70,7 @@ fieldset input[type=submit] { width: 100%; }
 fieldset input[type=submit], .botonera a { background: #333; color: #FFF; -webkit-appearance: none; border: none; cursor: pointer; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-align: center; display: inline-block; margin: auto; padding: 1em 1.4em; }
 
 #login { flex: 1; display: flex; justify-content: center; align-items: center; }
+#login h3 { -webkit-transform: rotate(355deg); -moz-transform: rotate(355deg); -ms-transform: rotate(355deg); -o-transform: rotate(355deg); transform: rotate(355deg); }
 #login fieldset { max-width: 320px; }
 
 /* MENU ------------------------------------------------------------------- */
@@ -70,8 +84,7 @@ nav ul li.logout { float: right; }
 }
 
 /* SECCION ------------------------------------------------------------------- */
-h3 { font-size: 2em; line-height: 1.2em; margin-bottom: 1em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-h3.seleccione { height: 100%; text-align: center; margin: 0; display: flex; align-items: center; justify-content: center; }
+h3 { font-family: "CCShake"; font-size: 3em; line-height: 1.2em; margin: 0 auto 0.75em auto; font-weight: normal; color: var(--col-rosa); text-shadow: var(--txt-shadow); }
 
 .botonera { background: #F5F5F5; padding: 0.8em; text-align: right; width: 100%; }
 .botonera a { font-size: 1.1em; margin-left: 2em; }
@@ -117,25 +130,16 @@ dl dd { width: 80%; }
 
 
 /* CUSTOM ------------------------------------------------------------------- */
-header { background: #00BB9E; }
-header h2 { font-size: 2em; text-transform: uppercase; color: #F5F68A; font-family: 'QuotesCaps', sans-serif; font-weight: normal; text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35); }
-header h1 { background: url("../images/manager-logo.png") no-repeat; background-size: cover; width: 83px; height: 65px; }
-header h1 a { text-indent: -9999px; }
+/* header { background: #00BB9E; } */
+header h2 { font-size: 2em; text-transform: uppercase; color: var(--col-amarillo); font-family: 'CCShake', sans-serif; font-weight: normal; text-shadow: var(--txt-shadow); }
 
-nav ul li a { font-family: 'QuotesCaps', sans-serif; text-transform: uppercase; font-size: 1.4em; line-height: 1.2em; }
-nav ul li.logout a { color: #F5F68A!important; }
-nav ul li a:hover { color: #00BB9E!important; }
-
-h3 { text-transform: uppercase; font-weight: normal; font-family: 'QuotesCaps', sans-serif; color: #FFF; font-size: 2.2em; line-height: 1.2em; margin-bottom: 1em; text-shadow: 3px 0 0 #EF3854, -3px 0 0 #EF3854, 0 3px 0 #EF3854, 0 -3px 0 #EF3854, 2px 2px #EF3854, -2px -2px 0 #EF3854, 2px -2px 0 #EF3854, -2px 2px 0 #EF3854; }
-h3.seleccione { font-size: 2.6em; }
+nav ul li a { font-family: 'CCShake', sans-serif; text-transform: uppercase; font-size: 1.4em; line-height: 1.2em; }
+nav ul li.logout a { color: var(--col-amarillo)!important; }
+nav ul li a:hover { color: var(--col-verde)!important; }
 
 fieldset input[type=text], fieldset input[type=password] { background: #00BB9E; color: #FFF; }
-fieldset input[type=submit], .botonera a { font-family: 'QuotesCaps', sans-serif; color: #FFF!important; text-transform: uppercase; background: #EF3854; font-size: 1.3em; padding: 0.4em 1.4em; border-radius: 0.6em; border: 2px solid #EF3854; }
-fieldset input[type=submit]:hover, .botonera a:hover { color: #EF3854!important; background: #FFF!important; }
+fieldset input[type=submit], .botonera a { font-family: 'CCShake', sans-serif; color: #FFF!important; text-transform: uppercase; background: var(--col-lavanda); font-size: 1.3em; padding: 0.4em 1.4em; border-radius: 0.6em; border: 2px solid var(--col-lavanda); }
+fieldset input[type=submit]:hover, .botonera a:hover { color: var(--col-lavanda)!important; background: #FFF!important; }
 
-.dataTabla .link { color: #EF3854; }
-.paginador a:hover { text-decoration: underline; color: #EF3854; }
-
-@media only screen and (min-width: 600px) {
-header h1 { width: 103px; height: 80px; }
-}
+.dataTabla .link { color: var(--col-lavanda); }
+.paginador a:hover { text-decoration: underline; color: var(--col-lavanda); }

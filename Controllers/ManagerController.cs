@@ -246,7 +246,7 @@ namespace PromoDH.Controllers
             {
                 HttpContext.Session.SetInt32("ESCRIBANO", usu.escribano);
                 HttpContext.Session.SetString("USERMANAGER", usu.usuario);
-
+                HttpContext.Session.SetInt32("USUARIO_ID", usu.id);
                 if (usu.escribano==1)
                 {
                     if (usu.logged_date != null)
@@ -261,7 +261,7 @@ namespace PromoDH.Controllers
                         return View("Index");
                     }
                 }
-                HttpContext.Session.SetInt32("USUARIO_ID", usu.id);
+               
                 return View("Index");
             }
             else
