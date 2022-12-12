@@ -26,7 +26,7 @@ namespace PromoDH.Controllers
         [HttpGet]
         public IActionResult Premios()
         {
-            if (HttpContext.Session.GetInt32("ESCRIBANO").GetValueOrDefault() > 0 || HttpContext.Session.GetString("USERMANAGER") == "adminmxt") {
+            if (HttpContext.Session.GetInt32("ESCRIBANO").GetValueOrDefault() > 0 || HttpContext.Session.GetString("USERMANAGER") == "admidh") {
                 
                 return View("Premios", Datos.ObtenerSembrado());
             }
@@ -42,7 +42,7 @@ namespace PromoDH.Controllers
         [HttpGet]
         public IActionResult Preguntas()
         {
-            if (HttpContext.Session.GetInt32("ESCRIBANO").GetValueOrDefault() > 0 || HttpContext.Session.GetString("USERMANAGER") == "adminmxt")
+            if (HttpContext.Session.GetInt32("ESCRIBANO").GetValueOrDefault() > 0 || HttpContext.Session.GetString("USERMANAGER") == "admidh")
             {
 
                 return View("Preguntas", Datos.ObtenerPreguntas());

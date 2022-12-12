@@ -20,9 +20,14 @@ namespace PromoDH.Controllers
 
         public IActionResult Index()
         {
-
             return View();
         }
+
+        public IActionResult Index2()
+        {
+            return Content("Sitio en construcción");
+        }
+        
 
         public IActionResult Faq()
         {
