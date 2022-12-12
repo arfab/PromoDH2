@@ -18,7 +18,7 @@
 				<tr>
 					<td>@Html.DisplayFor(model => item.descripcion)</td>
 					<td>@Html.DisplayFor(model => item.id)</td>
-					<td>@Html.DisplayFor(model => item.fecha_hora)</td>
+					<td>@Convert.ToDateTime(@item.fecha_hora).ToString("dd/MM/yyyy HH:mm")</td>
 					<td>@Html.DisplayFor(model => item.registro_id)</td>
 				</tr>
 			}

@@ -12,7 +12,7 @@ namespace PromoDH.Models
 
         public string descripcion { get; set; }
 
-        public string fecha_hora { get; set; }
+        public DateTime fecha_hora { get; set; }
 
         public int registro_id { get; set; }
 
