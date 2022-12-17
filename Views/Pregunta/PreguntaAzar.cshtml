@@ -1,93 +1,71 @@
 ﻿@model PromoDH.Models.PreguntaPromo
-@{ ViewData["Title"] = "PreguntaAzar"; }
+@{ Layout = null; }
 <!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Bienvenidos a "A Todo Bagley"</title>
-
-    <meta name="description" content="Bienvenidos al sitio de la promoción A TODO BAGLEY" />
-    <meta name="keywords" content="promo galletitas bagley, promo a todo bagley, premio combo cine en casa bagley, premio combo campamento bagley, premio combo paseo bagley, premio combo gamer bagley, premio combo tarde en casa bagley, promo galletitas sonrisas, promo galletitas rumba, promo galletitas promo galletitas chocolinas, promo galletitas opera, promo galletitas surtido bagley, promo galletitas merengadas, promo galletitas amor, promo galletitas mellizas" />
-    <meta name="robots" content="index, nofollow" />
-    <meta name="Publisher-Email" content="arcor@arcor.com.ar" />
-    <meta name="author" content="Promo A TODO BAGLEY | https://www.promobagley.net" />
-    <meta name="copyright" content=" ® Copyright Bagley Argentina 2021" />
-    <link rel="canonical" href="https://www.promobagley.net" />
-
-
-
-
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
-    <!-- [if lt IE 9]>
-    <script type="text/javascript" src="~/scripts/html5shiv.min.js"></script>
-    <script type="text/javascript" src="~/scripts/respond.min.js"></script>
-    <![endif] -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="~/scripts/jQuery.plugins.js"></script>
-    <script type="text/javascript" src="~/scripts/jQuery.js"></script>
-
-
-
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-21325046-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-21325046-1');
-    </script>
-
-
+<meta charset="UTF-8">
+<title>Bienvenidos a la promo "TopLine Lollapalooza 2023"</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="~/scripts/html5shiv.min.js"></script>
+<script type="text/javascript" src="~/scripts/respond.min.js"></script>
+<![endif] -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.plugins.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.js"></script>
 </head>
-<body id="int" class="pregunta">
+<body id="int" class="pre">
+	<header>
+    <h1><a href="#">Promo "TopLine Lollapalooza 2023"</a></h1>
+  </header>
 	<form asp-action="PreguntaAzar">
-		<div class="site-container">
-			<section class="toldo">
-				<h1>A Todo Bagley</h1>
-			</section>
-			<main class="conElems">
-				<div class="wrapper">
-					<h2>Respondé esta pregunta</h2>
-					<div class="textos">
-						<fieldset class="pregunta">
-							<input type="hidden" asp-for="id" />
-              <input type="hidden" asp-for="pregunta" />
-							<input type="hidden" asp-for="r1" />
-							<input type="hidden" asp-for="r2" />
-							<input type="hidden" asp-for="r3" />
-							<input type="hidden" asp-for="rc" />
-							<p asp-for="pregunta">@Model.pregunta</p>
-							<div class="radio-buttons">
-								<label for="radRes1" asp-for="r1">@Model.r1
-									<input id="radRes1" type="radio" value=1 name="rsel" />
-									<span class="checkmark"></span>
-								</label>
-								<label for="radRes2" asp-for="r2">@Model.r2
-									<input id="radRes2" type="radio" value=2 name="rsel" />
-									<span class="checkmark"></span>
-								</label>
-								<label for="radRes3" asp-for="r3">@Model.r3
-									<input id="radRes3" type="radio" value=3 name="rsel" />
-									<span class="checkmark"></span>
-								</label>
-							</div>
-							<input type="submit" value="Responder" />
-						</fieldset>
-					</div>
-				</div>
-			</main>
-		</div>
-		<footer>
-			<div class="wrapper">
-				<p>SIN OBLIGACIÓN DE COMPRA. VÁLIDA DEL 15/02/2021 AL 15/4/2021. CONSULTA LA INFORMACIÓN EN LAS BASES Y CONDICIONES EN ESTA WEB. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPÁ POR PREMIOS OFRECIDOS.<br />
-				CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.</p>
-			</div>
-		</footer>
+		<div class="elems elems-desktop">
+			<img src="~/images/elem-16.gif" class="elem1" />
+			<img src="~/images/elem-16-anim.gif" class="elem1_ojos" />
+			<img src="~/images/elem-09.gif" class="elem2" />
+			<img src="~/images/elem-07.gif" class="elem3" />
+			<img src="~/images/mano.png" class="elem4" />
+  	</div>
+		<main>
+			<h2>Contest&aacute;<br />esta pregunta</h2>
+			<fieldset class="pregunta">
+				<input type="hidden" asp-for="id" />
+        <input type="hidden" asp-for="pregunta" />
+				<input type="hidden" asp-for="r1" />
+				<input type="hidden" asp-for="r2" />
+				<input type="hidden" asp-for="r3" />
+				<input type="hidden" asp-for="rc" />
+				<ul>
+					<li class="preg">
+						<p asp-for="pregunta">@Model.pregunta</p>
+					</li>
+					<li class="resp">
+						<div class="resp-item">
+							<label for="radRes1" asp-for="r1">@Model.r1
+								<input id="radRes1" type="radio" value=1 name="rsel" />
+								<span class="checkmark"></span>
+							</label>
+						</div>
+						<div class="resp-item">
+							<label for="radRes2" asp-for="r2">@Model.r2
+								<input id="radRes2" type="radio" value=2 name="rsel" />
+								<span class="checkmark"></span>
+							</label>
+						</div>
+						<div class="resp-item">
+							<label for="radRes3" asp-for="r3">@Model.r3
+								<input id="radRes3" type="radio" value=3 name="rsel" />
+								<span class="checkmark"></span>
+							</label>
+						</div>
+					</li>
+					<li class="btn">
+						<input type="submit" value="Enviar" />
+					</li>
+				</ul>
+			</fieldset>
+		</main>
 	</form>
 </body>
 </html>

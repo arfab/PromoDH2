@@ -28,32 +28,32 @@ namespace PromoDH.Controllers
         public IActionResult Gano()
         {
 
-            //if (HttpContext.Session.GetString("PREMIO_ID") == null)
-            //    return RedirectToAction("Index", "Home");
+            if (HttpContext.Session.GetString("PREMIO_ID") == null)
+                return RedirectToAction("Index", "Home");
 
-            //if (HttpContext.Session.GetString("PREMIO_ID") == "0")
-            //    return RedirectToAction("Index", "Home");
+            if (HttpContext.Session.GetString("PREMIO_ID") == "0")
+                return RedirectToAction("Index", "Home");
 
-        
+
 
             return View();
         }
 
         public IActionResult Perdio()
         {
-            //if (HttpContext.Session.GetString("PREMIO_ID") == null)
-            //    return RedirectToAction("Index", "Home");
+            if (HttpContext.Session.GetString("PREMIO_ID") == null)
+                return RedirectToAction("Index", "Home");
 
             return View();
         }
 
         public IActionResult Tarde()
         {
-            //if (HttpContext.Session.GetString("PREMIO_ID") == null)
-            //    return RedirectToAction("Index", "Home");
+            if (HttpContext.Session.GetString("PREMIO_ID") == null)
+                return RedirectToAction("Index", "Home");
 
-            //if (HttpContext.Session.GetString("PREMIO_ID") == "0")
-            //    return RedirectToAction("Index", "Home");
+            if (HttpContext.Session.GetString("PREMIO_ID") == "0")
+                return RedirectToAction("Index", "Home");
 
 
             return View();
@@ -63,8 +63,8 @@ namespace PromoDH.Controllers
         [HttpGet]
         public IActionResult PreguntaAzar()
         {
-            //if (HttpContext.Session.GetString("REGISTRO_ID") == null )
-            //    return RedirectToAction("Index","Home");
+            if (HttpContext.Session.GetString("REGISTRO_ID") == null)
+                return RedirectToAction("Index", "Home");
 
             PreguntaPromo preg = Datos.ObtenerPreguntaAzar();
             if (preg == null)
