@@ -1,196 +1,53 @@
-﻿@model PromoDH.Models.Contacto
-@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
-@{ ViewData["Title"] = "Contacto"; }
-
-
-@inject IOptions<RecaptchaSettings> RecaptchaSettings;
-@using reCAPTCHA.AspNetCore
-@using reCAPTCHA.AspNetCore.Versions;
-@using Microsoft.Extensions.Options
-
-
-
+﻿@{ Layout = null; }
 <!doctype html>
-<html lang="es">
+<html lang="es" class="scroller">
 <head>
-    <meta charset="UTF-8">
-    <title>Bienvenidos a "A Todo Bagley"</title>
-
-
-    <meta name="description" content="Bienvenidos al sitio de la promoción A TODO BAGLEY" />
-    <meta name="keywords" content="promo galletitas bagley, promo a todo bagley, premio combo cine en casa bagley, premio combo campamento bagley, premio combo paseo bagley, premio combo gamer bagley, premio combo tarde en casa bagley, promo galletitas sonrisas, promo galletitas rumba, promo galletitas promo galletitas chocolinas, promo galletitas opera, promo galletitas surtido bagley, promo galletitas merengadas, promo galletitas amor, promo galletitas mellizas" />
-    <meta name="robots" content="index, nofollow" />
-    <meta name="Publisher-Email" content="arcor@arcor.com.ar" />
-    <meta name="author" content="Promo A TODO BAGLEY | https://www.promobagley.net" />
-    <meta name="copyright" content=" ® Copyright Bagley Argentina 2021" />
-    <link rel="canonical" href="https://www.promobagley.net" />
-
-
-
-
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
-    <!-- [if lt IE 9]>
-    <script type="text/javascript" src="~/scripts/html5shiv.min.js"></script>
-    <script type="text/javascript" src="~/scripts/respond.min.js"></script>
-    <![endif] -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="~/scripts/jQuery.plugins.js"></script>
-    <script type="text/javascript" src="~/scripts/jQuery.js"></script>
-
-
-
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-21325046-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-21325046-1');
-    </script>
-
-
-
+<meta charset="UTF-8">
+<title>Bienvenidos a la promo "TopLine Lollapalooza 2023"</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="~/scripts/html5shiv.min.js"></script>
+<script type="text/javascript" src="~/scripts/respond.min.js"></script>
+<![endif] -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.plugins.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.js"></script>
 </head>
-<body id="int">
-    <form asp-action="Index">
-        <div class="site-container">
-            <header>
-                <a href="javascript;" class="btn menu-open"><span class="fa fa-navicon"></span>Menú</a>
-                <a href="~/Contacto" class="btn contacto"><span class="fa fa-comment"></span>Contacto</a>
-            </header>
-            <section class="toldo">
-                <h1><a href="~/">A Todo Bagley</a></h1>
-            </section>
-            <main class="conElems">
-                <div class="wrapper">
-                    <h2>Contacto</h2>
-                    <p class="nota">Ante cualquier consulta no dudes en escribirnos<br />o comunicarte al 0800-333-3033</p>
-                    <div class="textos">
-                        <fieldset>
-                            <ul>
-                                <li>
-                                    <label asp-for="Nombre">Nombre <em>*</em></label>
-                                    <input asp-for="Nombre" autocomplete="nope" />
-                                    <span asp-validation-for="Nombre" class="text-danger"></span>
-                                </li>
-                                <li>
-                                    <label asp-for="Apellido">Apellido <em>*</em></label>
-                                    <input asp-for="Apellido" autocomplete="nope" />
-                                    <span asp-validation-for="Apellido" class="text-danger"></span>
-                                </li>
-                                <li>
-                                    <label asp-for="Dni">D.N.I <em>*</em></label>
-                                    <input asp-for="Dni" autocomplete="nope" />
-                                    <span asp-validation-for="Dni" class="text-danger"></span>
-                                </li>
-
-
-                                <li class="wide">
-                                    <label asp-for="Direccion">Domicilio completo <em>*</em></label>
-                                    <input asp-for="Direccion" autocomplete="nope" />
-                                    <span asp-validation-for="Direccion" class="text-danger"></span>
-                                </li>
-                                <li>
-                                    <label asp-for="Provincia" class="control-lable">Provincia <em>*</em></label>
-                                    <select asp-for="Provincia" asp-items="@(new SelectList(@ViewBag.ListofProvincias,"descripcion", "descripcion"))" class="custom-select">
-                                        <option value="">Seleccione la provincia</option>
-                                    </select>
-                                    <span asp-validation-for="Provincia" class="text-danger"></span>
-                                </li>
-                                <li>
-                                    <label asp-for="Localidad">Ciudad <em>*</em></label>
-                                    <input asp-for="Localidad" />
-                                    <span asp-validation-for="Localidad" class="text-danger"></span>
-                                </li>
-                                <li class="tel">
-                                    <label for="txtTelefono">Tel&eacute;fono <em>*</em></label>
-                                    <div class="campos">
-                                        <input asp-for="Area" class="are" autocomplete="nope" />
-                                        <input asp-for="Telefono" class="num" autocomplete="nope" />
-                                    </div>
-                                    <span asp-validation-for="Area" class="text-danger"></span>
-                                    <span asp-validation-for="Telefono" class="text-danger"></span>
-                                </li>
-                                <li class="tel">
-                                    <label for="txtTelefono">M&oacute;vil <em>*</em></label>
-                                    <div class="campos">
-                                        <input asp-for="AreaMovil" class="are" autocomplete="nope" />
-                                        <input asp-for="Movil" class="num" autocomplete="nope" />
-                                    </div>
-                                    <span asp-validation-for="AreaMovil" class="text-danger"></span>
-                                    <span asp-validation-for="Movil" class="text-danger"></span>
-                                </li>
-                                <li class="wide">
-                                    <label asp-for="Email">Email <em>*</em></label>
-                                    <input asp-for="Email" />
-                                    <span asp-validation-for="Email" class="text-danger"></span>
-                                </li>
-                                <li class="wide">
-                                    <label for="Consulta">Comentario <em>*</em></label>
-                                    <textarea asp-for="Consulta" cols="30" rows="10"></textarea>
-                                    <span asp-validation-for="Consulta" class="text-danger"></span>
-                                </li>
-                                <li class="wide">
-                                    <label for="men">Ingres&aacute; el captcha <em>*</em></label>
-                                    <!--'TODO: GENERAR CLAVES PARA LOS DISTINTOS DOMINIOS-->
-                                    @(Html.Recaptcha(RecaptchaSettings?.Value, new RecaptchaV2Checkbox
-{
-    Language = "es"
-}))
-                                </li>
-                                @*<li class="wide btn">
-                                        <input type="submit" name="cmdCargar" value="Enviar" id="cmdCargar" />
-                                    </li>*@
-
-                                <li class="wide btn">
-                                    <input type="submit" value="Enviar" />
-                                </li>
-
-                            </ul>
-                        </fieldset>
-                    </div>
-                </div>
-            </main>
-        </div>
-        <footer>
-            <div class="wrapper">
-                <p>
-                    SIN OBLIGACIÓN DE COMPRA. VÁLIDA DEL 15/02/2021 AL 15/4/2021. CONSULTA LA INFORMACIÓN EN LAS BASES Y CONDICIONES EN ESTA WEB. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPÁ POR PREMIOS OFRECIDOS.<br />
-                    CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.
-                </p>
-            </div>
-        </footer>
-        <div id="menu-blocker"></div>
-        <div id="menu">
-            <nav>
-                <a href="javascript;" class="menu-close"><span class="fa fa-times"></span></a>
-                <img src="images/logo-bagley.png" alt="Bagley" class="logo">
-                <ul>
-                    <li><a href="~/"><span>Home</span></a></li>
-                    <li><a href="~/Carga/CargarCodigo"><span>Cargá<br />tu código</span></a></li>
-                    <li><a href="~/Bases"><span>Bases<br />y condiciones</span></a></li>
-                    <li><a href="~/Premios"><span>Listado<br />de premios</span></a></li>
-                    <li><a href="~/FAQs"><span>Preguntas<br />frecuentes</span></a></li>
-                    <li class="sel"><span>Contacto</span></li>
-                </ul>
-            </nav>
-        </div>
-    </form>
-
-    @if (ViewBag.Message != null)
-    {
-        <script type="text/javascript">
-            alert('@Html.Raw(ViewBag.Message)');
-
-        </script>
-    }
-
-
-
+<body id="int" class="con">
+	<header>
+    <h1><a href="~/">Promo "TopLine Lollapalooza 2023"</a></h1>
+  	<a href="javascript;" class="menu-open">Men&uacute;</a>
+	</header>
+	<div id="menu-blocker"></div>
+  <nav id="menu">
+    <a href="#" class="menu-close">Cerrar men&uacute;</a>
+    <img src="~/images/menu-logo.png" class="logo" />
+    <ul>
+      <li><a href="~/">Home</a></li>
+      <li><a href="~/Carga/CargarCodigo">Carg&aacute;<br />tu c&oacute;digo</a></li>
+      <li><a href="~/Bases">Bases<br />y condiciones</a></li>
+      <li><a href="~/Premios">Listado<br />de premios</a></li>
+      <li><a href="~/FAQs">Preguntas<br />frecuentes</a></li>
+      <li class="sel"><span>Contacto</span></li>
+    </ul>
+  </nav>
+  <div class="elems elems-mobile">
+    <img src="~/images/mano.png" class="elem1" />
+  </div>
+  <div class="elems elems-desktop">
+    <img src="~/images/elem-16.gif" class="elem1" />
+    <img src="~/images/elem-16-anim.gif" class="elem1_ojos" />
+    <img src="~/images/elem-09.gif" class="elem2" />
+    <img src="~/images/elem-07.gif" class="elem3" />
+    <img src="~/images/mano.png" class="elem4" />
+  </div>
+  <main>
+    <h2>Contacto</h2>
+    <div class="textos">
+      <p>Si tenés alguna duda, comunicate al Servicio de Atención al Consumidor haciendo <a href="https://www.arcor.com/ar/contacto-productos" target="_blank">click acá</a> o llamando al <a href="tel:+08003333033" class="tel">0800-333-3033</a></p>
+      <img src="~/images/elem-14.gif" />
+    </div>
+  </main>
 </body>
 </html>

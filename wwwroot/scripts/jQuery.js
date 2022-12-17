@@ -1,131 +1,155 @@
-$(document).ready(function () {
-	// --------------------------------------------------------------------------------------
-	// GENERAL ------------------------------------------------------------------------------
-	var $window = $(window);
+$(document).on('ready', function() {
 
-	$window
-		.on("scroll", function () {
-			if ($window.scrollTop() > 50) {
-				$("body").addClass("scrolled");
-			} else {
-				$("body").removeClass("scrolled");
-			}
-		})
-		.trigger("scroll");
+  // --------------------------------------------------------------------------------------
+  // GENERAL ------------------------------------------------------------------------------
+  var $window = $(window);
+  var activeCarousel;
 
-	// MENU
-	$(".menu-open").on("click", function () {
-		$("html").toggleClass("menu-open");
-		return false;
-	});
+  // const animated = $('.animated');
 
-	$("#menu .menu-close, #menu-blocker").on("click", function () {
-		$("html").removeClass("menu-open");
-		return false;
-	});
+  // $(window).on('scroll', function() {
+	// 	if (animated) {
+	// 		animated.each(function(_, elem) {
+	// 			if (isElementInViewport(elem)) {
+	// 				elem.classList.add('is-visible');
+	// 			} else {
+	// 				elem.classList.remove('is-visible');
+	// 			}
+	// 		});
+	// 	}
+  // }).trigger('scroll');
 
-	if ($("body").is("#hom")) {
-		// TOLDO
-		$(".toldo").prepend(
-			"<div class='guir guir-l'></div><div class='guir guir-r'></div>"
-		);
+  // var $window = $(window);
+  // var animRatio;
 
-		function onSlide1() {
-			$(".slide1 p, .slide1 span, .slide1 div").css({ opacity: 0 });
-			$(".slide1 p").animate({ opacity: 1 }, 150);
-			$(".slide1 span").delay(250).animate({ opacity: 1 }, 150);
-			$(".slide1 div").delay(450).animate({ opacity: 1 }, 150);
-		}
+  // $.fancybox.open({
+  //   src: 'cierre.html',
+  //   type: 'iframe',
+  //   toolbar: false,
+  //   smallBtn: true,
+  //   opts: {
+  //     iframe: {
+  //       preload: false,
+  //       css: {
+  //         width: '600px',
+  //       }
+  //     }
+  //   }
+  // });
 
-		function onSlide2() {
-			$(".slide2 p, .slide2 img, .slide2 div").css({ opacity: 0 });
-			$(".slide2 div").delay(450).animate({ opacity: 1 }, 150);
-			$(".slide2 p").animate({ opacity: 1 }, 150);
-			$(".slide2 img").each(function (index) {
-				$(".slide2 .img" + (index + 1) + "")
-					.delay(150 * index)
-					.animate({ opacity: 1 }, 250);
-			});
-		}
+  // --------------------------------------------------------------------------------------
+  // ANIMACION HOME -----------------------------------------------------------------------
+  setMobile();
 
-		$(".anim .owl-carousel")
-			.owlCarousel({
-				loop: true,
-				margin: 0,
-				mouseDrag: false,
-				touchDrag: false,
-				autoplay: true,
-				animateOut: "fadeOut",
-				autoplayTimeout: 5000,
-				autoplaySpeed: 0,
-				autoplayHoverPause: false,
-				items: 1,
-			})
-			.on("changed.owl.carousel", function (event) {
-				switch (event.item.index) {
-					case 3:
-						onSlide2();
-						break;
-					case 4:
-						onSlide1();
-						break;
-				}
-			});
+  $window.on('resize', function() {
+    if ($window.width() <= 600) {
+      if($("body").hasClass("d")) {
+        setMobile();
+      }
+    } else {
+      if($("body").hasClass("m")) {
+        setDesktop();
+      }
+    }
 
-		onSlide1();
+  }).trigger("resize");
 
-		$("main .owl-carousel").owlCarousel({
-			loop: true,
-			margin: 0,
-			autoplay: true,
-			slideTransition: "linear",
-			autoplayTimeout: 0,
-			autoplaySpeed: 3000,
-			autoplayHoverPause: false,
-			responsive: {
-				0: { items: 3 },
-				450: { items: 4 },
-				600: { items: 5 },
-				750: { items: 6 },
-				900: { items: 8 },
-			},
-		});
-	} else {
-		if ($("main").hasClass("conElems")) {
-			$("main").prepend("<div class='elems'></div>");
-			var nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-			shuffle(nums);
-			$.each(nums, function (i) {
-				$(".elems").append(
-					"<img src='/images/elem-" +
-						(i + 1) +
-						".png' class='pos" +
-						nums[i] +
-						"' />"
-				);
-			});
-		}
+  function setMobile() {
+    $("body").removeClass("d").addClass("m");
+    activeCarousel = $("#hom .anim-m .owl-carousel").owlCarousel({
+      touchDrag: false,
+      mouseDrag: false,
+      autoplay: true,
+      autoplayHoverPause: false,
+      autoplayTimeout: 2000,
+      autoplaySpeed: 250,
+      items: 1,
+      animateOut: 'fadeOut',
+      dots: false,
+      nav: false,
+      loop: true,
+      // startPosition: 1
+    });
+  }
 
-		$(".nano").nanoScroller({ alwaysVisible: true });
-	}
+  function setDesktop() {
+    $("body").removeClass("m").addClass("d");
+    if ($("#hom .anim-m .owl-loaded").length) {
+      activeCarousel.trigger('destroy.owl.carousel').trigger('refresh.owl.carousel');
+    }
+  }
+
+
+  // if ($("body").hasClass("premio")) {
+  //   var newElems = "";
+  //   if ($(".premios").hasClass("premio0")) {
+  //     newElems += "<img src='images/elem-26.gif' class='elem-premio0-1'>";
+  //     newElems += "<img src='images/elem-9.gif' class='elem-premio0-2'>";
+  //   } else if ($(".premios").hasClass("premio1")) {
+  //     newElems += "<img src='images/elem-1.gif' class='elem-premio1-1'>";
+  //     newElems += "<img src='images/elem-4.gif' class='elem-premio1-2'>";
+  //     newElems += "<img src='images/elem-18.gif' class='elem-premio1-3'>";
+  //   } else if ($(".premios").hasClass("premio2")) {
+  //     newElems += "<img src='images/elem-27.gif' class='elem-premio2-1'>";
+  //     newElems += "<img src='images/elem-24.gif' class='elem-premio2-2'>";
+  //   } else if ($(".premios").hasClass("premio3")) {
+  //     newElems += "<img src='images/elem-28.gif' class='elem-premio3-1'>";
+  //     newElems += "<img src='images/elem-6.gif' class='elem-premio3-2'>";
+  //   }
+  //   $(".elems").append(newElems);
+  // }
+
+
+
+
+  $(".nano:not(.noscroll)").nanoScroller({ alwaysVisible: true });
+
+  $("#hom .productos a").fancybox({
+    toolbar: false,
+    smallBtn: true,
+    iframe: {
+      css: { width : '400px'}
+    }
+  });
+
+  $("#hom .logos").owlCarousel({
+    touchDrag: true,
+    autoplay: true,
+    autoplayHoverPause: false,
+    autoplayTimeout: 2000,
+    autoplaySpeed: 1000,
+    navSpeed: 500,
+    navText: ["",""],
+    items: 1,
+    //animateOut: 'fadeOut',
+    dots: false,
+    loop: true,
+    nav: true,
+    responsive: {
+      0: { items: 2, margin: 30, stagePadding: 30 },
+      // 360: { margin: 20, stagePadding: 20 },
+      // 600: { items: 2, margin: 30, stagePadding: 30 },
+      768: { items: 3, margin: 40, stagePadding: 40 }
+    }
+  });
+
+	const linkmira = $('#hom .productos .mira');
+	
+	setInterval(function() {
+		linkmira.addClass('blink');
+		setTimeout(function() { linkmira.removeClass('blink') }, 1000);
+	}, 3000);
+
+  // --------------------------------------------------------------------------------------
+  // MENU NAVEGACION ----------------------------------------------------------------------
+  $(".menu-open").click(function() {
+    $("body").toggleClass("menu-open");
+    return false;
+  });
+
+  $("#menu .menu-close, #menu-blocker").click(function() {
+    $("body").removeClass("menu-open");
+    return false;
+  });
+
 });
-
-function shuffle(array) {
-	var currentIndex = array.length,
-		temporaryValue,
-		randomIndex;
-
-	// While there remain elements to shuffle...
-	while (0 !== currentIndex) {
-		// Pick a remaining element...
-		randomIndex = Math.floor(Math.random() * currentIndex);
-		currentIndex -= 1;
-
-		// And swap it with the current element.
-		temporaryValue = array[currentIndex];
-		array[currentIndex] = array[randomIndex];
-		array[randomIndex] = temporaryValue;
-	}
-
-	return array;
-}

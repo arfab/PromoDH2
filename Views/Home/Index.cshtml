@@ -1,114 +1,99 @@
 ﻿@model IEnumerable<PromoDH.Models.Registro>
 @{ ViewData["Title"] = "Home Page"; }
 <!doctype html>
-<html lang="es">
+<html lang="es" class="scroller">
 <head>
-    <meta charset="UTF-8">
-    <title>Bienvenidos a "A Todo Bagley"</title>
-
-    <meta name="description" content="Bienvenidos al sitio de la promoción A TODO BAGLEY" />
-    <meta name="keywords" content="promo galletitas bagley, promo a todo bagley, premio combo cine en casa bagley, premio combo campamento bagley, premio combo paseo bagley, premio combo gamer bagley, premio combo tarde en casa bagley, promo galletitas sonrisas, promo galletitas rumba, promo galletitas promo galletitas chocolinas, promo galletitas opera, promo galletitas surtido bagley, promo galletitas merengadas, promo galletitas amor, promo galletitas mellizas" />
-    <meta name="robots" content="index, nofollow" />
-    <meta name="Publisher-Email" content="arcor@arcor.com.ar" />
-    <meta name="author" content="Promo A TODO BAGLEY | https://www.promobagley.net" />
-    <meta name="copyright" content=" ® Copyright Bagley Argentina 2021" />
-    <link rel="canonical" href="https://www.promobagley.net" />
-
-
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
-    <link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="~/scripts/html5shiv.min.js"></script>
-    <script type="text/javascript" src="~/scripts/respond.min.js"></script>
-    <![endif] -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="~/scripts/jQuery.plugins.js"></script>
-    <script type="text/javascript" src="~/scripts/jQuery.js"></script>
-
-
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-21325046-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-21325046-1');
-    </script>
-
-
+<meta charset="UTF-8">
+<title>Bienvenidos a la promo "TopLine Lollapalooza 2023"</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="~/scripts/html5shiv.min.js"></script>
+<script type="text/javascript" src="~/scripts/respond.min.js"></script>
+<![endif] -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.plugins.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.js"></script>
 </head>
-<body id="hom">
-    <form id="form1" runat="server" autocomplete="off">
-        <header>
-            <a href="javascript;" class="btn menu-open"><span class="fa fa-navicon"></span>Menú</a>
-            <a href="~/Contacto" class="btn contacto"><span class="fa fa-comment"></span>Contacto</a>
-        </header>
-        <section class="toldo">
-            <div class="wrapper">
-                <h1>A Todo Bagley</h1>
-                <div class="anim-container">
-                    <div class="anim">
-                        <div class="owl-carousel">
-                            <div class="slide1">
-                                <div class="content">
-                                    <p><em>Te&nbsp;presentamos una&nbsp;promo</em> <span>para&nbsp;disfrutar en&nbsp;familia!</span></p>
-                                    <div class="btn-container"><a href="~/Carga/CargarCodigo">Cargar código</a></div>
-                                </div>
-                            </div>
-                            <div class="slide2">
-                                <p>Participá<br />por <span>increíbles<br />premios</span></p>
-                                <img src="images/hom-slide2-img1.png" class="img1" alt="Combo campamento" />
-                                <img src="images/hom-slide2-img2.png" class="img2" alt="Combo paseo" />
-                                <img src="images/hom-slide2-img3.png" class="img3" alt="Sorteo combo cine en casa" />
-                                <img src="images/hom-slide2-img4.png" class="img4" alt="Combo tarde en casa" />
-                                <img src="images/hom-slide2-img5.png" class="img5" alt="Combo gamer" />
-                                <div class="btn-container"><a href="~/Carga/CargarCodigo">Cargar código</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <main>
-            <h4>Marcas Participantes</h4>
-            <ul class="owl-carousel">
-                <li><img src="images/marca-1.png" alt="Opera" /></li>
-                <li><img src="images/marca-2.png" alt="Rumba" /></li>
-                <li><img src="images/marca-3.png" alt="Amor" /></li>
-                <li><img src="images/marca-4.png" alt="Sonrisas" /></li>
-                <li><img src="images/marca-5.png" alt="Chocolinas" /></li>
-                <li><img src="images/marca-6.png" alt="Surtido Bagley" /></li>
-                <li><img src="images/marca-7.png" alt="Merengadas" /></li>
-                <li><img src="images/marca-8.png" alt="Mellizas" /></li>
-            </ul>
-        </main>
-        <footer>
-            <div class="wrapper">
-                <p>
-                    SIN OBLIGACIÓN DE COMPRA. VÁLIDA DEL 15/02/2021 AL 15/4/2021. CONSULTA LA INFORMACIÓN EN LAS BASES Y CONDICIONES EN ESTA WEB. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPÁ POR PREMIOS OFRECIDOS.<br />
-                    CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.
-                </p>
-            </div>
-        </footer>
-        <div id="menu-blocker"></div>
-        <div id="menu">
-            <nav>
-                <a href="javascript;" class="menu-close"><span class="fa fa-times"></span></a>
-                <img src="images/logo-bagley.png" alt="Bagley" class="logo">
-                <ul>
-                    <li class="sel"><span>Home</span></li>
-                    <li><a href="~/Carga/CargarCodigo"><span>Cargá<br />tu código</span></a></li>
-                    <li><a href="~/Bases"><span>Bases<br />y condiciones</span></a></li>
-                    <li><a href="~/Premios"><span>Listado<br />de premios</span></a></li>
-                    <li><a href="~/FAQs"><span>Preguntas<br />frecuentes</span></a></li>
-                    <li><a href="~/Contacto"><span>Contacto</span></a></li>
-                </ul>
-            </nav>
-        </div>
-    </form>
-
-    
+<body id="hom" class="scroll">
+  <form id="form1" runat="server" autocomplete="off">
+		<header>
+    	<h1><a href="~/">Promo "TopLine Lollapalooza 2023"</a></h1>
+    	<a href="javascript;" class="menu-open">Men&uacute;</a>
+  	</header>
+		<div id="menu-blocker"></div>
+		<nav id="menu">
+			<a href="#" class="menu-close">Cerrar men&uacute;</a>
+			<img src="~/images/menu-logo.png" class="logo" />
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="~/Carga/CargarCodigo">Carg&aacute;<br />tu c&oacute;digo</a></li>
+				<li><a href="~/Bases">Bases<br />y condiciones</a></li>
+				<li><a href="~/Premios">Listado<br />de premios</a></li>
+				<li><a href="~/FAQs">Preguntas<br />frecuentes</a></li>
+				<li><a href="~/Contacto">Contacto</a></li>
+			</ul>
+		</nav>
+		<div class="elems elems-mobile">
+			<img src="~/images/elem-07.gif" class="elem1" />
+			<img src="~/images/elem-11.gif" class="elem2" />
+			<img src="~/images/elem-09.gif" class="elem3" />
+			<img src="~/images/elem-18.gif" class="elem4" />
+			<img src="~/images/mano.png" class="elem5" />
+			<img src="~/images/elem-08.gif" class="elem6" />
+			<img src="~/images/elem-01.gif" class="elem7" />
+		</div>
+		<div class="elems elems-desktop">
+			<img src="~/images/elem-05.gif" class="elem1" />
+			<img src="~/images/elem-02.gif" class="elem2 float" />
+			<img src="~/images/elem-16.gif" class="elem3" />
+			<img src="~/images/elem-16-anim.gif" class="elem3_ojos" />
+			<img src="~/images/mano.png" class="elem4" />
+		</div>
+		<main>
+			<div class="intro">
+				<div class="wrapper">
+					<!-- INTRO MOBILE -->
+					<div class="anim-m">
+						<div class="owl-carousel">
+							<div class="slide1">
+								<p><span class="start">Podés ganar</span> <em><span class="hero">entradas diarias</span></em></p>
+							</div>
+							<div class="slide2">
+								<p><span class="start">Y también</span> <em><span class="hero">pases V.I.P.</span></em></p>
+							</div>
+						</div>
+					</div>
+					<!-- INTRO DESKTOP -->
+					<div class="anim-d">
+						<p><span class="start">Podés ganar</span> <em><span class="hero">entradas diarias y pases V.I.P.</span></em></p>
+					</div>
+					<a href="~/Carga/CargarCodigo" class="btn-cargar">Cargá tu código</a>
+				</div>
+			</div>
+			<div class="productos">
+				<div class="wrapper">
+					<a data-fancybox data-type="iframe" data-src="envases.html" href="javascript:;" class="mira">- Mirá donde están los datos -</a>
+					<h3><span>Productos participantes</span></h3>
+					<div class="logos-container">
+						<ul class="logos owl-carousel">
+							<li><img src="~/images/pack01-topline-7-turbomint.png" alt="TopLine 7 Turbo Mint" /></li>
+							<li><img src="~/images/pack02-topline-7-ultra-red-berry.png" alt="TopLine 7 Ultra Red Berry" /></li>
+							<li><img src="~/images/pack03-topline-7-ultra-clean-mint.png" alt="TopLine 7 Ultra Clean Mint" /></li>
+							<li><img src="~/images/pack04-topline-7-vibrant-strawberry.png" alt="TopLine 7 Vibrant Strawberry" /></li>
+							<li><img src="~/images/pack05-topline-7-xplosive-mint.png" alt="TopLine 7 X-Plosive Mint" /></li>
+							<li><img src="~/images/pack06-topline-fruta.png" alt="TopLine Fruta" /></li>
+							<li><img src="~/images/pack07-topline-menta.png" alt="TopLine Menta" /></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<img ~src="~/images/productoras.png" />
+			<p>SIN OBLIGACIÓN DE COMPRA. VÁLIDA DEL 16/01/23 AL 14/02/23.<br />
+				CONSULTE LA INFORMACIÓN EN LAS BASES Y CONDICIONES EN ESTE SITIO. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPA POR PREMIOS OFRECIDOS. CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.</p>
+		</footer>
+  </form>
 </body>
 </html>

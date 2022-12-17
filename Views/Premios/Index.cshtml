@@ -1,114 +1,84 @@
 ﻿@model IEnumerable<PromoDH.Models.Premio>
 @{ ViewData["Title"] = "Index"; }
+@{ Layout = null; }
 <!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Bienvenidos a "A Todo Bagley"</title>
-
-
-    <meta name="description" content="Bienvenidos al sitio de la promoción A TODO BAGLEY" />
-    <meta name="keywords" content="promo galletitas bagley, promo a todo bagley, premio combo cine en casa bagley, premio combo campamento bagley, premio combo paseo bagley, premio combo gamer bagley, premio combo tarde en casa bagley, promo galletitas sonrisas, promo galletitas rumba, promo galletitas promo galletitas chocolinas, promo galletitas opera, promo galletitas surtido bagley, promo galletitas merengadas, promo galletitas amor, promo galletitas mellizas" />
-    <meta name="robots" content="index, nofollow" />
-    <meta name="Publisher-Email" content="arcor@arcor.com.ar" />
-    <meta name="author" content="Promo A TODO BAGLEY | https://www.promobagley.net" />
-    <meta name="copyright" content=" ® Copyright Bagley Argentina 2021" />
-    <link rel="canonical" href="https://www.promobagley.net" />
-
-
-
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
-    <!-- [if lt IE 9]>
-    <script type="text/javascript" src="~/scripts/html5shiv.min.js"></script>
-    <script type="text/javascript" src="~/scripts/respond.min.js"></script>
-    <![endif] -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="~/scripts/jQuery.plugins.js"></script>
-    <script type="text/javascript" src="~/scripts/jQuery.js"></script>
-
-
-
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-21325046-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-21325046-1');
-    </script>
-
-
+<meta charset="UTF-8">
+<title>Bienvenidos a la promo "TopLine Lollapalooza 2023"</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="~/scripts/html5shiv.min.js"></script>
+<script type="text/javascript" src="~/scripts/respond.min.js"></script>
+<![endif] -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.plugins.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.js"></script>
 </head>
-<body id="int" class="premios">
-  <div class="site-container">
-    <header>
-      <a href="javascript;" class="btn menu-open"><span class="fa fa-navicon"></span>Menú</a>
-      <a href="~/Contacto" class="btn contacto"><span class="fa fa-comment"></span>Contacto</a>
-    </header>
-    <section class="toldo">
-      <h1><a href="~/">A Todo Bagley</a></h1>
-    </section>
-    <main class="conElems">
-      <div class="wrapper">
-        <h2>Premios</h2>
-        <p class="nota">Si figurás en este listado conservá el pack.<br />Te llamaremos.</p>
-        <div class="textos">
-          <div class="nano">
-            <div class="nano-content @(Model.Count()==0  ? " noganadoresContainer center" : "")">
-              <table>
-								<thead style="@(Model.Count()==0  ? "visibility:hidden" : "")">
+<body id="int" class="gan">
+  <header>
+    <h1><a href="~/">Promo "TopLine Lollapalooza 2023"</a></h1>
+    <a href="javascript;" class="menu-open">Men&uacute;</a>
+  </header>
+  <div id="menu-blocker"></div>
+  <nav id="menu">
+    <a href="#" class="menu-close">Cerrar men&uacute;</a>
+    <img src="~/images/menu-logo.png" class="logo" />
+    <ul>
+      <li><a href="~/">Home</a></li>
+      <li><a href="~/Carga/CargarCodigo">Carg&aacute;<br />tu c&oacute;digo</a></li>
+      <li><a href="~/Bases">Bases<br />y condiciones</a></li>
+      <li class="sel">Listado<br />de premios</li>
+      <li><a href="~/FAQs">Preguntas<br />frecuentes</a></li>
+      <li><a href="~/Contacto">Contacto</a></li>
+    </ul>
+  </nav>
+  <div class="elems elems-mobile">
+    <img src="~/images/mano.png" class="elem1" />
+  </div>
+  <div class="elems elems-desktop">
+    <img src="~/images/elem-04.gif" class="elem1" />
+    <img src="~/images/elem-09.gif" class="elem2" />
+    <img src="~/images/elem-07.gif" class="elem3" />
+    <img src="~/images/mano.png" class="elem4" />
+  </div>
+  <main>
+    <div class="header">
+      <div class="img showFromLeft">
+        <img src="images/elem-17.gif" class="float" />
+      </div>
+      <div class="titulo">
+        <span class="h2"><h2>Premios <span class="break"><span class="txt1">y</span> <span class="txt2">Ganadores</span></span></h2></span>
+        <p class="nota">Si figurás en este listado, <span class="txt1">conservá el paquete.</span> <span class="txt2">Te llamaremos!</span></p>
+      </div>
+    </div>
+    <div class="textos">
+      <div class="nano">
+        <div class="nano-content @(Model.Count()==0  ? " noganadoresContainer center" : "")">
+          <table>
+						<thead style="@(Model.Count()==0  ? "visibility:hidden" : "")">
+              <tr>
+                <th>DNI</th>
+                <th>Premio</th>
+              </tr>
+              </thead>
+              <tbody>
+                @foreach (var item in Model) {
                   <tr>
-                    <th>DNI</th>
-                    <th>Premio</th>
+                    <td>@Html.DisplayFor(model => item.DniEncriptado)</td>
+                    <td>@Html.DisplayFor(model => item.PremioDesc)</td>
                   </tr>
-                </thead>
-                <tbody>
-                  @foreach (var item in Model) {
-                    <tr>
-                      <td>@Html.DisplayFor(model => item.DniEncriptado)</td>
-                      <td>@Html.DisplayFor(model => item.PremioDesc)</td>
-                    </tr>
-                  }
-                  @if (@Model.Count() == 0) {
-                    <h4>No hay ganadores<br />hasta el momento</h4>
-                  }
-                </tbody>
-              </table>
-            </div>
+                }
+                @if (@Model.Count() == 0) {
+                  <h4>No hay ganadores<br />hasta el momento</h4>
+                }
+              </tbody>
+            </table>
           </div>
         </div>
-      </div>
-      <img src="images/hom-slide2-img1.png" class="img img1" alt="Combo campamento" />
-      <img src="images/hom-slide2-img2.png" class="img img2" alt="Combo paseo" />
-      <img src="images/hom-slide2-img4.png" class="img img3" alt="Combo tarde en casa" />
-      <img src="images/hom-slide2-img5.png" class="img img4" alt="Combo gamer" />
-    </main>
-  </div>
-  <footer>
-    <div class="wrapper">
-      <p>SIN OBLIGACIÓN DE COMPRA. VÁLIDA DEL 15/02/2021 AL 15/4/2021. CONSULTA LA INFORMACIÓN EN LAS BASES Y CONDICIONES EN ESTA WEB. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPÁ POR PREMIOS OFRECIDOS.<br />
-      CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.</p>
     </div>
-  </footer>
-  <div id="menu-blocker"></div>
-  <div id="menu">
-    <nav>
-      <a href="javascript;" class="menu-close"><span class="fa fa-times"></span></a>
-      <img src="images/logo-bagley.png" alt="Bagley" class="logo">
-      <ul>
-        <li><a href="~/"><span>Home</span></a></li>
-        <li><a href="~/Carga/CargarCodigo"><span>Cargá<br />tu código</span></a></li>
-        <li><a href="~/Bases"><span>Bases<br />y condiciones</span></a></li>
-        <li class="sel"><span>Listado<br />de premios</span></li>
-        <li><a href="~/FAQs"><span>Preguntas<br />frecuentes</span></a></li>
-        <li><a href="~/Contacto"><span>Contacto</span></a></li>
-      </ul>
-    </nav>
-  </div>
+  </main>
+
 </body>
 </html>
