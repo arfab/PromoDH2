@@ -144,16 +144,22 @@ namespace PromoDH.Controllers
 
 
                 if (iPremio == 1)
-                    sPremio = "Combo Campamento";
+                    sPremio = "ENTRADA Día 17/03/2023";
                 else
                     if (iPremio == 2)
-                    sPremio = "Combo Paseo";
+                    sPremio = "ENTRADA Día 18/03/2023";
                 else
                     if (iPremio == 3)
-                    sPremio = "Combo Gamer";
+                    sPremio = "ENTRADA Día 19/03/2023";
                 else
                     if (iPremio == 4)
-                    sPremio = "Combo Tarde en Casa";
+                    sPremio = "ENTRADA DAY PASS VIP - Dia 1";
+                else
+                    if (iPremio == 5)
+                    sPremio = "ENTRADA DAY PASS VIP - Dia 2";
+                else
+                    if (iPremio == 6)
+                    sPremio = "ENTRADA DAY PASS VIP - Dia 3";
 
                 MimeMessage message = new MimeMessage();
                 MailboxAddress from = new MailboxAddress("Admin", SmtpFrom.Value);
