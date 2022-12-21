@@ -39,6 +39,11 @@ namespace PromoDH.Controllers
             return View();
         }
 
+        public IActionResult Teaser()
+        {
+            return View();
+        }
+
 
         public IActionResult Privacy()
         {

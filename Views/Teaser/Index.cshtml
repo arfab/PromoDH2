@@ -1,0 +1,99 @@
+﻿@model IEnumerable<PromoDH.Models.Registro>
+@{ ViewData["Title"] = "Home Page"; }
+<!doctype html>
+<html lang="es" class="scroller">
+<head>
+<meta charset="UTF-8">
+<title>Bienvenidos a la promo "TopLine Lollapalooza 2023"</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="~/scripts/html5shiv.min.js"></script>
+<script type="text/javascript" src="~/scripts/respond.min.js"></script>
+<![endif] -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.plugins.js"></script>
+<script type="text/javascript" src="~/scripts/jQuery.js"></script>
+</head>
+<body id="hom" class="scroll">
+  <form id="form1" runat="server" autocomplete="off">
+		<header>
+    	<h1><a href="~/">Promo "TopLine Lollapalooza 2023"</a></h1>
+    	<a href="javascript;" class="menu-open">Men&uacute;</a>
+  	</header>
+		<div id="menu-blocker"></div>
+		<nav id="menu">
+			<a href="#" class="menu-close">Cerrar men&uacute;</a>
+			<img src="~/images/menu-logo.png" class="logo" />
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="~/Carga/CargarCodigo">Carg&aacute;<br />tu c&oacute;digo</a></li>
+				<li><a href="~/Bases">Bases<br />y condiciones</a></li>
+				<li><a href="~/Premios">Listado<br />de premios</a></li>
+				<li><a href="~/FAQs">Preguntas<br />frecuentes</a></li>
+				<li><a href="~/Contacto">Contacto</a></li>
+			</ul>
+		</nav>
+		<div class="elems elems-mobile">
+			<img src="~/images/elem-07.gif" class="elem1" />
+			<img src="~/images/elem-11.gif" class="elem2" />
+			<img src="~/images/elem-09.gif" class="elem3" />
+			<img src="~/images/elem-18.gif" class="elem4" />
+			<img src="~/images/mano.png" class="elem5" />
+			<img src="~/images/elem-08.gif" class="elem6" />
+			<img src="~/images/elem-01.gif" class="elem7" />
+		</div>
+		<div class="elems elems-desktop">
+			<img src="~/images/elem-05.gif" class="elem1" />
+			<img src="~/images/elem-02.gif" class="elem2 float" />
+			<img src="~/images/elem-16.gif" class="elem3" />
+			<img src="~/images/elem-16-anim.gif" class="elem3_ojos" />
+			<img src="~/images/mano.png" class="elem4" />
+		</div>
+		<main>
+			<div class="intro">
+				<div class="wrapper">
+					<!-- INTRO MOBILE -->
+					<div class="anim-m">
+						<div class="owl-carousel">
+							<div class="slide1">
+								<p><span class="start">Podés ganar</span> <em><span class="hero">entradas diarias</span></em></p>
+							</div>
+							<div class="slide2">
+								<p><span class="start">Y también</span> <em><span class="hero">pases V.I.P.</span></em></p>
+							</div>
+						</div>
+					</div>
+					<!-- INTRO DESKTOP -->
+					<div class="anim-d">
+						<p><span class="start">Podés ganar</span> <em><span class="hero">entradas diarias y pases V.I.P.</span></em></p>
+					</div>
+					<a href="~/Carga/CargarCodigo" class="btn-cargar">Cargá tu código</a>
+				</div>
+			</div>
+			<div class="productos">
+				<div class="wrapper">
+					<a data-fancybox data-type="iframe" data-src="envases.html" href="javascript:;" class="mira">- Mirá donde están los datos -</a>
+					<h3><span>Productos participantes</span></h3>
+					<div class="logos-container">
+						<ul class="logos owl-carousel">
+							<li><img src="~/images/pack01-topline-7-turbomint.png" alt="TopLine 7 Turbo Mint" /></li>
+							<li><img src="~/images/pack02-topline-7-ultra-red-berry.png" alt="TopLine 7 Ultra Red Berry" /></li>
+							<li><img src="~/images/pack03-topline-7-ultra-clean-mint.png" alt="TopLine 7 Ultra Clean Mint" /></li>
+							<li><img src="~/images/pack04-topline-7-vibrant-strawberry.png" alt="TopLine 7 Vibrant Strawberry" /></li>
+							<li><img src="~/images/pack05-topline-7-xplosive-mint.png" alt="TopLine 7 X-Plosive Mint" /></li>
+							<li><img src="~/images/pack06-topline-fruta.png" alt="TopLine Fruta" /></li>
+							<li><img src="~/images/pack07-topline-menta.png" alt="TopLine Menta" /></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<img ~src="~/images/productoras.png" />
+			<p>SIN OBLIGACIÓN DE COMPRA. VÁLIDA DEL 16/01/23 AL 14/02/23.<br />
+				CONSULTE LA INFORMACIÓN EN LAS BASES Y CONDICIONES EN ESTE SITIO. INGRESANDO DATOS PERSONALES Y DATOS DEL PRODUCTO PARTICIPA POR PREMIOS OFRECIDOS. CONSERVE LOS ENVASES DE PRODUCTOS INGRESADOS.</p>
+		</footer>
+  </form>
+</body>
+</html>
