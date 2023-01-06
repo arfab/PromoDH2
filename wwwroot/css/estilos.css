@@ -2,7 +2,7 @@
 /* CSS Document */
 
 :root {
---col-background: #F7F5F4;
+--col-background: linear-gradient(0deg, #FEEB92 25%, #FC9fE5 100%);
 --col-verde: #3BFCB5;
 --col-rosa: #FF8EEB;
 --col-fucsia: #FF4FE4;
@@ -131,7 +131,7 @@ main .textos p a { color: var(--col-rosa); }
 main .textos p a:hover { text-decoration: underline; }
 main .textos table { width: 100%; font-size: 1em; }
 main .textos table th, main .textos table td { padding: .3em; text-align: left; }
-main .textos table th { font-weight: normal; text-transform: uppercase; color: var(--col-lavanda); font-family: "CCShake"; font-size: 1.8em; padding: 0.4em 0.2em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-transform: uppercase; position: sticky; top: 0; background: var(--col-background); text-shadow: var(--txt-shadow); }
+main .textos table th { font-weight: normal; text-transform: uppercase; color: var(--col-lavanda); font-family: "CCShake"; font-size: 1.8em; padding: 0.4em 0.2em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-transform: uppercase; position: sticky; top: 0; background: #F7F5F4; text-shadow: var(--txt-shadow); }
 main .textos table td { line-height: 1.2em; }
 main .textos table .codigo { text-align: right; }
 main .textos .noganadores { color: #53E86A; font-family: "CCShake"; font-size: 2.4em; text-transform: uppercase; line-height: 1em; margin: 100px -40px 0 auto; text-align: center; }
@@ -260,6 +260,7 @@ main .textos p, main .textos ul, main .textos table  { font-size: 0.85em; }
 }
 
 /* PREMIOS */
+#int.premiosbody { background: #FFE989; }
 #int .premios { justify-content: center; align-items: center; text-align: center; max-width: 800px; margin: auto; padding: 2.5em 1em 2em 1em; display: flex!important; }
 
 #int .premios img { -webkit-animation: showFromBottom 1s; animation: showFromBottom 1s; }
@@ -361,7 +362,8 @@ main .textos p, main .textos ul, main .textos table  { font-size: 0.85em; }
 /*-- ELEMENTOS - HOME --*/
 #hom .elems-mobile .elem1 { right: 2%; width: 18%; max-width: 120px; top: 10%; -webkit-animation: orbit 8s linear infinite; animation: orbit 8s linear infinite; }
 #hom .elems-mobile .elem2 { right: -1.5em; width: 18%; max-width: 120px; top: 32%; transform: rotate(-10deg); }
-#hom .elems-mobile .elem3 { right: -2.5em; width: 26%; max-width: 180px; top: 55%; transform: scaleX(-1) rotate(-10deg); }
+/* #hom .elems-mobile .elem3 { right: -2.5em; width: 26%; max-width: 180px; top: 55%; transform: scaleX(-1) rotate(-10deg); } */
+#hom .elems-mobile .elem3 { right: 0; width: 20%; margin-right: -4em; max-width: 110px; top: 50%; transform-origin: 100% 100%; transform: rotate(-30deg); }
 #hom .elems-mobile .elem4 { right: -2.5em; width: 20%; max-width: 130px; top: 76%; transform: rotate(-20deg); }
 #hom .elems-mobile .elem5 { left: 0; width: 25%; margin-left: -3em; max-width: 160px; top: 43%; transform-origin: 100% 100%;  -webkit-animation: movehandleft 3s cubic-bezier(0.600, -0.280, 0.735, 0.045) infinite alternate-reverse both; animation: movehandleft 3s cubic-bezier(0.600, -0.280, 0.735, 0.045) infinite alternate-reverse both; }
 #hom .elems-mobile .elem6 { left: -4em; width: 32%; max-width: 220px; top: 82%; transform: rotate(-5deg); }
@@ -547,7 +549,7 @@ fieldset ul li { font-size: 0.8rem; }
 #hom .intro em { display: block; width: 100%; margin: auto; }
 #hom .intro .start { font-family: "CCShake"; text-transform: uppercase; color: var(--col-rosa); text-shadow: var(--txt-shadow); }
 #hom .intro .hero { position: relative; background-repeat: no-repeat; background-size: 100% 100%; text-indent: -9999px; height: 0; }
-#hom .intro .hero::before, #hom .intro .hero::after { content: ""; position: absolute; background: url('../images/elem-01.gif') no-repeat; background-size: 100% 100%; width: 30px; height: 30px; }
+#hom .intro .hero::before, #hom .intro .hero::after { content: ""; position: absolute; background: url('../images/elem-19.gif') no-repeat; background-size: 100% 100%; width: 30px; height: 30px; }
 #hom .intro .hero::before { transform: rotate(-5deg); }
 #hom .intro .hero::after { transform: rotate(20deg); }
 

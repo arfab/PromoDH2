@@ -214,7 +214,9 @@ namespace PromoDH.Controllers
             }
             catch (Exception e)
             {
-                return "No se pudo enviar el email: " + e.Message.ToString();
+                //PARA QUE NO MUESTRE ERROR
+                return "";
+                //return "No se pudo enviar el email: " + e.Message.ToString();
             }
 
         }
